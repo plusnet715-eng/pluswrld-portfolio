@@ -1,0 +1,45 @@
+name: Build checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  website:
+    name: Website install, typecheck and build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install website dependencies
+        run: npm install --no-audit --no-fund
+        working-directory: web
+      - name: Type-check website
+        run: npm run typecheck
+        working-directory: web
+      - name: Build website
+        run: npm run build
+        working-directory: web
+
+  sanity-studio:
+    name: Sanity Studio build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Studio dependencies
+        run: npm install --no-audit --no-fund
+        working-directory: studio
+      - name: Build Sanity Studio
+        run: npm run build
+        working-directory: studio
