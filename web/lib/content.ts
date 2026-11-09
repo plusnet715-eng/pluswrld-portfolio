@@ -16,6 +16,7 @@ export type Project = { _id: string; title: string; category: string; summary: s
 export type ProcessStep = { _id: string; title: string; description: string; order?: number };
 export type Faq = { _id: string; question: string; answer: string; order?: number };
 export type Testimonial = { _id: string; quote: string; rating: number; reviewDate: string; reviewerHandle: string; reviewerLabel: string; platform: string; sourceUrl: string };
+export type PresenceLink = { _id: string; name: string; url: string; order?: number };
 
 const defaults: Settings = {
   name: "Pluswrld", fullName: "Paul Oloruntobi",
@@ -77,4 +78,18 @@ export async function getFaqs(): Promise<Faq[]> {
 export async function getTestimonials(): Promise<Testimonial[]> {
   try { return await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order(reviewDate desc){_id,quote,rating,reviewDate,reviewerHandle,reviewerLabel,platform,sourceUrl}'); }
   catch { return []; }
+}
+
+export async function getPresenceLinks(): Promise<PresenceLink[]> {
+  try {
+    return await client.fetch<PresenceLink[]>(
+      '*[_type == "onlinePresence" && defined(url) && name in ["Fiverr profile","Upwork profile","Instagram","LinkedIn","Facebook","Threads","WhatsApp"] && (enabled != false)] | order(order asc){_id,name,url,order}'
+    );
+  } catch {
+    return [
+      { _id: "fiverr", name: "Fiverr profile", url: "https://www.fiverr.com/timi_p1", order: 1 },
+      { _id: "upwork", name: "Upwork profile", url: "https://www.upwork.com/freelancers/~016b078cb44626d3a3", order: 6 },
+      { _id: "whatsapp", name: "WhatsApp", url: "https://wa.me/2349161612746", order: 7 }
+    ];
+  }
 }
