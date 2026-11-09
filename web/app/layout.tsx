@@ -4,7 +4,6 @@ import { SiteFooter, SiteHeader } from "../components/site-chrome";
 import { getSettings } from "../lib/content";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pluswrld.com"),
   title: { default: "Pluswrld — Build. Automate. Grow.", template: "%s | Pluswrld" },
   description: "Independent digital systems consultancy for Shopify ecommerce, websites, no-code applications and AI-powered business automation.",
   applicationName: "Pluswrld",
