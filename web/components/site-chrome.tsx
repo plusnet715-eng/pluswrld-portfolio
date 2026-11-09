@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import type { Settings } from "../lib/content";
+import type { PresenceLink, Settings } from "../lib/content";
 
 const links = [{ href: "/services", label: "Services" }, { href: "/work", label: "Selected work" }, { href: "/about", label: "About" }, { href: "/process", label: "Process" }];
 function Brand() {
@@ -20,7 +20,7 @@ export function SiteHeader({ settings }: { settings: Settings }) {
     </nav>
   </div></header>;
 }
-export function SiteFooter({ settings }: { settings: Settings }) {
+export function SiteFooter({ settings, profiles }: { settings: Settings; profiles: PresenceLink[] }) {
   return <footer className="site-footer"><div className="container">
     <div className="footer-top">
       <div className="footer-brand"><Brand /><p>Build · Automate · Grow</p><span className="footer-philosophy">EMMPIRISISSO — {settings.secondaryTaglineMeaning}</span></div>
