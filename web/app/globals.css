@@ -685,3 +685,7 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
  .footer-brand-lockup .brand-tagline,.footer-brand-lockup .brand-philosophy{font-size:6px}
  .form-email-fallback>div{align-items:flex-start;flex-direction:column;gap:9px}
 }
+
+.footer-brand-lockup .brand-philosophy{display:none}
+.contact-email-fallback{display:inline-block;margin-top:7px;color:#19743a;font-size:10px;font-weight:600}
+:root[data-theme="dark"] .contact-email-fallback{color:#91e19d}
