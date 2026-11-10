@@ -67,17 +67,6 @@ function Brand({ settings }: { settings: Settings }) {
   </Link>;
 }
 
-function FooterBrandEmblem() {
-  return <svg className="footer-brand-emblem" viewBox="0 0 120 120" role="img" aria-label="Knowledge comes from sensory ideas">
-    <defs>
-      <path id="pluswrld-footer-tagline-arc" d="M 60,60 m -52,0 a 52,52 0 1,1 104,0 a 52,52 0 1,1 -104,0" />
-    </defs>
-    <text className="footer-emblem-curved-copy">
-      <textPath href="#pluswrld-footer-tagline-arc" startOffset="2%" textLength="296" lengthAdjust="spacingAndGlyphs">Knowledge comes from sensory ideas</textPath>
-    </text>
-    <image href="https://cdn.sanity.io/images/a8mywjme/production/42120f93d9abacd9cd4b416d8c1de7678d7fd31e-512x512.png" x="29" y="29" width="62" height="62" preserveAspectRatio="xMidYMid meet" />
-  </svg>;
-}
 
 export function SiteHeader({ settings }: { settings: Settings }) {
   const [open, setOpen] = useState(false);
@@ -112,7 +101,7 @@ export function SiteFooter({ settings, profiles }: { settings: Settings; profile
   return <footer className="site-footer"><div className="container">
     <div className="footer-top">
       <div className="footer-brand">
-        <div className="footer-brand-lockup"><FooterBrandEmblem /><Brand settings={settings} /></div>
+        <div className="footer-brand-lockup"><Brand settings={settings} /></div>
         
       </div>
       <div className="footer-column"><span className="footer-label">Explore</span><Link href="/about">About me</Link><Link href="/how-i-can-help">How I can help</Link><Link href="/services">Services</Link><Link href="/process">My process</Link><Link href="/work">Past work</Link><Link href="/testimonials">Reviews</Link><Link href="/faq">FAQ</Link></div>
