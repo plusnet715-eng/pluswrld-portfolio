@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EnquiryForm } from "../../components/enquiry-form";
 import { ProjectCard } from "../../components/project-card";
+import { TestimonialFeed } from "../../components/testimonial-feed";
 import { Reveal } from "../../components/reveal";
 import { getFaqs, getProcess, getProjects, getServices, getSettings, getTestimonials, type Project, type Settings, type Testimonial } from "../../lib/content";
 
@@ -28,12 +29,12 @@ function ReviewCard({ review, compact = false }: { review: Testimonial; compact?
   return <article className={"testimonial-card" + (compact ? " testimonial-card-compact" : "")}>
     <div className="testimonial-top">
       <span className="testimonial-stars" aria-label={rating + " out of 5 stars"}>{"★".repeat(rating) + "☆".repeat(5 - rating)}</span>
-      <span>{review.platform} · {review.reviewDate}</span>
+      <span>{review.platform} · {review.reviewDateLabel || review.reviewDate}</span>
     </div>
     <blockquote>“{review.quote}”</blockquote>
     <div className="testimonial-bottom">
-      <div><strong>{review.reviewerLabel || "Client review"}</strong><span>{review.reviewerHandle ? "@" + review.reviewerHandle : "Verified source"}</span></div>
-      <a href={review.sourceUrl || "https://www.fiverr.com/timi_p1"} target="_blank" rel="noreferrer">View source ↗</a>
+      <div><strong>{review.reviewerLabel || "Client review"}</strong><span>{review.reviewerCountry || (review.reviewerHandle ? "@" + review.reviewerHandle : "Client feedback")}{review.repeatClient ? " · Repeat client" : ""}</span></div>
+      {review.sourceUrl ? <a href={review.sourceUrl} target="_blank" rel="noreferrer">View source ↗</a> : <span className="testimonial-source-note">Shared client feedback</span>}
     </div>
   </article>;
 }
@@ -89,7 +90,7 @@ async function Home({ settings }: { settings: Settings }) {
       <div className="service-grid">{services.slice(0,3).map((service,i)=><Reveal key={service._id} delay={i*70}><article className="service-card"><ServiceIcon index={i}/><span className="card-number">0{i+1} / CAPABILITY</span><h3>{service.title}</h3><p>{service.description}</p><Arrow href="/services">Explore service</Arrow></article></Reveal>)}</div>
     </section>
     <section className="section section-soft"><div className="container"><div className="section-heading"><div><Eyebrow>SELECTED WORK</Eyebrow><h2>Built around<br /><span className="heading-muted">real business needs.</span></h2></div><div className="section-heading-aside"><p>Each project reflects a specific piece of work delivered. No invented performance figures or generic case-study claims.</p><Arrow href="/work">View all projects</Arrow></div></div><div className="project-grid">{projects.slice(0,4).map((p,i)=><ProjectCard key={p._id} project={p} index={i}/>)}</div></div></section>
-    {reviews.length > 0 && <section className="section container home-reviews"><div className="section-heading"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work.<br /><span className="heading-muted">Good working relationships.</span></h2></div><div className="section-heading-aside"><p>Feedback shared by buyers on Fiverr. Original wording and source attribution are preserved.</p><Arrow href="/testimonials">Read all reviews</Arrow></div></div><div className="home-review-grid">{reviews.slice(0,2).map((review,i)=><Reveal key={review._id} delay={i*65}><ReviewCard review={review} compact /></Reveal>)}</div></section>}
+    {reviews.some((review) => review.featured) && <section className="section container home-reviews"><div className="section-heading"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work.<br /><span className="heading-muted">Good working relationships.</span></h2></div><div className="section-heading-aside"><p>Feedback shared by buyers on Fiverr. Original wording and source attribution are preserved.</p><Arrow href="/testimonials">Read all reviews</Arrow></div></div><div className="home-review-grid">{reviews.filter((review) => review.featured).slice(0,2).map((review,i)=><Reveal key={review._id} delay={i*65}><ReviewCard review={review} compact /></Reveal>)}</div></section>}
     <section className="section container"><div className="section-heading"><div><Eyebrow>HOW I WORK</Eyebrow><h2>Clear thinking.<br /><span className="heading-muted">Careful execution.</span></h2></div><div className="section-heading-aside"><p>Good delivery starts before implementation. The business goal, scope, technical decisions and handover all need to connect.</p><Arrow href="/process">See my process</Arrow></div></div><div className="process-preview-list">{steps.slice(0,4).map((s,i)=><Reveal key={s._id} delay={i*50} className="preview-step"><span>0{i+1}</span><h3>{s.title}</h3><p>{s.description}</p></Reveal>)}</div></section>
     <Cta title="Have something worth building?" body="Share the idea, the challenge or the system you want to improve. We can work out a practical next step." />
   </>;
@@ -224,8 +225,8 @@ async function Work() {
 async function Testimonials() {
   const reviews = await getTestimonials();
   return <><Intro eyebrow="REVIEWS & TESTIMONIALS" title="Good work is remembered. Good experiences are shared." body="Feedback shared by buyers and clients. The original wording, attribution and source are kept intact."/><section className="section container testimonial-list">
-    {reviews.length ? reviews.map((review,i)=><Reveal key={review._id} delay={i*60}><ReviewCard review={review} /></Reveal>)
-    : <div className="empty-reviews"><span>CLIENT FEEDBACK</span><h2>More client feedback will be added here.</h2><p>Additional reviews from the reference document can be added once the original wording and buyer names are ready.</p></div>}
+    {reviews.length ? <TestimonialFeed reviews={reviews} />
+    : <div className="empty-reviews"><span>CLIENT FEEDBACK</span><h2>More client feedback will be added here.</h2><p>Additional reviews will appear here as they are added.</p></div>}
   </section><Cta title="A good working relationship starts with a conversation." body="Tell me what you are building or improving and what a successful project would need to achieve."/></>;
 }
 async function Faq() {
