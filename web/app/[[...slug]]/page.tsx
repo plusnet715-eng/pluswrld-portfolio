@@ -164,7 +164,9 @@ const platformGroups = [
     {name:"Shopify",src:"https://cdn.simpleicons.org/shopify/95BF47"},
     {name:"Google",src:"https://cdn.simpleicons.org/google/4285F4"},
     {name:"TikTok",src:"https://cdn.simpleicons.org/tiktok/111111"},
-    {name:"Pinterest",src:"https://cdn.simpleicons.org/pinterest/BD081C"}
+    {name:"Pinterest",src:"https://cdn.simpleicons.org/pinterest/BD081C"},
+    {name:"Facebook",src:"https://cdn.simpleicons.org/facebook/0866FF"},
+    {name:"Instagram",src:"https://cdn.simpleicons.org/instagram/E4405F"}
   ]},
   { title: "Websites & no-code", items: [
     {name:"Webflow",src:"https://cdn.simpleicons.org/webflow/146EF5"},
@@ -177,7 +179,8 @@ const platformGroups = [
     {name:"OpenAI",src:"https://openai.com/favicon.ico"},
     {name:"n8n",src:"https://cdn.simpleicons.org/n8n/EA4B71"},
     {name:"Make",src:"https://cdn.simpleicons.org/make/6D00CC"},
-    {name:"Zapier",src:"https://cdn.simpleicons.org/zapier/FF4A00"}
+    {name:"Zapier",src:"https://cdn.simpleicons.org/zapier/FF4A00"},
+    {name:"Claude",src:"https://cdn.simpleicons.org/claude/D97757"}
   ]},
   { title: "Creator, community & email", items: [
     {name:"Whop",src:"https://www.google.com/s2/favicons?domain=whop.com&sz=128"},
