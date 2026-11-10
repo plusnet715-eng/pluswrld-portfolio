@@ -6,22 +6,22 @@ const client = createClient({ projectId, dataset, apiVersion: "2025-02-19", useC
 const cdn = (assetId: string) => "https://cdn.sanity.io/images/" + projectId + "/" + dataset + "/" + assetId;
 
 export type Settings = {
-  name: string; fullName: string; role: string; location: string; availability: string;
+  name: string; fullName: string; role: string; location: string; marketReach: string; availability: string;
   email: string; whatsappNumber: string; whatsappUrl: string; heroTitle: string;
   heroDescription: string; aboutIntro: string; aboutStory: string; aboutPhilosophy: string;
-  tagline: string; secondaryTagline: string; secondaryTaglineMeaning: string; portraitUrl: string;
+  tagline: string; secondaryTagline: string; secondaryTaglineMeaning: string; portraitUrl: string; originalPortraitUrl: string; freelancingSince: string; firstClientDate: string; firstClientName: string;
 };
 export type Service = { _id: string; title: string; description: string; order?: number };
-export type Project = { _id: string; title: string; category: string; summary: string; liveUrl: string; status: string; imageUrl: string };
+export type Project = { _id: string; title: string; category: string; summary: string; liveUrl?: string; status: string; imageUrl: string };
 export type ProcessStep = { _id: string; title: string; description: string; order?: number };
 export type Faq = { _id: string; question: string; answer: string; order?: number };
-export type Testimonial = { _id: string; quote: string; rating: number; reviewDate: string; reviewDateLabel?: string; reviewerHandle: string; reviewerLabel: string; reviewerCountry?: string; platform: string; sourceUrl?: string; featured?: boolean; repeatClient?: boolean };
+export type Testimonial = { _id: string; quote: string; rating: number; reviewDate: string; reviewDateLabel?: string; reviewerHandle: string; reviewerLabel: string; reviewerCountry?: string; platform: string; sourceUrl?: string; sourceLabel?: string; featured?: boolean; repeatClient?: boolean };
 export type PresenceLink = { _id: string; name: string; url: string; order?: number };
 
 const defaults: Settings = {
   name: "Pluswrld", fullName: "Paul Oloruntobi",
   role: "AI Automation Consultant · Shopify & Digital Systems Specialist",
-  location: "",
+  location: "", marketReach: "Worldwide",
   availability: "Available for selected projects", email: "timileyinpaul26@gmail.com",
   whatsappNumber: "+234 916 161 2746", whatsappUrl: "https://wa.me/2349161612746",
   heroTitle: "I build digital systems that move your business forward.",
@@ -29,8 +29,10 @@ const defaults: Settings = {
   aboutIntro: "I’m Paul Oloruntobi, the consultant behind Pluswrld. I help businesses make their digital storefronts, websites and connected workflows work better for the people who use them.",
   aboutStory: "My client work has included Shopify storefront builds and redesigns, a WooCommerce-to-Shopify migration, product catalogue and variant management, SKU setup, product-page usability improvements and connected digital workflows. I work across the business goal and the technical details, so the finished system is not just online — it is practical to operate and clear for customers to use.",
   aboutPhilosophy: "I start by understanding the problem, not by pushing a particular tool. I value clear scope, thoughtful implementation, practical usability and honest communication. I would rather recommend a simpler system that works than add complexity that the business does not need.",
-  tagline: "Knowledge comes from sensory ideas", secondaryTagline: "",
+  tagline: "Build · Automate · Grow", secondaryTagline: "Knowledge comes from sensory ideas",
   secondaryTaglineMeaning: "",
+  freelancingSince: "2025-05-01", firstClientDate: "2025-06-01", firstClientName: "Ricardo Stewart",
+  originalPortraitUrl: "",
   portraitUrl: cdn("b4fa13154bf4e4fd6a2f4fee1fed00ade36bd022-1254x1254.png")
 };
 
@@ -43,8 +45,8 @@ const projectAssets: Record<string, string> = {
 
 export async function getSettings(): Promise<Settings> {
   try {
-    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url}');
-    return { ...defaults, ...(data ?? {}), portraitUrl: data?.portraitUrl || defaults.portraitUrl };
+    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,freelancingSince,firstClientDate,firstClientName,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
+    return { ...defaults, ...(data ?? {}), portraitUrl: data?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: data?.originalPortraitUrl || defaults.originalPortraitUrl };
   } catch { return defaults; }
 }
 
@@ -62,8 +64,8 @@ export async function getServices(): Promise<Service[]> {
 
 export async function getProjects(): Promise<Project[]> {
   try {
-    const data = await client.fetch<Omit<Project, "imageUrl">[]>('*[_type == "project" && defined(liveUrl) && status != "Pending scope confirmation"] | order(order asc){_id,title,category,summary,liveUrl,status}');
-    return (data ?? []).map((p) => ({ ...p, imageUrl: projectAssets[p._id] || "" }));
+    const data = await client.fetch<(Omit<Project, "imageUrl"> & { cmsImageUrl?: string })[]>('*[_type == "project" && status != "Pending scope confirmation"] | order(order asc){_id,title,category,summary,liveUrl,status,"cmsImageUrl":mainImage.asset->url}');
+    return (data ?? []).map((p) => ({ ...p, imageUrl: projectAssets[p._id] || p.cmsImageUrl || "" }));
   } catch { return []; }
 }
 
@@ -76,7 +78,7 @@ export async function getFaqs(): Promise<Faq[]> {
   catch { return []; }
 }
 export async function getTestimonials(): Promise<Testimonial[]> {
-  try { return await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order(reviewDate desc){_id,quote,rating,reviewDate,reviewDateLabel,reviewerHandle,reviewerLabel,reviewerCountry,platform,sourceUrl,featured,repeatClient}'); }
+  try { return await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order(reviewDate desc){_id,quote,rating,reviewDate,reviewDateLabel,reviewerHandle,reviewerLabel,reviewerCountry,platform,sourceUrl,sourceLabel,featured,repeatClient}'); }
   catch { return []; }
 }
 
