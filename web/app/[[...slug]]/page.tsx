@@ -123,58 +123,31 @@ async function Home({ settings }: { settings: Settings }) {
 
 async function About({ settings }: { settings: Settings }) {
   const projects = await getProjects();
-  const careerStart = settings.freelancingSince
-    ? new Date(settings.freelancingSince + "T00:00:00").toLocaleDateString("en", { month: "long", year: "numeric" })
-    : "May 2025";
-  const firstProjectDate = settings.firstClientDate
-    ? new Date(settings.firstClientDate + "T00:00:00").toLocaleDateString("en", { month: "long", year: "numeric" })
-    : "June 2025";
-  const startDate = new Date((settings.freelancingSince || "2025-05-01") + "T00:00:00");
-  const now = new Date();
-  let completedMonths = (now.getFullYear() - startDate.getFullYear()) * 12 + now.getMonth() - startDate.getMonth();
-  if (now.getDate() < startDate.getDate()) completedMonths -= 1;
-  const experienceYears = Math.floor(Math.max(0, completedMonths) / 12);
-  const experienceMonths = Math.max(0, completedMonths) % 12;
-  const experienceDuration = experienceYears
-    ? experienceYears + " year" + (experienceYears === 1 ? "" : "s") + (experienceMonths ? " " + experienceMonths + " month" + (experienceMonths === 1 ? "" : "s") : "")
-    : experienceMonths + " month" + (experienceMonths === 1 ? "" : "s");
 
   return <>
     <Intro eyebrow="ABOUT PAUL / THE PERSON BEHIND PLUSWRLD" title="I’m Paul Oloruntobi." body={settings.aboutIntro}/>
     <section className="section container about-profile">
-      <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
+      <Reveal className="about-image"><Image src="/about-portrait.svg" alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw" unoptimized/></Reveal>
       <div className="about-profile-copy">
-        <Reveal><Eyebrow>THE CONSULTANT BEHIND PLUSWRLD</Eyebrow><h2>Practical digital work, with the business goal in view.</h2>
-          <p>I’m Paul Oloruntobi, an independent digital systems and ecommerce consultant. My work brings together online stores, websites, no-code applications and business automation — with the business objective guiding the technical decisions.</p>
-          <p>I work with business owners who need more than a website or a collection of disconnected tools. I help clarify what the business needs, define an achievable scope and carry the implementation through to testing and handover.</p>
+        <Reveal><Eyebrow>THE CONSULTANT BEHIND PLUSWRLD</Eyebrow><h2>Shopify stores built for customers and business owners.</h2>
+          <p>I’m Paul Oloruntobi, a Shopify and ecommerce consultant. I help businesses build, set up and improve Shopify stores, bringing together storefront design, product organisation, customer experience and the systems behind everyday store operations.</p>
+          <p>The aim is simple: make it easier for customers to find what they need and complete a purchase, while giving the business owner a store that is practical to manage and ready to grow.</p>
         </Reveal>
-        <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Start with the problem. Choose the tools that serve it.</h3><p>{settings.aboutPhilosophy}</p></div></Reveal>
+        <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Build for the customer. Set up for the business.</h3><p>{settings.aboutPhilosophy}</p></div></Reveal>
         <Reveal delay={130}><div className="profile-facts">
           <div><span>NAME</span><strong>Paul Oloruntobi</strong></div>
           <div><span>ROLE</span><strong>{settings.role}</strong></div>
-          <div><span>FREELANCE EXPERIENCE</span><strong>{experienceDuration}</strong></div>
-          <div><span>CORE WORK</span><strong>Ecommerce · No-code · Automation</strong></div>
+          <div><span>CORE WORK</span><strong>Shopify store builds · Setup · Redesign · Optimisation</strong></div>
           <div><span>CLIENT MARKETS</span><strong>{settings.marketReach || "Worldwide"}</strong></div>
         </div></Reveal>
       </div>
     </section>
-    <section className="section section-soft"><div className="container about-story-grid">
-      <div><Eyebrow>MY PROFESSIONAL JOURNEY</Eyebrow><h2>A growing freelance practice, built through client work.</h2></div>
-      <div className="about-story-copy">
-        <p>I began freelancing in {careerStart}. My first paid client project followed in {firstProjectDate}, working with {settings.firstClientName || "Ricardo Stewart"}. Since then, I’ve continued building experience through practical client engagements across ecommerce, storefront improvements, product operations and connected digital experiences.</p>
-        <div className="career-milestones">
-          <article><span>01 / START</span><strong>{careerStart}</strong><p>Began freelancing and building a client-focused digital practice.</p></article>
-          <article><span>02 / FIRST CLIENT</span><strong>{firstProjectDate}</strong><p>First paid client project with {settings.firstClientName || "Ricardo Stewart"}.</p></article>
-          <article><span>03 / MARKET REACH</span><strong>{settings.marketReach || "Worldwide"}</strong><p>Available to work with businesses and founders across markets.</p></article>
-        </div>
-      </div>
-    </div></section>
     <section className="section container client-experience">
-      <div className="section-heading"><div><Eyebrow>PORTFOLIO / CLIENT PROJECTS</Eyebrow><h2>Work across stores,<br/><span className="heading-muted">brands and digital systems.</span></h2></div>
-        <div className="section-heading-aside"><p>A broader selection of client engagements. Completed work and active projects are labelled clearly; projects without a public preview are not given a fabricated link.</p><Arrow href="/work">Explore all projects</Arrow></div></div>
+      <div className="section-heading"><div><Eyebrow>PORTFOLIO / CLIENT PROJECTS</Eyebrow><h2>Shopify stores,<br/><span className="heading-muted">products and ecommerce experiences.</span></h2></div>
+        <div className="section-heading-aside"><p>A broader selection of work across Shopify storefronts, product operations and connected ecommerce experiences.</p><Arrow href="/work">Explore all projects</Arrow></div></div>
       <div className="project-grid project-grid-large">{projects.map((project,i)=><ProjectCard key={project._id} project={project} index={i}/>)}</div>
     </section>
-    <Cta title="Have a system or storefront you want to improve?" body="Tell me what you are trying to make possible. We can clarify the work and decide on a sensible first step."/>
+    <Cta title="Have a Shopify or ecommerce project in mind?" body="Tell me what you are building or what needs to work better. We can clarify the right next step together."/>
   </>;
 }
 function Help() {
@@ -191,8 +164,7 @@ const platformGroups = [
   { title: "Ecommerce, search & social commerce", items: [
     {name:"Shopify",src:"https://cdn.simpleicons.org/shopify/95BF47"},
     {name:"Google",src:"https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png"},
-    {name:"Microsoft Advertising",src:"/platform/microsoft.svg"},
-    {name:"Bing",src:"/platform/bing.svg"},
+    {name:"Microsoft",src:"/platform/microsoft.svg"},
     {name:"TikTok",src:"https://cdn.simpleicons.org/tiktok/111111"},
     {name:"Pinterest",src:"https://cdn.simpleicons.org/pinterest/BD081C"},
     {name:"Facebook",src:"https://cdn.simpleicons.org/facebook/0866FF"},
@@ -262,7 +234,7 @@ async function Process() {
 }
 async function Work() {
   const projects = await getProjects();
-  return <><Intro eyebrow="PAST WORK / SELECTED PROJECTS" title="A closer look at the work behind the build." body="Explore the client projects currently included in my portfolio across ecommerce and creator commerce. Completed work and active engagements are labelled clearly, with no invented performance claims."/><section className="section container"><div className="work-intro-note"><span>PROJECT INDEX / {String(projects.length).padStart(2, "0")}</span><p>Storefront imagery is taken from the respective public websites and represents the project context, not a before-and-after result.</p></div><div className="project-grid project-grid-large">{projects.map((p,i)=><ProjectCard key={p._id} project={p} index={i}/>)}</div></section><Cta title="Have a project with a similar challenge?" body="Let's discuss the business need and work out what a good solution would involve."/></>;
+  return <><Intro eyebrow="PAST WORK / SELECTED PROJECTS" title="A closer look at the work behind the build." body="Explore selected client projects across Shopify ecommerce and creator commerce. Each project is presented for the work involved, without inflated performance claims."/><section className="section container"><div className="work-intro-note"><span>PROJECT INDEX / {String(projects.length).padStart(2, "0")}</span><p>Storefront imagery is taken from the respective public websites and represents the project context, not a before-and-after result.</p></div><div className="project-grid project-grid-large">{projects.map((p,i)=><ProjectCard key={p._id} project={p} index={i}/>)}</div></section><Cta title="Have a project with a similar challenge?" body="Let's discuss the business need and work out what a good solution would involve."/></>;
 }
 async function Testimonials() {
   const reviews = await getTestimonials();
