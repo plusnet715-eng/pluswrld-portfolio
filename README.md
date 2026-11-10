@@ -13,9 +13,9 @@ The public project grid includes only confirmed client work with a live website.
 
 ## Brand
 - Pluswrld
-- Build · Automate · Grow
-- EMMPIRISISSO — Knowledge comes from sensory ideas.
-- Green gradient, charcoal and white
+- Tagline: Knowledge comes from sensory ideas
+- Green gradient, charcoal and light/dark theme support
+- Text-only Pluswrld wordmark; separate standalone favicon mark
 - Acumin Pro headings (Adobe Fonts kit) and Work Sans body
 
 ## Local development
