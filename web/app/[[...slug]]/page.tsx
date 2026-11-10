@@ -48,7 +48,7 @@ function HeroShowcase({ projects }: { projects: Project[] }) {
       <div className="monitor-bezel">
         <div className="monitor-browser-bar">
           <span className="browser-dots"><i /><i /><i /></span>
-          <span className="browser-address">pluswrld.com / selected work</span>
+          <span className="browser-address">Pluswrld / selected work</span>
           <span className="browser-status">PORTFOLIO</span>
         </div>
         <div className="monitor-screen-content">
