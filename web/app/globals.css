@@ -660,7 +660,7 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
  .nav-dropdown{display:block;width:100%}
  .nav-dropdown-trigger{display:flex;width:100%;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line)}
  .nav-dropdown-panel{position:static;width:100%;padding:7px 0 11px;border:0;border-radius:0;background:transparent;box-shadow:none}
- .nav-dropdown-open .nav-dropdown-panel,.nav-dropdown:focus-within .nav-dropdown-panel{display:grid}
+ .nav-dropdown-open .nav-dropdown-panel{display:grid}
  .nav-dropdown-panel a{padding:10px 12px}
  .nav-dropdown-heading{padding:8px 12px 5px}
  :root[data-theme="dark"] .nav-dropdown-panel{background:transparent;box-shadow:none}
