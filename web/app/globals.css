@@ -159,3 +159,18 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   .testimonial-card-compact{padding:20px 17px}
   .testimonial-card-compact .testimonial-top{align-items:flex-start;flex-direction:column}
 }
+
+
+/* Exact uploaded Pluswrld wordmark */
+.brand-full-wordmark{display:inline-flex;align-items:center;gap:0}
+.brand-full-logo-frame{display:grid;place-items:center;width:116px;height:82px;overflow:hidden;background:transparent}
+.brand-full-logo{display:block;width:100%;height:100%;object-fit:contain}
+.site-header .brand-full-logo-frame{width:116px;height:82px}
+.footer-brand .brand-full-logo-frame{width:138px;height:98px;padding:4px 6px;border:1px solid #ffffff20;border-radius:6px;background:#fff}
+@media(max-width:760px){
+  .site-header .brand-full-logo-frame{width:98px;height:68px}
+  .footer-brand .brand-full-logo-frame{width:128px;height:91px}
+}
+@media(max-width:480px){
+  .site-header .brand-full-logo-frame{width:88px;height:61px}
+}
