@@ -112,6 +112,15 @@ async function About({ settings }: { settings: Settings }) {
   const firstProjectDate = settings.firstClientDate
     ? new Date(settings.firstClientDate + "T00:00:00").toLocaleDateString("en", { month: "long", year: "numeric" })
     : "June 2025";
+  const startDate = new Date((settings.freelancingSince || "2025-05-01") + "T00:00:00");
+  const now = new Date();
+  let completedMonths = (now.getFullYear() - startDate.getFullYear()) * 12 + now.getMonth() - startDate.getMonth();
+  if (now.getDate() < startDate.getDate()) completedMonths -= 1;
+  const experienceYears = Math.floor(Math.max(0, completedMonths) / 12);
+  const experienceMonths = Math.max(0, completedMonths) % 12;
+  const experienceDuration = experienceYears
+    ? experienceYears + " year" + (experienceYears === 1 ? "" : "s") + (experienceMonths ? " " + experienceMonths + " month" + (experienceMonths === 1 ? "" : "s") : "")
+    : experienceMonths + " month" + (experienceMonths === 1 ? "" : "s");
 
   return <>
     <Intro eyebrow="ABOUT PAUL / THE PERSON BEHIND PLUSWRLD" title="I’m Paul Oloruntobi." body={settings.aboutIntro}/>
@@ -125,7 +134,8 @@ async function About({ settings }: { settings: Settings }) {
         <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Start with the problem. Choose the tools that serve it.</h3><p>{settings.aboutPhilosophy}</p></div></Reveal>
         <Reveal delay={130}><div className="profile-facts">
           <div><span>NAME</span><strong>Paul Oloruntobi</strong></div>
-          <div><span>ROLE</span><strong>Digital Systems Consultant</strong></div>
+          <div><span>ROLE</span><strong>{settings.role}</strong></div>
+          <div><span>FREELANCE EXPERIENCE</span><strong>{experienceDuration}</strong></div>
           <div><span>CORE WORK</span><strong>Ecommerce · No-code · Automation</strong></div>
           <div><span>CLIENT MARKETS</span><strong>{settings.marketReach || "Worldwide"}</strong></div>
         </div></Reveal>
