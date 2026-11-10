@@ -584,7 +584,7 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 .nav-dropdown-trigger svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5;transition:transform .2s ease}
 .nav-dropdown-open .nav-dropdown-trigger svg{transform:rotate(180deg)}
 .nav-dropdown-panel{display:none;position:absolute;z-index:80;top:calc(100% + 17px);left:-20px;width:292px;padding:12px;border:1px solid #e0e9df;border-radius:8px;background:#fff;box-shadow:0 20px 48px #102c171c;grid-template-columns:1fr;gap:3px}
-.nav-dropdown-open .nav-dropdown-panel,.nav-dropdown:focus-within .nav-dropdown-panel{display:grid}
+.nav-dropdown-open .nav-dropdown-panel{display:grid}
 .nav-dropdown-heading{padding:9px 10px 7px;color:#718176;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:8px;font-weight:700;letter-spacing:.15em}
 .nav-dropdown-panel a{display:grid;gap:3px;padding:9px 10px;border-radius:5px;color:#1b3021;transition:background .18s ease}
 .nav-dropdown-panel a:hover{background:#f0f6f0}
@@ -753,3 +753,8 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   .footer-brand-lockup .brand-tagline,
   .footer-brand-lockup .brand-philosophy{font-size:6px}
 }
+
+
+/* High-contrast CTA index and rule against the deep green next-step band. */
+.cta-band .eyebrow{color:#f3fff4}
+.cta-band .eyebrow-line{background:#b9efc0}
