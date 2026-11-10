@@ -481,3 +481,17 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   .client-experience-card{min-height:165px}
   .about-profile-copy .profile-facts{grid-template-columns:1fr 1fr}
 }
+
+.testimonial-feed-status{margin:0 0 18px;color:#7d8b80;font-size:11px;font-weight:600}
+.testimonial-feed-grid{display:grid;grid-template-columns:1fr;gap:0}
+.testimonial-source-note{color:#839087;font-size:10px}
+.testimonial-load-more{display:flex;justify-content:center;padding:12px 0 0}
+.testimonial-load-more .button{min-width:210px;justify-content:center}
+.testimonial-load-more .button span{margin-left:4px;font-size:10px;opacity:.75}
+:root[data-theme="dark"] .testimonial-feed-status{color:#9caf9f}
+:root[data-theme="dark"] .testimonial-source-note{color:#9caf9f}
+:root[data-theme="dark"] .testimonial-card{background:#132319;border-color:#2a4030}
+:root[data-theme="dark"] .testimonial-card blockquote{color:#e4eee6}
+:root[data-theme="dark"] .testimonial-top{color:#9caf9f}
+:root[data-theme="dark"] .testimonial-bottom{border-color:#2a4030}
+@media(max-width:600px){.testimonial-card{padding:23px 20px}.testimonial-card blockquote{font-size:19px}.testimonial-bottom{align-items:flex-start;flex-direction:column;gap:10px}}
