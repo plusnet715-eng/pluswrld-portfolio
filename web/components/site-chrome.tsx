@@ -52,7 +52,7 @@ function ThemePicker() {
 function Brand({ settings }: { settings: Settings }) {
   return <Link href="/" className="brand brand-text-lockup" aria-label="Pluswrld home">
     <span className="brand-wordmark"><span className="brand-plus">Plus</span><span className="brand-wrld">wrld</span></span>
-    <span className="brand-tagline">{settings.tagline || "Build · Automate · Grow"}</span>
+    <span className="brand-tagline">{settings.tagline || "Build • Automate • Grow"}</span>
     <span className="brand-philosophy">{settings.secondaryTagline || "Knowledge comes from sensory ideas"}</span>
   </Link>;
 }
@@ -75,7 +75,7 @@ export function SiteHeader({ settings }: { settings: Settings }) {
 export function SiteFooter({ settings, profiles }: { settings: Settings; profiles: PresenceLink[] }) {
   return <footer className="site-footer"><div className="container">
     <div className="footer-top">
-      <div className="footer-brand"><Brand /></div>
+      <div className="footer-brand"><Brand settings={settings} /></div>
       <div className="footer-column"><span className="footer-label">Explore</span><Link href="/about">About me</Link><Link href="/how-i-can-help">How I can help</Link><Link href="/services">Services</Link><Link href="/process">My process</Link><Link href="/work">Past work</Link><Link href="/testimonials">Reviews</Link><Link href="/faq">FAQ</Link></div>
       <div className="footer-column"><span className="footer-label">Connect</span><a href="https://www.fiverr.com/timi_p1" target="_blank" rel="noreferrer">Fiverr ↗</a><a href="https://www.upwork.com/freelancers/~016b078cb44626d3a3" target="_blank" rel="noreferrer">Upwork ↗</a><a href={settings.whatsappUrl} target="_blank" rel="noreferrer">WhatsApp ↗</a><a href={"mailto:" + settings.email}>Email ↗</a></div>
       <div className="footer-contact"><span className="footer-label">Have a project in mind?</span><h3>Let&apos;s make the next step clear.</h3><Link href="/contact" className="text-link">Start a conversation <span>↗</span></Link></div>
