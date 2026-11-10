@@ -127,7 +127,7 @@ async function About({ settings }: { settings: Settings }) {
   return <>
     <Intro eyebrow="ABOUT PAUL / THE PERSON BEHIND PLUSWRLD" title="I’m Paul Oloruntobi." body={settings.aboutIntro}/>
     <section className="section container about-profile">
-      <Reveal className="about-image"><Image src={settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
+      <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
       <div className="about-profile-copy">
         <Reveal><Eyebrow>THE CONSULTANT BEHIND PLUSWRLD</Eyebrow><h2>Shopify stores built for customers and business owners.</h2>
           <p>I’m Paul Oloruntobi, a Shopify and ecommerce consultant. I help businesses build, set up and improve Shopify stores, bringing together storefront design, product organisation, customer experience and the systems behind everyday store operations.</p>
