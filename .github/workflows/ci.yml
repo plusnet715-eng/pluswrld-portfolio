@@ -20,6 +20,9 @@ jobs:
       - name: Install website dependencies
         run: npm install --no-audit --no-fund
         working-directory: web
+      - name: Run website regression tests
+        run: npm test
+        working-directory: web
       - name: Type-check website
         run: npm run typecheck
         working-directory: web
