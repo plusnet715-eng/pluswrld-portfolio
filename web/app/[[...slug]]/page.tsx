@@ -83,6 +83,19 @@ function Hero({ settings, projects }: { settings: Settings; projects: Project[] 
 function ExpertiseStrip() {
   return <div className="expertise-strip"><div className="container expertise-track">{["Shopify & ecommerce","AI workflows","No-code applications","Creator commerce","Connected systems"].map((x,i)=><span key={x}><i>0{i+1}</i>{x}</span>)}</div></div>;
 }
+function ExploreMore() {
+  const pages = [
+    { href: "/about", number: "01 / BACKGROUND", title: "About me", body: "Get to know the consultant and the thinking behind Pluswrld." },
+    { href: "/how-i-can-help", number: "02 / START HERE", title: "How I can help", body: "Explore the business situations I help solve." },
+    { href: "/process", number: "03 / DELIVERY", title: "My process", body: "See how projects move from discovery to handover." },
+    { href: "/faq", number: "04 / QUESTIONS", title: "FAQs & client reviews", body: "Find practical answers and read feedback from past buyers." }
+  ];
+  return <section className="section section-soft explore-more"><div className="container">
+    <div className="section-heading"><div><Eyebrow>MORE TO EXPLORE</Eyebrow><h2>Find the right<br/><span className="heading-muted">next page.</span></h2></div><div className="section-heading-aside"><p>Not every visitor arrives with the same question. These pages give you a clearer way to explore the services, approach and experience behind Pluswrld.</p></div></div>
+    <div className="explore-more-grid">{pages.map((page,i)=><Reveal key={page.href} delay={i*45}><Link className="explore-more-card" href={page.href}><span>{page.number}</span><h3>{page.title}</h3><p>{page.body}</p><b>Explore page ↗</b></Link></Reveal>)}</div>
+  </div></section>;
+}
+
 async function Home({ settings }: { settings: Settings }) {
   const [services, projects, steps, reviews] = await Promise.all([getServices(), getProjects(), getProcess(), getTestimonials()]);
   return <>
@@ -100,6 +113,7 @@ async function Home({ settings }: { settings: Settings }) {
     </section>
     {reviews.some((review) => review.featured) && <section className="section container home-reviews"><div className="section-heading"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work.<br /><span className="heading-muted">Good working relationships.</span></h2></div><div className="section-heading-aside"><p>Feedback shared by clients across completed projects. Original wording and attribution are preserved.</p><Arrow href="/testimonials">Read all reviews</Arrow></div></div><div className="home-review-grid">{reviews.filter((review) => review.featured).slice(0,2).map((review,i)=><Reveal key={review._id} delay={i*65}><ReviewCard review={review} compact /></Reveal>)}</div></section>}
     <section className="section container"><div className="section-heading"><div><Eyebrow>HOW I WORK</Eyebrow><h2>Clear thinking.<br /><span className="heading-muted">Careful execution.</span></h2></div><div className="section-heading-aside"><p>Good delivery starts before implementation. The business goal, scope, technical decisions and handover all need to connect.</p><Arrow href="/process">See my process</Arrow></div></div><div className="process-preview-list">{steps.slice(0,4).map((s,i)=><Reveal key={s._id} delay={i*50} className="preview-step"><span>0{i+1}</span><h3>{s.title}</h3><p>{s.description}</p></Reveal>)}</div></section>
+    <ExploreMore />
     <Cta title="Have something worth building?" body="Share the idea, the challenge or the system you want to improve. We can work out a practical next step." />
   </>;
 }
@@ -171,9 +185,11 @@ function Help() {
 }
 
 const platformGroups = [
-  { title: "Ecommerce & social commerce", items: [
+  { title: "Ecommerce, search & social commerce", items: [
     {name:"Shopify",src:"https://cdn.simpleicons.org/shopify/95BF47"},
-    {name:"Google",src:"https://cdn.simpleicons.org/google/4285F4"},
+    {name:"Google",src:"https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png"},
+    {name:"Microsoft Advertising",src:"https://cdn.simpleicons.org/microsoft/5E5E5E"},
+    {name:"Bing",src:"https://www.google.com/s2/favicons?domain=bing.com&sz=128"},
     {name:"TikTok",src:"https://cdn.simpleicons.org/tiktok/111111"},
     {name:"Pinterest",src:"https://cdn.simpleicons.org/pinterest/BD081C"},
     {name:"Facebook",src:"https://cdn.simpleicons.org/facebook/0866FF"},
@@ -214,12 +230,12 @@ function PlatformWall({ compact = false }: { compact?: boolean }) {
 
 function Services() {
   const cards = [
-    {title:"Shopify & Ecommerce Systems",intro:"Build, improve and operate an ecommerce experience that is ready for real customers and day-to-day management.",items:["Shopify store setup and builds from scratch","Theme customisation, redesign and responsive layouts","Product uploads, collections, variants and SKU setup","Store management and ecommerce VA support","On-page SEO, technical hygiene and CRO improvements","Google Merchant Center and social-commerce setup"],tools:"Shopify · Google Merchant Center · TikTok Shop · Pinterest · Marketplace Connect"},
+    {title:"Shopify & Ecommerce Systems",intro:"Build, improve and operate an ecommerce experience that is ready for real customers and day-to-day management.",items:["Shopify store setup and builds from scratch","Theme customisation, redesign and responsive layouts","Product uploads, collections, variants and SKU setup","Store management and ecommerce VA support","On-page SEO, technical hygiene and CRO improvements","Google Merchant Center and social-commerce setup","Paid advertising campaign planning, setup, management and optimisation"],tools:"Shopify · Google Merchant Center · TikTok Shop · Pinterest · Marketplace Connect"},
     {title:"Websites & No-Code Applications",intro:"Create useful websites and applications that make it easier for customers, teams or communities to get things done.",items:["Business and service websites","Customer portals and internal tools","No-code MVPs and SaaS concepts","Workflow and interface configuration","Responsive layouts and usability improvements"],tools:"Webflow · Bubble · FlutterFlow · Glide · Adalo"},
     {title:"AI & Business Automation",intro:"Reduce repetitive work by mapping the process first, then connecting the tools and automations that genuinely help.",items:["Workflow discovery and process mapping","AI-assisted workflows and business operations","CRM and application integrations","Email automation and customer journeys","Testing, documentation and handover"],tools:"AI tools · Klaviyo · Brevo · APIs · No-code automation platforms"},
     {title:"Creator & Community Commerce",intro:"Structure the experience behind digital products, paid communities, memberships and service-led creator businesses.",items:["Digital storefront and offer setup","Courses, memberships and subscription tiers","Discord roles and paid-access workflows","Community platform configuration","Customer journey and onboarding setup"],tools:"Whop · Skool · Discord · Kajabi · Circle"}
   ];
-  return <><Intro eyebrow="SERVICES / WHAT I DO" title="Practical digital solutions, thoughtfully built." body="I help businesses plan and implement the digital tools behind their customer experience and operations. Choose a service area to explore, or bring me the problem and we can work out the right combination."/><section className="section container service-detail-list">{cards.map((c,i)=><Reveal key={c.title}><article className="service-detail-card"><div className="service-detail-number">0{i+1}</div><div className="service-detail-main"><Eyebrow>{c.title.toUpperCase()}</Eyebrow><h2>{c.title}</h2><p className="service-detail-intro">{c.intro}</p><ul className="check-list">{c.items.map((item)=><li key={item}>{item}</li>)}</ul><div className="tools-line"><span>PLATFORMS & TOOLS</span><p>{c.tools}</p></div></div></article></Reveal>)}</section><section className="scope-note container"><div><Eyebrow>CLEAR SCOPE</Eyebrow><h2>Implementation, not vague promises.</h2></div><p>Deliverables, exclusions, dependencies and handover expectations are clarified before work begins. Paid advertising campaign management and ongoing social posting are outside my service scope.</p></section><PlatformWall compact /><Cta title="Not sure which service fits?" body="Start with the outcome you need. We can clarify the right combination of services together."/></>;
+  return <><Intro eyebrow="SERVICES / WHAT I DO" title="Practical digital solutions, thoughtfully built." body="I help businesses plan and implement the digital tools behind their customer experience and operations. Choose a service area to explore, or bring me the problem and we can work out the right combination."/><section className="section container service-detail-list">{cards.map((c,i)=><Reveal key={c.title}><article className="service-detail-card"><div className="service-detail-number">0{i+1}</div><div className="service-detail-main"><Eyebrow>{c.title.toUpperCase()}</Eyebrow><h2>{c.title}</h2><p className="service-detail-intro">{c.intro}</p><ul className="check-list">{c.items.map((item)=><li key={item}>{item}</li>)}</ul><div className="tools-line"><span>PLATFORMS & TOOLS</span><p>{c.tools}</p></div></div></article></Reveal>)}</section><section className="scope-note container"><div><Eyebrow>CLEAR SCOPE</Eyebrow><h2>Implementation, not vague promises.</h2></div><p>Deliverables, exclusions, dependencies and handover expectations are clarified before work begins. Paid advertising campaign support can be included in an agreed scope; ongoing social posting is handled separately.</p></section><PlatformWall compact /><Cta title="Not sure which service fits?" body="Start with the outcome you need. We can clarify the right combination of services together."/></>;
 }
 async function Process() {
   const stored = await getProcess();
@@ -248,7 +264,9 @@ async function Faq() {
   return <><Intro eyebrow="FAQ / BEFORE WE START" title="A few useful answers before we talk." body="A project is easier to start when the practical questions are answered. Here are some things clients commonly ask about scope, platforms, timelines and working together."/><section className="section container faq-list">{items.map((item,i)=><Reveal key={item._id}><details className="faq-item"><summary><span>{String(i+1).padStart(2,"0")}</span><strong>{item.question}</strong><i>+</i></summary><p>{item.answer}</p></details></Reveal>)}</section><Cta title="Still have a question?" body="Send it over with a little context about your project. I would rather clarify it early than make assumptions."/></>;
 }
 function Contact({ settings }: { settings: Settings }) {
-  return <><Intro eyebrow="CONTACT / DISCUSS A PROJECT" title="Tell me what you are looking to make possible." body="Whether you are starting from scratch, improving something that already exists or connecting tools that do not currently work together, this is a good place to begin."/><section className="section container contact-layout"><div className="contact-left"><Eyebrow>PROJECT ENQUIRY</Eyebrow><h2>Let&apos;s make the next step clear.</h2><p>Share the goal, the challenge and any context you already have. I will review it and respond with the most useful next step.</p><div className="contact-method"><span>EMAIL</span><a href={"mailto:"+settings.email}>{settings.email} ↗</a></div><div className="contact-method"><span>WHATSAPP</span><a href={settings.whatsappUrl} target="_blank" rel="noreferrer">{settings.whatsappNumber} ↗</a></div><div className="contact-method"><span>FREELANCE PROFILES</span><a href="https://www.fiverr.com/timi_p1" target="_blank" rel="noreferrer">Fiverr ↗</a><a href="https://www.upwork.com/freelancers/~016b078cb44626d3a3" target="_blank" rel="noreferrer">Upwork ↗</a></div></div><Reveal className="contact-form-panel"><EnquiryForm email={settings.email}/></Reveal></section></>;
+  const contactEmail = settings.email?.trim() || "timileyinpaul26@gmail.com";
+  const emailHref = "mailto:" + contactEmail + "?subject=" + encodeURIComponent("Project enquiry");
+  return <><Intro eyebrow="CONTACT / DISCUSS A PROJECT" title="Tell me what you are looking to make possible." body="Whether you are starting from scratch, improving something that already exists or connecting tools that do not currently work together, this is a good place to begin."/><section className="section container contact-layout"><div className="contact-left"><Eyebrow>PROJECT ENQUIRY</Eyebrow><h2>Let&apos;s make the next step clear.</h2><p>Share the goal, the challenge and any context you already have. I will review it and respond with the most useful next step.</p><div className="contact-method"><span>EMAIL</span><a href={emailHref} aria-label={"Open an email to " + contactEmail}>{contactEmail} ↗</a></div><div className="contact-method"><span>WHATSAPP</span><a href={settings.whatsappUrl} target="_blank" rel="noreferrer">{settings.whatsappNumber} ↗</a></div><div className="contact-method"><span>FREELANCE PROFILES</span><a href="https://www.fiverr.com/timi_p1" target="_blank" rel="noreferrer">Fiverr ↗</a><a href="https://www.upwork.com/freelancers/~016b078cb44626d3a3" target="_blank" rel="noreferrer">Upwork ↗</a></div></div><Reveal className="contact-form-panel"><EnquiryForm email={contactEmail}/></Reveal></section></>;
 }
 export default async function Page({ params }: RouteProps) {
   const route = (await params).slug?.join("/") || "";
