@@ -41,6 +41,7 @@ const projectAssets: Record<string, string> = {
   "04d61980-cdaf-4e6b-905c-6c3684e0adfb": cdn("8c5e318b53beafb7af5422d09f1f220b52c86d67-1840x1040.png"),
   "caabcd06-a2eb-458a-8fd9-22112edd6b87": cdn("522d7b1be6fcdc5f4f2995ad50817b1e32288fd5-1080x1080.jpg"),
   "f5cce44c-447f-4d6b-a4b7-f3aced0bc5c0": cdn("e3293b61cf118fb40e9b8724be05d7931a372f9a-3022x3698.jpg"),
+  "pluswrld-project-whiskerwise": "https://www.whiskerwise.com.co/cdn/shop/files/b37e7d00-2179-4064-b4ac-e9b0c84ded82.jpg?v=1763041293&width=533",
   "c25caa1f-4d7d-4db1-a5ca-8439fa456d52": "/soulvibevault-project.svg"
 };
 
