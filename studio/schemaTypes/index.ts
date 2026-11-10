@@ -169,7 +169,11 @@ const testimonial = defineType({
     defineField({ name: "reviewerHandle", title: "Buyer handle / name as shown", type: "string" }),
     defineField({ name: "platform", title: "Source platform", type: "string" }),
     defineField({ name: "sourceUrl", title: "Source URL", type: "url" }),
-    defineField({ name: "reviewDate", title: "Review date", type: "date" })
+    defineField({ name: "reviewDate", title: "Review date", type: "date" }),
+    defineField({ name: "reviewDateLabel", title: "Display date", type: "string", description: "Use month and year when the exact day was not supplied." }),
+    defineField({ name: "reviewerCountry", title: "Buyer country", type: "string" }),
+    defineField({ name: "repeatClient", title: "Repeat client", type: "boolean", initialValue: false }),
+    defineField({ name: "featured", title: "Feature on homepage", type: "boolean", initialValue: false })
   ],
   preview: { select: { title: "reviewerHandle", subtitle: "platform" } }
 });
