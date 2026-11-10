@@ -6,6 +6,7 @@ import { EnquiryForm } from "../../components/enquiry-form";
 import { ProjectCard } from "../../components/project-card";
 import { TestimonialFeed } from "../../components/testimonial-feed";
 import { Reveal } from "../../components/reveal";
+import { MobileDrawer } from "../../components/mobile-drawer";
 import { getFaqs, getProcess, getProjects, getServices, getSettings, getTestimonials, type Project, type Settings, type Testimonial } from "../../lib/content";
 
 const pageTitles: Record<string, string> = { "": "Knowledge comes from sensory ideas", about: "About me", "how-i-can-help": "How I can help you", services: "Services", process: "My process", work: "Selected work", testimonials: "Reviews & testimonials", faq: "Frequently asked questions", contact: "Discuss a project" };
@@ -92,7 +93,9 @@ function ExploreMore() {
   ];
   return <section className="section section-soft explore-more"><div className="container">
     <div className="section-heading"><div><Eyebrow>MORE TO EXPLORE</Eyebrow><h2>Find the right<br/><span className="heading-muted">next page.</span></h2></div><div className="section-heading-aside"><p>Not every visitor arrives with the same question. These pages give you a clearer way to explore the services, approach and experience behind Pluswrld.</p></div></div>
-    <div className="explore-more-grid">{pages.map((page,i)=><Reveal key={page.href} delay={i*45}><Link className="explore-more-card" href={page.href}><span>{page.number}</span><h3>{page.title}</h3><p>{page.body}</p><b>Explore page ↗</b></Link></Reveal>)}</div>
+    <MobileDrawer className="explore-more-drawer" label="Explore all four pages">
+      <div className="explore-more-grid">{pages.map((page,i)=><Reveal key={page.href} delay={i*45}><Link className="explore-more-card" href={page.href}><span>{page.number}</span><h3>{page.title}</h3><p>{page.body}</p><b>Explore page ↗</b></Link></Reveal>)}</div>
+    </MobileDrawer>
   </div></section>;
 }
 
@@ -188,8 +191,8 @@ const platformGroups = [
   { title: "Ecommerce, search & social commerce", items: [
     {name:"Shopify",src:"https://cdn.simpleicons.org/shopify/95BF47"},
     {name:"Google",src:"https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png"},
-    {name:"Microsoft Advertising",src:"https://cdn.simpleicons.org/microsoft/5E5E5E"},
-    {name:"Bing",src:"https://www.google.com/s2/favicons?domain=bing.com&sz=128"},
+    {name:"Microsoft Advertising",src:"/platform/microsoft.svg"},
+    {name:"Bing",src:"/platform/bing.svg"},
     {name:"TikTok",src:"https://cdn.simpleicons.org/tiktok/111111"},
     {name:"Pinterest",src:"https://cdn.simpleicons.org/pinterest/BD081C"},
     {name:"Facebook",src:"https://cdn.simpleicons.org/facebook/0866FF"},
@@ -220,11 +223,20 @@ const platformGroups = [
 function PlatformWall({ compact = false }: { compact?: boolean }) {
   return <section className={"platform-wall" + (compact ? " platform-wall-compact" : " section container")}>
     <div className="platform-wall-heading"><Eyebrow>PLATFORMS & TOOLS</Eyebrow><h2>Technology I work with.</h2><p>Tools are chosen for the job — not added just to make a stack look impressive.</p></div>
-    <div className="platform-groups">{platformGroups.map((group)=><div className="platform-group" key={group.title}>
-      <h3>{group.title}</h3><div className="platform-logo-grid">{group.items.map((item)=><div className="platform-logo-item" key={item.name}>
-        <span className="platform-logo-image"><img src={item.src} alt="" loading="lazy" /></span><span>{item.name}</span>
-      </div>)}</div>
-    </div>)}</div>
+    <div className="platform-groups">
+      <div className="platform-group">
+        <h3>{platformGroups[0].title}</h3><div className="platform-logo-grid">{platformGroups[0].items.map((item)=><div className="platform-logo-item" key={item.name}>
+          <span className="platform-logo-image"><img src={item.src} alt="" loading="lazy" /></span><span>{item.name}</span>
+        </div>)}</div>
+      </div>
+      <MobileDrawer className="platform-groups-drawer" label="Show more platforms and tools">
+        <div className="platform-groups-secondary">{platformGroups.slice(1).map((group)=><div className="platform-group" key={group.title}>
+          <h3>{group.title}</h3><div className="platform-logo-grid">{group.items.map((item)=><div className="platform-logo-item" key={item.name}>
+            <span className="platform-logo-image"><img src={item.src} alt="" loading="lazy" /></span><span>{item.name}</span>
+          </div>)}</div>
+        </div>)}</div>
+      </MobileDrawer>
+    </div>
   </section>;
 }
 
