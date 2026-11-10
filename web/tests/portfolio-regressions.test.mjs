@@ -12,11 +12,17 @@ const aboutEnd = page.indexOf("function Help", aboutStart);
 const about = page.slice(aboutStart, aboutEnd);
 const chrome = read("components/site-chrome.tsx");
 const css = read("app/globals.css");
+const content = read("lib/content.ts");
 const projectCard = read("components/project-card.tsx");
 
-test("About page positions Pluswrld around Shopify and excludes freelance experience", () => {
-  assert.match(about, /Shopify/i);
-  assert.doesNotMatch(about, /FREELANCE EXPERIENCE|MY PROFESSIONAL JOURNEY|experienceDuration|careerMilestones|careerStart|firstProjectDate/);
+test("About page presents the full digital systems consultant identity", () => {
+  assert.match(about, /THE FACE BEHIND PLUSWRLD/);
+  assert.match(about, /Shopify and ecommerce/i);
+  assert.match(about, /no-code applications/i);
+  assert.match(about, /creator and community commerce/i);
+  assert.match(about, /AI-powered automation/i);
+  assert.match(about, /Understand first\. Build with purpose\./);
+  assert.doesNotMatch(about, /THE PERSON BEHIND PLUSWRLD|Shopify stores built for customers and business owners|FREELANCE EXPERIENCE|MY PROFESSIONAL JOURNEY|experienceDuration|careerMilestones|careerStart|firstProjectDate/);
 });
 
 test("Explore dropdown closes from state and supports Escape and outside clicks", () => {
@@ -39,7 +45,12 @@ test("Ecommerce and social commerce lists Microsoft but not Bing", () => {
   assert.doesNotMatch(group, /Bing/);
 });
 
-test("CTA eyebrow and its rule use high-contrast colours on the dark banner", () => {
-  assert.match(css, /\.cta-band \.eyebrow\s*\{[^}]*color:#f[0-9a-f]{5}/i);
-  assert.match(css, /\.cta-band \.eyebrow-line\s*\{[^}]*background:#[a-f0-9]{6}/i);
+test("CTA label is dark green while the existing band container stays unchanged", () => {
+  assert.match(css, /\.cta-band \.eyebrow\s*\{[^}]*color:#0b3d1b/i);
+  assert.match(css, /\.cta-band\{[^}]*background:linear-gradient\(110deg,#0b2b16,#0a401c 52%,#087329\)/i);
+});
+test("The same approved full wordmark is used in the header and footer", () => {
+  assert.match(chrome, /settings\.logoUrl/);
+  assert.match(chrome, /brand-image-lockup/);
+  assert.match(content, /"logoUrl":logo\.asset->url/);
 });

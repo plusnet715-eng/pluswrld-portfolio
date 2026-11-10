@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { PresenceLink, Settings } from "../lib/content";
@@ -59,11 +60,17 @@ function ThemePicker() {
   </label>;
 }
 
-function Brand({ settings }: { settings: Settings }) {
-  return <Link href="/" className="brand brand-text-lockup" aria-label="Pluswrld home">
-    <span className="brand-wordmark"><span className="brand-plus">Plus</span><span className="brand-wrld">wrld</span></span>
-    <span className="brand-tagline">{settings.tagline || "Build • Automate • Grow"}</span>
-    <span className="brand-philosophy">{settings.secondaryTagline || "Knowledge comes from sensory ideas"}</span>
+function Brand({ settings, priority = false }: { settings: Settings; priority?: boolean }) {
+  const tagline = settings.tagline || "Build • Automate • Grow";
+  if (!settings.logoUrl) {
+    return <Link href="/" className="brand brand-text-lockup" aria-label="Pluswrld home">
+      <span className="brand-wordmark"><span className="brand-plus">Plus</span><span className="brand-wrld">wrld</span></span>
+      <span className="brand-tagline">{tagline}</span>
+      <span className="brand-philosophy">{settings.secondaryTagline || "Knowledge comes from sensory ideas"}</span>
+    </Link>;
+  }
+  return <Link href="/" className="brand brand-image-lockup" aria-label="Pluswrld home">
+    <Image src={settings.logoUrl} alt={"Pluswrld — " + tagline} width={1087} height={204} priority={priority} sizes="(max-width: 480px) 165px, (max-width: 760px) 185px, 220px" className="brand-logo-image"/>
   </Link>;
 }
 
@@ -97,7 +104,7 @@ export function SiteHeader({ settings }: { settings: Settings }) {
     };
   }, [exploreOpen]);
   return <header className="site-header"><div className="container header-inner">
-    <Brand settings={settings} />
+    <Brand settings={settings} priority />
     <div className="header-actions">
       <ThemePicker />
       <button className="menu-toggle" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} onClick={() => { setOpen(!open); setExploreOpen(false); }}><span /><span /></button>

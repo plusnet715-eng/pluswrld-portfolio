@@ -7,7 +7,7 @@ const cdn = (assetId: string) => "https://cdn.sanity.io/images/" + projectId + "
 
 export type Settings = {
   name: string; fullName: string; role: string; location: string; marketReach: string; availability: string;
-  email: string; whatsappNumber: string; whatsappUrl: string; heroTitle: string;
+  email: string; whatsappNumber: string; whatsappUrl: string; logoUrl: string; heroTitle: string;
   heroDescription: string; aboutIntro: string; aboutStory: string; aboutPhilosophy: string;
   tagline: string; secondaryTagline: string; secondaryTaglineMeaning: string; portraitUrl: string; originalPortraitUrl: string;
 };
@@ -20,16 +20,16 @@ export type PresenceLink = { _id: string; name: string; url: string; order?: num
 
 const defaults: Settings = {
   name: "Pluswrld", fullName: "Paul Oloruntobi",
-  role: "Shopify & Ecommerce Consultant",
+  role: "Digital Systems Consultant",
   location: "", marketReach: "Worldwide",
   availability: "Available for selected projects", email: "timileyinpaul26@gmail.com",
   whatsappNumber: "+234 916 161 2746", whatsappUrl: "https://wa.me/2349161612746",
   heroTitle: "I build digital systems that move your business forward.",
   heroDescription: "I help businesses build, improve and connect ecommerce stores, websites, no-code applications and AI-powered workflows. Practical solutions, clearly scoped and built around the business.",
-  aboutIntro: "I’m Paul Oloruntobi, the consultant behind Pluswrld. I focus on Shopify and ecommerce, helping businesses build and improve stores that are clear for customers to use and practical for owners to run.",
-  aboutStory: "My Shopify work includes store builds and setup, theme customisation and redesign, product catalogues, variants and SKUs, product-page improvements, and the ecommerce foundations behind daily store operations. I focus on a shopping experience customers can use confidently and a store owners can manage effectively.",
-  aboutPhilosophy: "I focus on the shopping journey as much as the storefront itself. A good Shopify setup should help customers discover products, understand the offer and complete a purchase, while keeping product management and everyday store operations clear for the business owner.",
-  tagline: "Build • Automate • Grow", secondaryTagline: "Knowledge comes from sensory ideas",
+  aboutIntro: "I’m Paul Oloruntobi, the person behind Pluswrld. I work where business needs meet digital solutions—understanding what needs to happen, then shaping the tools and workflows to make it happen. My work spans ecommerce, websites and no-code applications, creator platforms, and AI-powered automation. Across all of it, the focus is the same: make technology useful, well-structured, and easier to work with.",
+  aboutStory: "I enjoy getting beneath the surface of a project. Before choosing a platform or starting a build, I want to understand the business, the people who will use the system, what needs to happen, and where the friction is. That context shapes the solution.",
+  aboutPhilosophy: "I value clear thinking, useful design, and careful execution. I ask the questions that make the scope clearer, pay attention to the details people interact with, and build with a clean handover in mind. The goal is not to add technology for its own sake; it is to make the business easier to run and the experience easier to use.",
+  tagline: "Build • Automate • Grow", secondaryTagline: "Knowledge comes from sensory ideas", logoUrl: "https://cdn.sanity.io/images/a8mywjme/production/98cba91b62b71c2bb3eef1129af6b63b7fab9095-1087x204.png",
   secondaryTaglineMeaning: "",
   portraitUrl: cdn("b4fa13154bf4e4fd6a2f4fee1fed00ade36bd022-1254x1254.png"),
   originalPortraitUrl: ""
@@ -46,8 +46,8 @@ const projectAssets: Record<string, string> = {
 
 export async function getSettings(): Promise<Settings> {
   try {
-    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
-    return { ...defaults, ...(data ?? {}), portraitUrl: data?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: data?.originalPortraitUrl || defaults.originalPortraitUrl };
+    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"logoUrl":logo.asset->url,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
+    return { ...defaults, ...(data ?? {}), logoUrl: data?.logoUrl || defaults.logoUrl, portraitUrl: data?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: data?.originalPortraitUrl || defaults.originalPortraitUrl };
   } catch { return defaults; }
 }
 

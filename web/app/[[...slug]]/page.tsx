@@ -10,7 +10,7 @@ import { MobileDrawer } from "../../components/mobile-drawer";
 import { getFaqs, getProcess, getProjects, getServices, getSettings, getTestimonials, type Project, type Settings, type Testimonial } from "../../lib/content";
 
 const pageTitles: Record<string, string> = { "": "Knowledge comes from sensory ideas", about: "About me", "how-i-can-help": "How I can help you", services: "Services", process: "My process", work: "Selected work", testimonials: "Reviews & testimonials", faq: "Frequently asked questions", contact: "Discuss a project" };
-const pageDescriptions: Record<string, string> = { "": "Meet Pluswrld — practical digital systems, ecommerce, websites and automation built around business needs.", about: "Meet Paul Oloruntobi, the consultant behind Pluswrld.", "how-i-can-help": "Start with the business challenge. We will map a practical solution.", services: "Shopify, ecommerce, websites, no-code applications, AI automation and creator-commerce systems.", process: "A clear process from discovery through implementation and handover.", work: "Selected client projects across Shopify ecommerce and digital systems.", testimonials: "Feedback shared by clients through Fiverr.", faq: "Answers about scope, platforms and delivery.", contact: "Share what you are building, improving or trying to connect." };
+const pageDescriptions: Record<string, string> = { "": "Meet Pluswrld — practical digital systems, ecommerce, websites and automation built around business needs.", about: "Meet Paul Oloruntobi and the thinking, approach and digital work behind Pluswrld.", "how-i-can-help": "Start with the business challenge. We will map a practical solution.", services: "Shopify, ecommerce, websites, no-code applications, AI automation and creator-commerce systems.", process: "A clear process from discovery through implementation and handover.", work: "Selected client projects across Shopify ecommerce and digital systems.", testimonials: "Feedback shared by clients through Fiverr.", faq: "Answers about scope, platforms and delivery.", contact: "Share what you are building, improving or trying to connect." };
 type RouteProps = { params: Promise<{ slug?: string[] }> };
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
   const route = (await params).slug?.join("/") || "";
@@ -109,7 +109,7 @@ async function Home({ settings }: { settings: Settings }) {
     <section className="section section-soft"><div className="container"><div className="section-heading"><div><Eyebrow>SELECTED WORK</Eyebrow><h2>Built around<br /><span className="heading-muted">real business needs.</span></h2></div><div className="section-heading-aside"><p>Each project reflects a specific piece of work delivered. No invented performance figures or generic case-study claims.</p><Arrow href="/work">View all projects</Arrow></div></div><div className="project-grid">{projects.slice(0,4).map((p,i)=><ProjectCard key={p._id} project={p} index={i}/>)}</div></div></section>
     <section className="section container founder-feature">
       <Reveal className="founder-feature-image"><Image src={settings.portraitUrl} alt="Paul Oloruntobi, digital systems consultant" fill sizes="(max-width: 760px) 86vw, 35vw"/></Reveal>
-      <div className="founder-feature-copy"><Eyebrow>THE PERSON BEHIND PLUSWRLD</Eyebrow><h2>Thoughtful systems. Practical execution.</h2>
+      <div className="founder-feature-copy"><Eyebrow>THE FACE BEHIND PLUSWRLD</Eyebrow><h2>Thoughtful systems. Practical execution.</h2>
         <p>I’m Paul Oloruntobi. I work with businesses to build and improve the digital experiences and workflows behind their day-to-day operations.</p>
         <Arrow href="/about">Meet Paul</Arrow>
       </div>
@@ -125,31 +125,32 @@ async function About({ settings }: { settings: Settings }) {
   const projects = await getProjects();
 
   return <>
-    <Intro eyebrow="ABOUT PAUL / THE PERSON BEHIND PLUSWRLD" title="I’m Paul Oloruntobi." body={settings.aboutIntro}/>
+    <Intro eyebrow="ABOUT PAUL / THE FACE BEHIND PLUSWRLD" title="I’m Paul Oloruntobi." body={settings.aboutIntro}/>
     <section className="section container about-profile">
       <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
       <div className="about-profile-copy">
-        <Reveal><Eyebrow>THE CONSULTANT BEHIND PLUSWRLD</Eyebrow><h2>Shopify stores built for customers and business owners.</h2>
-          <p>I’m Paul Oloruntobi, a Shopify and ecommerce consultant. I help businesses build, set up and improve Shopify stores, bringing together storefront design, product organisation, customer experience and the systems behind everyday store operations.</p>
-          <p>The aim is simple: make it easier for customers to find what they need and complete a purchase, while giving the business owner a store that is practical to manage and ready to grow.</p>
+        <Reveal><Eyebrow>HOW I THINK ABOUT THE WORK</Eyebrow><h2>I look at the whole system, not just the tool.</h2>
+          <p>{settings.aboutStory}</p>
+          <p>That way of thinking connects my work across Shopify and ecommerce, websites and no-code applications, creator and community commerce, and AI-powered automation. The platform may change from project to project, but I bring the same attention to structure, user experience, and how the pieces fit together.</p>
         </Reveal>
-        <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Build for the customer. Set up for the business.</h3><p>{settings.aboutPhilosophy}</p></div></Reveal>
+        <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Understand first. Build with purpose.</h3><p>{settings.aboutPhilosophy}</p></div></Reveal>
         <Reveal delay={130}><div className="profile-facts">
           <div><span>NAME</span><strong>Paul Oloruntobi</strong></div>
           <div><span>ROLE</span><strong>{settings.role}</strong></div>
-          <div><span>CORE WORK</span><strong>Shopify store builds · Setup · Redesign · Optimisation</strong></div>
+          <div><span>CORE WORK</span><strong>Ecommerce · No-code apps · Creator commerce · AI automation</strong></div>
           <div><span>CLIENT MARKETS</span><strong>{settings.marketReach || "Worldwide"}</strong></div>
         </div></Reveal>
       </div>
     </section>
     <section className="section container client-experience">
-      <div className="section-heading"><div><Eyebrow>PORTFOLIO / CLIENT PROJECTS</Eyebrow><h2>Shopify stores,<br/><span className="heading-muted">products and ecommerce experiences.</span></h2></div>
-        <div className="section-heading-aside"><p>A broader selection of work across Shopify storefronts, product operations and connected ecommerce experiences.</p><Arrow href="/work">Explore all projects</Arrow></div></div>
+      <div className="section-heading"><div><Eyebrow>PORTFOLIO / CLIENT PROJECTS</Eyebrow><h2>Different platforms.<br/><span className="heading-muted">One practical approach.</span></h2></div>
+        <div className="section-heading-aside"><p>From ecommerce storefronts to creator platforms, these projects show how I translate different business needs into clear digital experiences and working systems.</p><Arrow href="/work">Explore all projects</Arrow></div></div>
       <div className="project-grid project-grid-large">{projects.map((project,i)=><ProjectCard key={project._id} project={project} index={i}/>)}</div>
     </section>
-    <Cta title="Have a Shopify or ecommerce project in mind?" body="Tell me what you are building or what needs to work better. We can clarify the right next step together."/>
+    <Cta title="Have a digital project taking shape?" body="Whether it is a store, website, application, membership platform or workflow that needs to work better, start by telling me what you want to achieve. We can clarify the right next step together."/>
   </>;
 }
+
 function Help() {
   const items = [
     ["01 / STARTING SOMETHING NEW","You have an idea but need a digital foundation.","I help shape the scope, choose a practical platform and build the first working version around your business needs — a Shopify store, website, customer portal or no-code application."],
