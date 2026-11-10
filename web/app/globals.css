@@ -495,3 +495,84 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 :root[data-theme="dark"] .testimonial-top{color:#9caf9f}
 :root[data-theme="dark"] .testimonial-bottom{border-color:#2a4030}
 @media(max-width:600px){.testimonial-card{padding:23px 20px}.testimonial-card blockquote{font-size:19px}.testimonial-bottom{align-items:flex-start;flex-direction:column;gap:10px}}
+
+
+/* Final Pluswrld brand lockup: primary and philosophy lines */
+.brand-text-lockup{gap:4px;align-items:flex-start;max-width:245px}
+.brand-wordmark{font-size:29px;letter-spacing:-.065em}
+.brand-tagline{font-size:8px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#176b32;line-height:1.3}
+.brand-philosophy{font-size:8px;font-weight:500;letter-spacing:.005em;color:#718176;line-height:1.3;white-space:nowrap}
+.footer-brand .brand-tagline{color:#a1e9ad;font-size:8px}
+.footer-brand .brand-philosophy{color:#c3d4c7;font-size:8px}
+:root[data-theme="dark"] .brand-tagline{color:#94e9a3}
+:root[data-theme="dark"] .brand-philosophy{color:#b9cabb}
+:root[data-theme="dark"] .footer-brand .brand-tagline{color:#a1e9ad}
+:root[data-theme="dark"] .footer-brand .brand-philosophy{color:#c3d4c7}
+
+/* Homepage founder feature: generated portrait complements the original About portrait */
+.founder-feature{display:grid;grid-template-columns:minmax(220px,.72fr) minmax(0,1.28fr);gap:clamp(30px,6vw,78px);align-items:center;padding-top:65px;padding-bottom:78px}
+.founder-feature-image{position:relative;aspect-ratio:1/1;max-width:340px;width:100%;overflow:hidden;border-radius:50% 50% 8px 8px;background:#143c22;box-shadow:0 20px 48px #0c2a1518}
+.founder-feature-image img{object-fit:cover;object-position:center 20%}
+.founder-feature-copy h2{max-width:620px;margin:14px 0 12px;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:clamp(30px,3.6vw,45px);line-height:1.06;letter-spacing:-.05em}
+.founder-feature-copy p{max-width:560px;margin:0 0 20px;color:#58685d;font-size:14px;line-height:1.8}
+:root[data-theme="dark"] .founder-feature-copy h2{color:#edf5ee}
+:root[data-theme="dark"] .founder-feature-copy p{color:#b8c9bc}
+
+/* About career milestones */
+.career-milestones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:27px}
+.career-milestones article{padding:16px 14px;border:1px solid #dfe9df;border-radius:7px;background:#fff}
+.career-milestones article>span{display:block;margin-bottom:13px;color:#19733a;font-size:8px;font-weight:800;letter-spacing:.11em}
+.career-milestones strong{display:block;color:#17291c;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:17px;line-height:1.25}
+.career-milestones p{margin:8px 0 0;color:#657468;font-size:10px;line-height:1.55}
+:root[data-theme="dark"] .career-milestones article{border-color:#2d4433;background:#132319}
+:root[data-theme="dark"] .career-milestones article>span{color:#8ee09a}
+:root[data-theme="dark"] .career-milestones strong{color:#e9f2eb}
+:root[data-theme="dark"] .career-milestones p{color:#b6c8ba}
+
+/* Project card status and non-public preview treatment */
+.project-status{display:inline-flex;align-items:center;padding:4px 7px;border-radius:4px;background:#eff5ef;color:#68796c;font-size:8px;font-weight:700;letter-spacing:.05em}
+.project-status-active{background:#e8f7eb;color:#176b32}
+.project-visual-unavailable{cursor:default}
+.project-visual-unavailable .project-open{background:#24352a;color:#fff}
+.project-private-note{display:inline-block;color:#7b887e;font-size:10px;font-weight:600}
+:root[data-theme="dark"] .project-status{background:#24372a;color:#b7cabb}
+:root[data-theme="dark"] .project-status-active{background:#153c20;color:#a4e8ad}
+:root[data-theme="dark"] .project-private-note{color:#9eafa2}
+
+/* Platform logos are kept on neutral light chips so brand colours remain legible in either theme */
+.platform-logo-image{border:1px solid #e5ebe4;border-radius:5px;background:#fff;padding:2px}
+.platform-logo-image img{object-fit:contain}
+.platform-logo-item{min-height:36px}
+:root[data-theme="dark"] .platform-wall-compact,
+:root[data-theme="dark"] .platform-wall{background:#0b1a10}
+:root[data-theme="dark"] .platform-wall-heading h2{color:#eaf4ec}
+:root[data-theme="dark"] .platform-wall-heading p{color:#adbfaf}
+:root[data-theme="dark"] .platform-group{border-color:#2b4230;background:#132319;box-shadow:0 10px 26px #00000020}
+:root[data-theme="dark"] .platform-group h3{color:#d9e7db}
+:root[data-theme="dark"] .platform-logo-item{border-color:#334a38;background:#192c20;color:#e9f3eb}
+:root[data-theme="dark"] .platform-logo-image{border-color:#e6ebe5;background:#fff}
+:root[data-theme="dark"] .platform-logo-image img{filter:none}
+:root[data-theme="dark"] .platform-wall .eyebrow,
+:root[data-theme="dark"] .platform-wall-compact .eyebrow{border-color:#345a3b;background:#142b1a;color:#8fe09b}
+
+/* Small viewport adjustments for brand lines, founder profile and timeline */
+@media(max-width:760px){
+ .brand-text-lockup{gap:3px;max-width:210px}
+ .brand-wordmark{font-size:25px}
+ .brand-tagline{font-size:7px;letter-spacing:.1em}
+ .brand-philosophy{font-size:7px}
+ .footer-brand .brand-tagline,.footer-brand .brand-philosophy{font-size:8px}
+ .founder-feature{grid-template-columns:1fr;gap:25px;padding-top:44px;padding-bottom:55px}
+ .founder-feature-image{max-width:260px;margin:0 auto}
+ .founder-feature-copy{text-align:left}
+ .career-milestones{grid-template-columns:1fr;gap:9px}
+ .career-milestones article{padding:14px}
+ .career-milestones article>span{margin-bottom:7px}
+}
+@media(max-width:480px){
+ .brand-wordmark{font-size:22px}
+ .brand-tagline{font-size:6px}
+ .brand-philosophy{font-size:6px}
+ .site-header .brand-text-lockup{max-width:185px}
+ .client-experience-grid .project-card-wrap{min-width:0}
+}
