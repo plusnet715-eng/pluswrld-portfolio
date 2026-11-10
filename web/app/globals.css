@@ -576,3 +576,112 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
  .site-header .brand-text-lockup{max-width:185px}
  .client-experience-grid .project-card-wrap{min-width:0}
 }
+
+
+/* Secondary navigation: keep the top bar lean while exposing every secondary page */
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:7px;padding:8px 0;border:0;background:transparent;color:inherit;font:inherit;font-weight:600;cursor:pointer}
+.nav-dropdown-trigger svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5;transition:transform .2s ease}
+.nav-dropdown-open .nav-dropdown-trigger svg{transform:rotate(180deg)}
+.nav-dropdown-panel{display:none;position:absolute;z-index:80;top:calc(100% + 17px);left:-20px;width:292px;padding:12px;border:1px solid #e0e9df;border-radius:8px;background:#fff;box-shadow:0 20px 48px #102c171c;grid-template-columns:1fr;gap:3px}
+.nav-dropdown-open .nav-dropdown-panel,.nav-dropdown:focus-within .nav-dropdown-panel{display:grid}
+.nav-dropdown-heading{padding:9px 10px 7px;color:#718176;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:8px;font-weight:700;letter-spacing:.15em}
+.nav-dropdown-panel a{display:grid;gap:3px;padding:9px 10px;border-radius:5px;color:#1b3021;transition:background .18s ease}
+.nav-dropdown-panel a:hover{background:#f0f6f0}
+.nav-dropdown-panel a strong{font-size:12px;font-weight:700}
+.nav-dropdown-panel a span{color:#78867b;font-size:10px;font-weight:400;line-height:1.45}
+:root[data-theme="dark"] .nav-dropdown-panel{border-color:#2c4433;background:#102016;box-shadow:0 20px 48px #0008}
+:root[data-theme="dark"] .nav-dropdown-panel a{color:#e8f1e9}
+:root[data-theme="dark"] .nav-dropdown-panel a:hover{background:#1b3322}
+:root[data-theme="dark"] .nav-dropdown-panel a span,:root[data-theme="dark"] .nav-dropdown-heading{color:#a9bcae}
+
+/* A clear but compact homepage route to the pages traditionally found only in the footer */
+.explore-more{padding-top:68px;padding-bottom:74px}
+.explore-more-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.explore-more-card{display:flex;min-height:188px;flex-direction:column;align-items:flex-start;padding:20px 18px;border:1px solid #dfe8df;border-radius:7px;background:#fff;color:#18291d;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.explore-more-card:hover{transform:translateY(-4px);border-color:#9bcda2;box-shadow:0 14px 28px #17351d12}
+.explore-more-card>span{color:#23783c;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:8px;font-weight:700;letter-spacing:.13em}
+.explore-more-card h3{margin:22px 0 7px;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:18px;line-height:1.15;letter-spacing:-.025em}
+.explore-more-card p{flex:1;margin:0 0 14px;color:#6d7a70;font-size:11px;line-height:1.6}
+.explore-more-card b{color:#19743a;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:9px;letter-spacing:.04em}
+:root[data-theme="dark"] .explore-more{background:#0b1a10}
+:root[data-theme="dark"] .explore-more-card{border-color:#2b4230;background:#132319;color:#eef5ef}
+:root[data-theme="dark"] .explore-more-card>span,:root[data-theme="dark"] .explore-more-card b{color:#91e19d}
+:root[data-theme="dark"] .explore-more-card p{color:#b1c2b5}
+
+/* Stable platform logo layout: uniform cells, aligned marks and consistent labels */
+.platform-logo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:42px;align-items:stretch;gap:8px}
+.platform-logo-item{display:grid;width:100%;height:42px;min-height:42px;grid-template-columns:22px minmax(0,1fr);align-items:center;justify-content:initial;gap:8px;padding:6px 8px;box-sizing:border-box;overflow:hidden;text-align:left}
+.platform-logo-item>span:last-child{min-width:0;overflow-wrap:anywhere;font-size:9px;line-height:1.15}
+.platform-logo-image{display:grid;place-items:center;width:22px;height:22px;flex:0 0 22px;padding:2px;box-sizing:border-box;border:1px solid #e6ece5;border-radius:5px;background:#fff}
+.platform-logo-image img{display:block;width:17px;height:17px;max-width:100%;max-height:100%;object-fit:contain}
+.platform-group h3{min-height:30px;display:flex;align-items:center}
+:root[data-theme="dark"] .platform-logo-item{background:#192c20;border-color:#334a38;color:#e9f3eb}
+:root[data-theme="dark"] .platform-logo-image{background:#fff;border-color:#e1e8df}
+:root[data-theme="dark"] .platform-logo-image img{filter:none}
+
+/* Acumin Pro is the brand display face for section indexes, labels and the BUILD • AUTOMATE • GROW line */
+.eyebrow,.card-number,.work-intro-note span,.service-detail-number,.process-number,.process-marker,.footer-label,.nav-dropdown-heading,.platform-group h3{font-family:acumin-pro,"Acumin Pro",Arial,sans-serif}
+.eyebrow{font-weight:700;letter-spacing:.16em}
+.card-number,.work-intro-note span,.service-detail-number,.process-number,.process-marker{font-weight:700;letter-spacing:.13em}
+.brand-tagline,.footer-brand>p{font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.brand-tagline{font-size:8px}
+.footer-brand>p{margin:13px 0 0;color:#bcebc3;font-size:8px}
+:root[data-theme="dark"] .brand-tagline{color:#94e9a3}
+:root[data-theme="dark"] .footer-brand>p{color:#a1e9ad}
+
+/* Circular footer seal: the sensory-ideas line follows an arc around the original green mark */
+.footer-brand-lockup{display:flex;align-items:center;gap:12px}
+.footer-brand-emblem{display:block;flex:0 0 92px;width:92px;height:92px;overflow:visible}
+.footer-emblem-curved-copy{fill:#b9e9c1;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:7.1px;font-weight:700;letter-spacing:.3px}
+.footer-brand-lockup .brand-text-lockup{max-width:220px}
+.footer-brand-lockup .brand-wordmark{font-size:30px}
+.footer-brand-lockup .brand-tagline{font-size:8px}
+.footer-brand-lockup .brand-philosophy{font-size:8px;white-space:normal}
+:root[data-theme="dark"] .footer-emblem-curved-copy{fill:#b9e9c1}
+
+/* Make native mail handoff and browser fallback obvious after a visitor prepares an enquiry */
+.form-email-fallback{display:grid;gap:9px;margin-top:14px;padding:16px;border:1px solid #c8e5cc;border-radius:6px;background:#f1f9f2;color:#22402a}
+.form-email-fallback>strong{font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:14px}
+.form-email-fallback>span{color:#5d7161;font-size:11px;line-height:1.6}
+.form-email-fallback>div{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.form-email-fallback .button{display:inline-flex}
+.form-error{margin:12px 0 0;color:#9f2c2c;font-size:12px}
+:root[data-theme="dark"] .form-email-fallback{border-color:#31583a;background:#13291a;color:#eaf4ec}
+:root[data-theme="dark"] .form-email-fallback>span{color:#b7cabb}
+:root[data-theme="dark"] .form-error{color:#ff9c9c}
+
+/* Responsive navigation, discovery cards and footer emblem */
+@media(max-width:1100px){
+ .explore-more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .platform-group h3{min-height:32px}
+}
+@media(max-width:760px){
+ .nav-dropdown{display:block;width:100%}
+ .nav-dropdown-trigger{display:flex;width:100%;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line)}
+ .nav-dropdown-panel{position:static;width:100%;padding:7px 0 11px;border:0;border-radius:0;background:transparent;box-shadow:none}
+ .nav-dropdown-open .nav-dropdown-panel,.nav-dropdown:focus-within .nav-dropdown-panel{display:grid}
+ .nav-dropdown-panel a{padding:10px 12px}
+ .nav-dropdown-heading{padding:8px 12px 5px}
+ :root[data-theme="dark"] .nav-dropdown-panel{background:transparent;box-shadow:none}
+ .explore-more{padding-top:50px;padding-bottom:54px}
+ .explore-more-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .explore-more-card{min-height:173px;padding:15px 13px}
+ .explore-more-card h3{font-size:16px;margin-top:18px}
+ .footer-brand-lockup{gap:9px}
+ .footer-brand-emblem{flex-basis:78px;width:78px;height:78px}
+ .footer-brand-lockup .brand-wordmark{font-size:25px}
+ .footer-brand-lockup .brand-tagline,.footer-brand-lockup .brand-philosophy{font-size:7px}
+}
+@media(max-width:480px){
+ .platform-logo-grid{grid-auto-rows:40px;gap:6px}
+ .platform-logo-item{height:40px;min-height:40px;grid-template-columns:20px minmax(0,1fr);gap:6px;padding:5px 6px}
+ .platform-logo-image{width:20px;height:20px;flex-basis:20px}
+ .platform-logo-item>span:last-child{font-size:8px}
+ .explore-more-grid{grid-template-columns:1fr}
+ .explore-more-card{min-height:145px}
+ .footer-brand-emblem{flex-basis:70px;width:70px;height:70px}
+ .footer-brand-lockup .brand-wordmark{font-size:22px}
+ .footer-brand-lockup .brand-tagline,.footer-brand-lockup .brand-philosophy{font-size:6px}
+ .form-email-fallback>div{align-items:flex-start;flex-direction:column;gap:9px}
+}
