@@ -6,9 +6,16 @@ import type { PresenceLink, Settings } from "../lib/content";
 
 const links = [{ href: "/services", label: "Services" }, { href: "/work", label: "Selected work" }, { href: "/about", label: "About" }, { href: "/process", label: "Process" }];
 function Brand() {
-  return <Link href="/" className="brand" aria-label="Pluswrld home">
-    <span className="brand-mark-frame"><Image src="https://cdn.sanity.io/images/a8mywjme/production/a45e67c49c83edbb0b739c3348ae43406d8a67e4-576x513.png" alt="" width={44} height={40} /></span>
-    <span className="brand-lockup"><span className="brand-word">Pluswrld</span><span className="brand-tagline">BUILD · AUTOMATE · GROW</span></span>
+  return <Link href="/" className="brand brand-full-wordmark" aria-label="Pluswrld home">
+    <span className="brand-full-logo-frame">
+      <Image
+        className="brand-full-logo"
+        src="https://cdn.sanity.io/images/a8mywjme/production/1046d8a708312a06a8320879b182184874492d7a-1010x715.png"
+        alt="Pluswrld — Build, Automate, Grow"
+        width={120}
+        height={85}
+      />
+    </span>
   </Link>;
 }
 export function SiteHeader({ settings }: { settings: Settings }) {
