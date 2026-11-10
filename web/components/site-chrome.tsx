@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { PresenceLink, Settings } from "../lib/content";
 
 const primaryLinks = [
@@ -71,7 +71,31 @@ function Brand({ settings }: { settings: Settings }) {
 export function SiteHeader({ settings }: { settings: Settings }) {
   const [open, setOpen] = useState(false);
   const [exploreOpen, setExploreOpen] = useState(false);
+  const exploreDropdownRef = useRef<HTMLDivElement>(null);
+  const exploreTriggerRef = useRef<HTMLButtonElement>(null);
   const closeMenus = () => { setOpen(false); setExploreOpen(false); };
+
+  useEffect(() => {
+    if (!exploreOpen) return;
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+      if (target instanceof Node && !exploreDropdownRef.current?.contains(target)) {
+        setExploreOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setExploreOpen(false);
+        exploreTriggerRef.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [exploreOpen]);
   return <header className="site-header"><div className="container header-inner">
     <Brand settings={settings} />
     <div className="header-actions">
@@ -80,8 +104,8 @@ export function SiteHeader({ settings }: { settings: Settings }) {
     </div>
     <nav className={"main-nav" + (open ? " nav-open" : "")} aria-label="Main navigation">
       {primaryLinks.map((item) => <Link key={item.href} href={item.href} onClick={closeMenus}>{item.label}</Link>)}
-      <div className={"nav-dropdown" + (exploreOpen ? " nav-dropdown-open" : "")}>
-        <button className="nav-dropdown-trigger" type="button" aria-expanded={exploreOpen} aria-controls="pluswrld-explore-menu" onClick={() => setExploreOpen(!exploreOpen)}>
+      <div ref={exploreDropdownRef} className={"nav-dropdown" + (exploreOpen ? " nav-dropdown-open" : "")}>
+        <button ref={exploreTriggerRef} className="nav-dropdown-trigger" type="button" aria-expanded={exploreOpen} aria-controls="pluswrld-explore-menu" onClick={() => setExploreOpen(!exploreOpen)}>
           Explore <svg viewBox="0 0 12 12" aria-hidden="true"><path d="m2 4 4 4 4-4" /></svg>
         </button>
         <div className="nav-dropdown-panel" id="pluswrld-explore-menu">
