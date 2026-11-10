@@ -49,16 +49,17 @@ function ThemePicker() {
   </label>;
 }
 
-function Brand() {
+function Brand({ settings }: { settings: Settings }) {
   return <Link href="/" className="brand brand-text-lockup" aria-label="Pluswrld home">
     <span className="brand-wordmark"><span className="brand-plus">Plus</span><span className="brand-wrld">wrld</span></span>
-    <span className="brand-tagline">Knowledge comes from sensory ideas</span>
+    <span className="brand-tagline">{settings.tagline || "Build · Automate · Grow"}</span>
+    <span className="brand-philosophy">{settings.secondaryTagline || "Knowledge comes from sensory ideas"}</span>
   </Link>;
 }
 export function SiteHeader({ settings }: { settings: Settings }) {
   const [open, setOpen] = useState(false);
   return <header className="site-header"><div className="container header-inner">
-    <Brand />
+    <Brand settings={settings} />
     <div className="header-actions">
       <ThemePicker />
       <button className="menu-toggle" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /></button>
