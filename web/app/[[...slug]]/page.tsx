@@ -43,7 +43,7 @@ function ServiceIcon({ index }: { index: number }) {
   return <span className="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true">{icons[index % 3]}</svg></span>;
 }
 
-function DeviceView({ project, variant }: { project: Project; variant: "desktop" | "tablet" | "phone" }) {
+function DeviceView({ project, variant }: { project: Project & { liveUrl: string }; variant: "desktop" | "tablet" | "phone" }) {
   let projectHost = "live project";
   try { projectHost = new URL(project.liveUrl).hostname.replace(/^www\\./, ""); } catch {}
   return <a className={"device-view device-view-" + variant} href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={"Open " + project.title + " website"}>
@@ -60,7 +60,8 @@ function DeviceView({ project, variant }: { project: Project; variant: "desktop"
   </a>;
 }
 function HeroShowcase({ projects }: { projects: Project[] }) {
-  const [desktop, tablet, phone] = projects.slice(0, 3);
+  const publicProjects = projects.filter((project): project is Project & { liveUrl: string } => Boolean(project.liveUrl));
+  const [desktop, tablet, phone] = publicProjects.slice(0, 3);
   return <Reveal className="hero-showcase" delay={120}>
     <div className="device-showcase">
       {desktop && <div className="device-frame device-frame-desktop"><DeviceView project={desktop} variant="desktop" /></div>}
