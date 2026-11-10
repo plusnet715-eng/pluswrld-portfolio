@@ -43,8 +43,10 @@ function ServiceIcon({ index }: { index: number }) {
 }
 
 function DeviceView({ project, variant }: { project: Project; variant: "desktop" | "tablet" | "phone" }) {
+  let projectHost = "live project";
+  try { projectHost = new URL(project.liveUrl).hostname.replace(/^www\\./, ""); } catch {}
   return <a className={"device-view device-view-" + variant} href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={"Open " + project.title + " website"}>
-    <span className="device-browser"><i /><i /><i /><span>{project.title.toLowerCase().replace(/\s+/g, "")}.com</span></span>
+    <span className="device-browser"><i /><i /><i /><span>{projectHost}</span></span>
     <span className="device-screen">
       <span className="device-site-nav"><strong>{project.title}</strong><small>SHOP&nbsp;&nbsp; ABOUT&nbsp;&nbsp; CONTACT</small></span>
       <span className="device-site-hero">
