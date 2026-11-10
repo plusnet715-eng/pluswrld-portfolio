@@ -56,6 +56,10 @@ const siteSettings = defineType({
     defineField({ name: "tagline", title: "Main tagline", type: "string" }),
     defineField({ name: "secondaryTagline", title: "Secondary tagline", type: "string" }),
     defineField({ name: "secondaryTaglineMeaning", title: "Secondary tagline meaning", type: "string" }),
+    defineField({ name: "marketReach", title: "Client market reach", type: "string" }),
+    defineField({ name: "freelancingSince", title: "Freelancing since", type: "date" }),
+    defineField({ name: "firstClientDate", title: "First paid client date", type: "date" }),
+    defineField({ name: "firstClientName", title: "First paid client", type: "string" }),
     defineField({ name: "fullName", title: "Full name", type: "string" }),
     defineField({ name: "role", title: "Professional role", type: "string" }),
     defineField({ name: "location", title: "Location / work region", type: "string" }),
@@ -70,7 +74,8 @@ const siteSettings = defineType({
     defineField({ name: "aboutPhilosophy", title: "Working philosophy", type: "text", rows: 4 }),
     defineField({ name: "logo", title: "Full wordmark logo", type: "image", options: { hotspot: true } }),
     defineField({ name: "favicon", title: "Favicon mark", type: "image" }),
-    defineField({ name: "portrait", title: "Professional portrait", type: "image", options: { hotspot: true } })
+    defineField({ name: "portrait", title: "Enhanced portrait / Homepage feature", type: "image", options: { hotspot: true } }),
+    defineField({ name: "originalPortrait", title: "Original portrait / About page", type: "image", options: { hotspot: true } })
   ]
 });
 
@@ -169,6 +174,8 @@ const testimonial = defineType({
     defineField({ name: "reviewerHandle", title: "Buyer handle / name as shown", type: "string" }),
     defineField({ name: "platform", title: "Source platform", type: "string" }),
     defineField({ name: "sourceUrl", title: "Source URL", type: "url" }),
+    defineField({ name: "sourceLabel", title: "Source link label", type: "string" }),
+    defineField({ name: "sourceDocument", title: "Original review source document", type: "file" }),
     defineField({ name: "reviewDate", title: "Review date", type: "date" }),
     defineField({ name: "reviewDateLabel", title: "Display date", type: "string", description: "Use month and year when the exact day was not supplied." }),
     defineField({ name: "reviewerCountry", title: "Buyer country", type: "string" }),
