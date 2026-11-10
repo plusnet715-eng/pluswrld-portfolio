@@ -5,7 +5,7 @@ import { Reveal } from "./reveal";
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
   const isActive = project.status === "Active client project";
   const visual = project.imageUrl
-    ? <Image src={project.imageUrl} alt={project.title + " storefront or product imagery"} fill sizes="(max-width: 720px) 100vw, 50vw" />
+    ? <Image src={project.imageUrl} alt={project.title + " storefront or product imagery"} fill sizes="(max-width: 720px) 100vw, 50vw" unoptimized={!project.imageUrl.startsWith("/") && !project.imageUrl.includes("cdn.sanity.io")} />
     : <div className="project-image-placeholder">PLUSWRLD / PROJECT</div>;
 
   return <Reveal className="project-card-wrap" delay={Math.min(index, 5) * 55}><article className="project-card">
