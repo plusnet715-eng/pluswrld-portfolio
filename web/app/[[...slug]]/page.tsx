@@ -97,7 +97,7 @@ async function Home({ settings }: { settings: Settings }) {
 
 const featuredClients = [
   { name: "ResirWrecked", detail: "WooCommerce-to-Shopify migration and storefront build", market: "Florida, United States", url: "https://resirwrecked.com/" },
-  { name: "EAF Products", detail: "Product-page usability and interface improvements", market: "Market not publicly confirmed", url: "https://www.eafproducts.com/" },
+  { name: "EAF Products", detail: "Product-page usability and interface improvements", url: "https://www.eafproducts.com/" },
   { name: "Slow Ride", detail: "Product listings, variants and individual SKU management", market: "California, United States", url: "https://slowride.com/" },
   { name: "Fleurish Plant Care", detail: "Existing theme customisation and homepage redesign", market: "Virginia, United States", url: "https://fleurishplantcare.com/" }
 ];
@@ -133,9 +133,9 @@ function About({ settings }: { settings: Settings }) {
       <div className="section-heading"><div><Eyebrow>CLIENT EXPERIENCE / SELECTED BUSINESSES</Eyebrow><h2>Real businesses.<br/><span className="heading-muted">Specific work delivered.</span></h2></div>
         <div className="section-heading-aside"><p>These are confirmed client projects represented in the portfolio. Each example is linked to the public business website, with the work described at the level I can substantiate.</p><Arrow href="/work">Explore project details</Arrow></div></div>
       <div className="client-experience-grid">{featuredClients.map((client,i)=><Reveal key={client.name} delay={i*55}><a className="client-experience-card" href={client.url} target="_blank" rel="noreferrer">
-        <span className="client-experience-index">0{i+1} / CLIENT PROJECT</span><strong>{client.name}</strong><p>{client.detail}</p><small>{client.market}</small><span className="client-experience-link">View business ↗</span>
+        <span className="client-experience-index">0{i+1} / CLIENT PROJECT</span><strong>{client.name}</strong><p>{client.detail}</p>{client.market && <small>{client.market}</small>}<span className="client-experience-link">View business ↗</span>
       </a></Reveal>)}</div>
-      <p className="client-location-note">The featured public business locations shown here include Florida, California and Virginia in the United States. EAF Products is included without a country label because I have not confirmed its location.</p>
+      <p className="client-location-note">Locations are listed only where they are confirmed on the public client website.</p>
     </section>
     <section className="section section-soft"><div className="container about-approach">
       <div><Eyebrow>HOW I APPROACH PROJECTS</Eyebrow><h2>Clear thinking before implementation.</h2></div>
