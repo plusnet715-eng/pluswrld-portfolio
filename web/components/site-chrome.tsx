@@ -113,7 +113,7 @@ export function SiteFooter({ settings, profiles }: { settings: Settings; profile
     <div className="footer-top">
       <div className="footer-brand">
         <div className="footer-brand-lockup"><FooterBrandEmblem /><Brand settings={settings} /></div>
-        <p>BUILD • AUTOMATE • GROW</p>
+        
       </div>
       <div className="footer-column"><span className="footer-label">Explore</span><Link href="/about">About me</Link><Link href="/how-i-can-help">How I can help</Link><Link href="/services">Services</Link><Link href="/process">My process</Link><Link href="/work">Past work</Link><Link href="/testimonials">Reviews</Link><Link href="/faq">FAQ</Link></div>
       <div className="footer-column"><span className="footer-label">Connect</span><a href="https://www.fiverr.com/timi_p1" target="_blank" rel="noreferrer">Fiverr ↗</a><a href="https://www.upwork.com/freelancers/~016b078cb44626d3a3" target="_blank" rel="noreferrer">Upwork ↗</a><a href={settings.whatsappUrl} target="_blank" rel="noreferrer">WhatsApp ↗</a><a href={"mailto:" + contactEmail} aria-label={"Email " + contactEmail}>Email ↗</a></div>
