@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { EnquiryForm } from "../../components/enquiry-form";
 import { ProjectCard } from "../../components/project-card";
 import { Reveal } from "../../components/reveal";
-import { getFaqs, getProcess, getProjects, getServices, getSettings, getTestimonials, type Settings } from "../../lib/content";
+import { getFaqs, getProcess, getProjects, getServices, getSettings, getTestimonials, type Project, type Settings, type Testimonial } from "../../lib/content";
 
 const pageTitles: Record<string, string> = { "": "Build. Automate. Grow.", about: "About me", "how-i-can-help": "How I can help you", services: "Services", process: "My process", work: "Selected work", testimonials: "Reviews & testimonials", faq: "Frequently asked questions", contact: "Discuss a project" };
 const pageDescriptions: Record<string, string> = { "": "Practical digital systems, clearly scoped and built around your business.", about: "Meet Paul Oloruntobi, the consultant behind Pluswrld.", "how-i-can-help": "Start with the business challenge. We will map a practical solution.", services: "Shopify, ecommerce, websites, no-code applications, AI automation and creator-commerce systems.", process: "A clear process from discovery through implementation and handover.", work: "Selected client projects across Shopify ecommerce and digital systems.", testimonials: "Feedback shared by clients through Fiverr.", faq: "Answers about scope, platforms and delivery.", contact: "Share what you are building, improving or trying to connect." };
@@ -22,29 +22,78 @@ function Cta({ title, body }: { title: string; body: string }) {
   return <section className="cta-band"><div className="container cta-band-inner"><div><Eyebrow>THE NEXT STEP</Eyebrow><h2>{title}</h2><p>{body}</p></div><Link href="/contact" className="button button-light">Discuss a project <span>↗</span></Link></div></section>;
 }
 function Arrow({ href, children }: { href: string; children: React.ReactNode }) { return <Link href={href} className="text-link">{children} <span>↗</span></Link>; }
+
+function ReviewCard({ review, compact = false }: { review: Testimonial; compact?: boolean }) {
+  const rating = Math.max(0, Math.min(5, review.rating || 0));
+  return <article className={"testimonial-card" + (compact ? " testimonial-card-compact" : "")}>
+    <div className="testimonial-top">
+      <span className="testimonial-stars" aria-label={rating + " out of 5 stars"}>{"★".repeat(rating) + "☆".repeat(5 - rating)}</span>
+      <span>{review.platform} · {review.reviewDate}</span>
+    </div>
+    <blockquote>“{review.quote}”</blockquote>
+    <div className="testimonial-bottom">
+      <div><strong>{review.reviewerLabel || "Client review"}</strong><span>{review.reviewerHandle ? "@" + review.reviewerHandle : "Verified source"}</span></div>
+      <a href={review.sourceUrl || "https://www.fiverr.com/timi_p1"} target="_blank" rel="noreferrer">View source ↗</a>
+    </div>
+  </article>;
+}
 function ServiceIcon({ index }: { index: number }) {
   const icons = [<><path d="M4 7h16v12H4z" /><path d="M8 4h16v12" /><path d="M8 11h8M8 15h5" /></>, <><rect x="4" y="4" width="16" height="16" rx="3" /><path d="M9 9h6M9 13h6M9 17h3" /></>, <><path d="M12 3v5M12 16v5M3 12h5M16 12h5" /><circle cx="12" cy="12" r="4" /></>];
   return <span className="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true">{icons[index % 3]}</svg></span>;
 }
-function Hero({ settings }: { settings: Settings }) {
+function HeroShowcase({ projects }: { projects: Project[] }) {
+  const featured = projects.slice(0, 3);
+  return <Reveal className="hero-showcase" delay={120}>
+    <div className="desktop-monitor">
+      <div className="monitor-bezel">
+        <div className="monitor-browser-bar">
+          <span className="browser-dots"><i /><i /><i /></span>
+          <span className="browser-address">pluswrld.com / selected work</span>
+          <span className="browser-status">PORTFOLIO</span>
+        </div>
+        <div className="monitor-screen-content">
+          <div className="mock-site-heading">
+            <div><span>SELECTED PROJECTS</span><strong>Digital work, built for real businesses.</strong></div>
+            <small>ECOMMERCE · WEB · SYSTEMS</small>
+          </div>
+          <div className="mock-project-grid">
+            {featured.map((project) => <a className="mock-project-card" key={project._id} href={project.liveUrl} target="_blank" rel="noreferrer">
+              <span className="mock-project-image">
+                {project.imageUrl ? <Image src={project.imageUrl} alt={project.title + " project visual"} fill sizes="(max-width: 760px) 28vw, 150px" /> : <span className="mock-project-empty">PLUSWRLD / PROJECT</span>}
+              </span>
+              <span className="mock-project-info"><strong>{project.title}</strong><small>{project.category}</small></span>
+            </a>)}
+          </div>
+          <div className="mock-site-footer"><span>BUILD</span><span>AUTOMATE</span><span>GROW</span></div>
+        </div>
+      </div>
+      <span className="monitor-neck" />
+      <span className="monitor-base" />
+    </div>
+    <span className="showcase-chip showcase-chip-one">SHOPIFY STOREFRONTS</span>
+    <span className="showcase-chip showcase-chip-two">CONNECTED SYSTEMS</span>
+  </Reveal>;
+}
+function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   return <section className="home-hero"><div className="container home-hero-grid">
     <div className="hero-copy"><Reveal><Eyebrow>INDEPENDENT DIGITAL SYSTEMS CONSULTANT</Eyebrow><h1>{settings.heroTitle}</h1><p className="hero-description">{settings.heroDescription}</p>
       <div className="hero-actions"><Link href="/contact" className="button">Discuss a project <span>↗</span></Link><Link href="/work" className="button button-outline">Explore my work <span>↗</span></Link></div>
       <div className="hero-caption"><i className="availability-dot" />{settings.availability}<span className="caption-separator">/</span>{settings.location}</div></Reveal></div>
-    <Reveal className="hero-portrait-wrap" delay={120}><div className="portrait-orbit" /><div className="portrait-frame"><Image src={settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill priority sizes="(max-width: 800px) 80vw, 42vw" /></div><div className="portrait-note"><b>PAUL OLORUNTOBI</b><span>BUILD · AUTOMATE · GROW</span></div><div className="portrait-index">01 / PLUSWRLD</div></Reveal>
+    <HeroShowcase projects={projects} />
   </div><div className="container hero-bottom-line"><span>STRATEGY WITH PRACTICAL IMPLEMENTATION</span><span>ECOMMERCE · AUTOMATION · DIGITAL SYSTEMS</span></div></section>;
 }
 function ExpertiseStrip() {
   return <div className="expertise-strip"><div className="container expertise-track">{["Shopify & ecommerce","AI workflows","No-code applications","Creator commerce","Connected systems"].map((x,i)=><span key={x}><i>0{i+1}</i>{x}</span>)}</div></div>;
 }
 async function Home({ settings }: { settings: Settings }) {
-  const [services, projects, steps] = await Promise.all([getServices(), getProjects(), getProcess()]);
+  const [services, projects, steps, reviews] = await Promise.all([getServices(), getProjects(), getProcess(), getTestimonials()]);
   return <>
-    <Hero settings={settings} /><ExpertiseStrip />
+    <Hero settings={settings} projects={projects} /><ExpertiseStrip />
     <section className="section container"><div className="section-heading"><div><Eyebrow>WHAT I DO</Eyebrow><h2>One partner.<br /><span className="heading-muted">Connected solutions.</span></h2></div><div className="section-heading-aside"><p>I work across the tools businesses use to reach customers, deliver services and run day-to-day operations. The aim is to make the right technology work together.</p><Arrow href="/services">Explore all services</Arrow></div></div>
       <div className="service-grid">{services.slice(0,3).map((service,i)=><Reveal key={service._id} delay={i*70}><article className="service-card"><ServiceIcon index={i}/><span className="card-number">0{i+1} / CAPABILITY</span><h3>{service.title}</h3><p>{service.description}</p><Arrow href="/services">Explore service</Arrow></article></Reveal>)}</div>
     </section>
     <section className="section section-soft"><div className="container"><div className="section-heading"><div><Eyebrow>SELECTED WORK</Eyebrow><h2>Built around<br /><span className="heading-muted">real business needs.</span></h2></div><div className="section-heading-aside"><p>Each project reflects a specific piece of work delivered. No invented performance figures or generic case-study claims.</p><Arrow href="/work">View all projects</Arrow></div></div><div className="project-grid">{projects.slice(0,4).map((p,i)=><ProjectCard key={p._id} project={p} index={i}/>)}</div></div></section>
+    {reviews.length > 0 && <section className="section container home-reviews"><div className="section-heading"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work.<br /><span className="heading-muted">Good working relationships.</span></h2></div><div className="section-heading-aside"><p>Feedback shared by buyers on Fiverr. Original wording and source attribution are preserved.</p><Arrow href="/testimonials">Read all reviews</Arrow></div></div><div className="home-review-grid">{reviews.slice(0,2).map((review,i)=><Reveal key={review._id} delay={i*65}><ReviewCard review={review} compact /></Reveal>)}</div></section>}
     <section className="section container"><div className="section-heading"><div><Eyebrow>HOW I WORK</Eyebrow><h2>Clear thinking.<br /><span className="heading-muted">Careful execution.</span></h2></div><div className="section-heading-aside"><p>Good delivery starts before implementation. The business goal, scope, technical decisions and handover all need to connect.</p><Arrow href="/process">See my process</Arrow></div></div><div className="process-preview-list">{steps.slice(0,4).map((s,i)=><Reveal key={s._id} delay={i*50} className="preview-step"><span>0{i+1}</span><h3>{s.title}</h3><p>{s.description}</p></Reveal>)}</div></section>
     <Cta title="Have something worth building?" body="Share the idea, the challenge or the system you want to improve. We can work out a practical next step." />
   </>;
@@ -90,8 +139,8 @@ async function Work() {
 async function Testimonials() {
   const reviews = await getTestimonials();
   return <><Intro eyebrow="REVIEWS & TESTIMONIALS" title="Good work is remembered. Good experiences are shared." body="Feedback shared by buyers and clients. The original wording, attribution and source are kept intact."/><section className="section container testimonial-list">
-    {reviews.length ? reviews.map((r,i)=><Reveal key={r._id} delay={i*60}><article className="testimonial-card"><div className="testimonial-top"><span className="testimonial-stars" aria-label={r.rating+" out of 5 stars"}>{"★".repeat(Math.max(0,Math.min(5,r.rating)))+"☆".repeat(Math.max(0,5-r.rating))}</span><span>{r.platform} · {r.reviewDate}</span></div><blockquote>“{r.quote}”</blockquote><div className="testimonial-bottom"><div><strong>{r.reviewerLabel || "Client review"}</strong><span>{r.reviewerHandle ? "@"+r.reviewerHandle : "Verified source"}</span></div><a href={r.sourceUrl || "https://www.fiverr.com/timi_p1"} target="_blank" rel="noreferrer">View source ↗</a></div></article></Reveal>)
-    : <div className="empty-reviews"><span>CLIENT FEEDBACK</span><h2>More client feedback will be added here.</h2><p>Reviews from the additional reference document will be added once the original wording and buyer names are ready.</p></div>}
+    {reviews.length ? reviews.map((review,i)=><Reveal key={review._id} delay={i*60}><ReviewCard review={review} /></Reveal>)
+    : <div className="empty-reviews"><span>CLIENT FEEDBACK</span><h2>More client feedback will be added here.</h2><p>Additional reviews from the reference document can be added once the original wording and buyer names are ready.</p></div>}
   </section><Cta title="A good working relationship starts with a conversation." body="Tell me what you are building or improving and what a successful project would need to achieve."/></>;
 }
 async function Faq() {
