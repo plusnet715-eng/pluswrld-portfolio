@@ -93,7 +93,7 @@ function ExploreMore() {
   ];
   return <section className="section section-soft explore-more"><div className="container">
     <div className="section-heading"><div><Eyebrow>MORE TO EXPLORE</Eyebrow><h2>Find the right<br/><span className="heading-muted">next page.</span></h2></div><div className="section-heading-aside"><p>Not every visitor arrives with the same question. These pages give you a clearer way to explore the services, approach and experience behind Pluswrld.</p></div></div>
-    <MobileDrawer className="explore-more-drawer" label="Explore all four pages">
+    <MobileDrawer className="explore-more-drawer" label="Explore all four pages" expandedLabel="Close explore pages">
       <div className="explore-more-grid">{pages.map((page,i)=><Reveal key={page.href} delay={i*45}><Link className="explore-more-card" href={page.href}><span>{page.number}</span><h3>{page.title}</h3><p>{page.body}</p><b>Explore page ↗</b></Link></Reveal>)}</div>
     </MobileDrawer>
   </div></section>;
@@ -229,7 +229,7 @@ function PlatformWall({ compact = false }: { compact?: boolean }) {
           <span className="platform-logo-image"><img src={item.src} alt="" loading="lazy" /></span><span>{item.name}</span>
         </div>)}</div>
       </div>
-      <MobileDrawer className="platform-groups-drawer" label="Show more platforms and tools">
+      <MobileDrawer className="platform-groups-drawer" label="Show more platforms and tools" expandedLabel="Hide additional platforms and tools">
         <div className="platform-groups-secondary">{platformGroups.slice(1).map((group)=><div className="platform-group" key={group.title}>
           <h3>{group.title}</h3><div className="platform-logo-grid">{group.items.map((item)=><div className="platform-logo-item" key={item.name}>
             <span className="platform-logo-image"><img src={item.src} alt="" loading="lazy" /></span><span>{item.name}</span>
