@@ -34,7 +34,7 @@ function ReviewCard({ review, compact = false }: { review: Testimonial; compact?
     <blockquote>“{review.quote}”</blockquote>
     <div className="testimonial-bottom">
       <div><strong>{review.reviewerLabel || "Client review"}</strong><span>{review.reviewerCountry || (review.reviewerHandle ? "@" + review.reviewerHandle : "Client feedback")}{review.repeatClient ? " · Repeat client" : ""}</span></div>
-      {review.sourceUrl ? <a href={review.sourceUrl} target="_blank" rel="noreferrer">View source ↗</a> : <span className="testimonial-source-note">Shared client feedback</span>}
+      {review.sourceUrl ? <a href={review.sourceUrl} target="_blank" rel="noreferrer">{review.sourceLabel || "View source"} ↗</a> : <span className="testimonial-source-note">Shared client feedback</span>}
     </div>
   </article>;
 }
@@ -90,62 +90,62 @@ async function Home({ settings }: { settings: Settings }) {
       <div className="service-grid">{services.slice(0,3).map((service,i)=><Reveal key={service._id} delay={i*70}><article className="service-card"><ServiceIcon index={i}/><span className="card-number">0{i+1} / CAPABILITY</span><h3>{service.title}</h3><p>{service.description}</p><Arrow href="/services">Explore service</Arrow></article></Reveal>)}</div>
     </section>
     <section className="section section-soft"><div className="container"><div className="section-heading"><div><Eyebrow>SELECTED WORK</Eyebrow><h2>Built around<br /><span className="heading-muted">real business needs.</span></h2></div><div className="section-heading-aside"><p>Each project reflects a specific piece of work delivered. No invented performance figures or generic case-study claims.</p><Arrow href="/work">View all projects</Arrow></div></div><div className="project-grid">{projects.slice(0,4).map((p,i)=><ProjectCard key={p._id} project={p} index={i}/>)}</div></div></section>
+    <section className="section container founder-feature">
+      <Reveal className="founder-feature-image"><Image src={settings.portraitUrl} alt="Paul Oloruntobi, digital systems consultant" fill sizes="(max-width: 760px) 86vw, 35vw"/></Reveal>
+      <div className="founder-feature-copy"><Eyebrow>THE PERSON BEHIND PLUSWRLD</Eyebrow><h2>Thoughtful systems. Practical execution.</h2>
+        <p>I’m Paul Oloruntobi. I work with businesses to build and improve the digital experiences and workflows behind their day-to-day operations.</p>
+        <Arrow href="/about">Meet Paul</Arrow>
+      </div>
+    </section>
     {reviews.some((review) => review.featured) && <section className="section container home-reviews"><div className="section-heading"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work.<br /><span className="heading-muted">Good working relationships.</span></h2></div><div className="section-heading-aside"><p>Feedback shared by clients across completed projects. Original wording and attribution are preserved.</p><Arrow href="/testimonials">Read all reviews</Arrow></div></div><div className="home-review-grid">{reviews.filter((review) => review.featured).slice(0,2).map((review,i)=><Reveal key={review._id} delay={i*65}><ReviewCard review={review} compact /></Reveal>)}</div></section>}
     <section className="section container"><div className="section-heading"><div><Eyebrow>HOW I WORK</Eyebrow><h2>Clear thinking.<br /><span className="heading-muted">Careful execution.</span></h2></div><div className="section-heading-aside"><p>Good delivery starts before implementation. The business goal, scope, technical decisions and handover all need to connect.</p><Arrow href="/process">See my process</Arrow></div></div><div className="process-preview-list">{steps.slice(0,4).map((s,i)=><Reveal key={s._id} delay={i*50} className="preview-step"><span>0{i+1}</span><h3>{s.title}</h3><p>{s.description}</p></Reveal>)}</div></section>
     <Cta title="Have something worth building?" body="Share the idea, the challenge or the system you want to improve. We can work out a practical next step." />
   </>;
 }
 
-const featuredClients = [
-  { name: "ResirWrecked", detail: "WooCommerce-to-Shopify migration and storefront build", market: "Florida, United States", url: "https://resirwrecked.com/" },
-  { name: "EAF Products", detail: "Product-page usability and interface improvements", url: "https://www.eafproducts.com/" },
-  { name: "Slow Ride", detail: "Product listings, variants and individual SKU management", market: "California, United States", url: "https://slowride.com/" },
-  { name: "Fleurish Plant Care", detail: "Existing theme customisation and homepage redesign", market: "Virginia, United States", url: "https://fleurishplantcare.com/" }
-];
+async function About({ settings }: { settings: Settings }) {
+  const projects = await getProjects();
+  const careerStart = settings.freelancingSince
+    ? new Date(settings.freelancingSince + "T00:00:00").toLocaleDateString("en", { month: "long", year: "numeric" })
+    : "May 2025";
+  const firstProjectDate = settings.firstClientDate
+    ? new Date(settings.firstClientDate + "T00:00:00").toLocaleDateString("en", { month: "long", year: "numeric" })
+    : "June 2025";
 
-function About({ settings }: { settings: Settings }) {
   return <>
     <Intro eyebrow="ABOUT PAUL / THE PERSON BEHIND PLUSWRLD" title="I’m Paul Oloruntobi." body={settings.aboutIntro}/>
     <section className="section container about-profile">
-      <Reveal className="about-image"><Image src={settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
+      <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
       <div className="about-profile-copy">
         <Reveal><Eyebrow>THE CONSULTANT BEHIND PLUSWRLD</Eyebrow><h2>Practical digital work, with the business goal in view.</h2>
-          <p>I work with business owners who need more than a website or a collection of disconnected tools. They need a digital setup that makes sense for their customers and for the people running the business.</p>
-          <p>My role is to understand the objective, identify what is getting in the way, define a realistic scope and then take the work through implementation and testing. I stay involved in the details — from storefront structure and product data to integrations, user flows and the handover.</p>
+          <p>I’m Paul Oloruntobi, an independent digital systems and ecommerce consultant. My work brings together online stores, websites, no-code applications and business automation — with the business objective guiding the technical decisions.</p>
+          <p>I work with business owners who need more than a website or a collection of disconnected tools. I help clarify what the business needs, define an achievable scope and carry the implementation through to testing and handover.</p>
         </Reveal>
         <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Start with the problem. Choose the tools that serve it.</h3><p>{settings.aboutPhilosophy}</p></div></Reveal>
         <Reveal delay={130}><div className="profile-facts">
           <div><span>NAME</span><strong>Paul Oloruntobi</strong></div>
           <div><span>ROLE</span><strong>Digital Systems Consultant</strong></div>
           <div><span>CORE WORK</span><strong>Ecommerce · No-code · Automation</strong></div>
-          <div><span>PROJECT MARKETS</span><strong>United States featured in client work</strong></div>
+          <div><span>CLIENT MARKETS</span><strong>{settings.marketReach || "Worldwide"}</strong></div>
         </div></Reveal>
       </div>
     </section>
     <section className="section section-soft"><div className="container about-story-grid">
-      <div><Eyebrow>WHAT I HAVE WORKED ON</Eyebrow><h2>From the storefront to the systems behind it.</h2></div>
+      <div><Eyebrow>MY PROFESSIONAL JOURNEY</Eyebrow><h2>A growing freelance practice, built through client work.</h2></div>
       <div className="about-story-copy">
-        <p>{settings.aboutStory}</p>
-        <p>That range has taught me to look at the whole customer and operator experience: what a visitor sees, how products and information are organised, how a purchase or sign-up journey works, and what happens behind the scenes after someone takes action.</p>
-        <p>I work across Shopify and ecommerce operations, website and no-code builds, creator and community commerce, email systems, and workflow automation. I do not treat every business as if it needs the same stack; the right solution depends on the real requirement.</p>
+        <p>I began freelancing in {careerStart}. My first paid client project followed in {firstProjectDate}, working with {settings.firstClientName || "Ricardo Stewart"}. Since then, I’ve continued building experience through practical client engagements across ecommerce, storefront improvements, product operations and connected digital experiences.</p>
+        <div className="career-milestones">
+          <article><span>01 / START</span><strong>{careerStart}</strong><p>Began freelancing and building a client-focused digital practice.</p></article>
+          <article><span>02 / FIRST CLIENT</span><strong>{firstProjectDate}</strong><p>First paid client project with {settings.firstClientName || "Ricardo Stewart"}.</p></article>
+          <article><span>03 / MARKET REACH</span><strong>{settings.marketReach || "Worldwide"}</strong><p>Available to work with businesses and founders across markets.</p></article>
+        </div>
       </div>
     </div></section>
     <section className="section container client-experience">
-      <div className="section-heading"><div><Eyebrow>CLIENT EXPERIENCE / SELECTED BUSINESSES</Eyebrow><h2>Real businesses.<br/><span className="heading-muted">Specific work delivered.</span></h2></div>
-        <div className="section-heading-aside"><p>These are confirmed client projects represented in the portfolio. Each example is linked to the public business website, with the work described at the level I can substantiate.</p><Arrow href="/work">Explore project details</Arrow></div></div>
-      <div className="client-experience-grid">{featuredClients.map((client,i)=><Reveal key={client.name} delay={i*55}><a className="client-experience-card" href={client.url} target="_blank" rel="noreferrer">
-        <span className="client-experience-index">0{i+1} / CLIENT PROJECT</span><strong>{client.name}</strong><p>{client.detail}</p>{client.market && <small>{client.market}</small>}<span className="client-experience-link">View business ↗</span>
-      </a></Reveal>)}</div>
-      <p className="client-location-note">Locations are listed only where they are confirmed on the public client website.</p>
+      <div className="section-heading"><div><Eyebrow>PORTFOLIO / CLIENT PROJECTS</Eyebrow><h2>Work across stores,<br/><span className="heading-muted">brands and digital systems.</span></h2></div>
+        <div className="section-heading-aside"><p>A broader selection of client engagements. Completed work and active projects are labelled clearly; projects without a public preview are not given a fabricated link.</p><Arrow href="/work">Explore all projects</Arrow></div></div>
+      <div className="project-grid project-grid-large">{projects.map((project,i)=><ProjectCard key={project._id} project={project} index={i}/>)}</div>
     </section>
-    <section className="section section-soft"><div className="container about-approach">
-      <div><Eyebrow>HOW I APPROACH PROJECTS</Eyebrow><h2>Clear thinking before implementation.</h2></div>
-      <div className="approach-points">
-        <article><span>01</span><div><h3>Understand the context</h3><p>Clarify the business, users, existing setup and the outcome the project needs to support.</p></div></article>
-        <article><span>02</span><div><h3>Scope the right solution</h3><p>Agree deliverables, dependencies, exclusions and the practical path before building.</p></div></article>
-        <article><span>03</span><div><h3>Build, test and hand over</h3><p>Implement carefully, check the important journeys and leave the client with a clear understanding of the result.</p></div></article>
-      </div>
-    </div></section>
     <Cta title="Have a system or storefront you want to improve?" body="Tell me what you are trying to make possible. We can clarify the work and decide on a sensible first step."/>
   </>;
 }
