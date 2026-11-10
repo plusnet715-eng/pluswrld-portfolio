@@ -5,10 +5,12 @@ import { useEffect, useId, useState } from "react";
 export function MobileDrawer({
   children,
   label,
+  expandedLabel,
   className = ""
 }: {
   children: React.ReactNode;
   label: string;
+  expandedLabel?: string;
   className?: string;
 }) {
   const [expanded, setExpanded] = useState(true);
@@ -30,7 +32,7 @@ export function MobileDrawer({
       aria-controls={contentId}
       onClick={() => setExpanded((current) => !current)}
     >
-      <span>{label}</span>
+      <span>{expanded ? (expandedLabel || label) : label}</span>
       <svg viewBox="0 0 16 16" aria-hidden="true" className={expanded ? "mobile-drawer-chevron is-open" : "mobile-drawer-chevron"}>
         <path d="m3 6 5 5 5-5" />
       </svg>
