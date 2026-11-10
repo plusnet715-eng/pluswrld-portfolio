@@ -737,3 +737,19 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 @media(prefers-reduced-motion:reduce){
   .mobile-drawer-content[data-expanded="true"]{animation:none}
 }
+
+
+/* Keep the complete footer wordmark lockup identical to the header mark until the footer blueprint is supplied. */
+.footer-brand-lockup .brand-wordmark{font-size:29px}
+.footer-brand-lockup .brand-tagline,
+.footer-brand-lockup .brand-philosophy{font-size:8px;display:block}
+@media(max-width:760px){
+  .footer-brand-lockup .brand-wordmark{font-size:25px}
+  .footer-brand-lockup .brand-tagline,
+  .footer-brand-lockup .brand-philosophy{font-size:7px}
+}
+@media(max-width:480px){
+  .footer-brand-lockup .brand-wordmark{font-size:22px}
+  .footer-brand-lockup .brand-tagline,
+  .footer-brand-lockup .brand-philosophy{font-size:6px}
+}
