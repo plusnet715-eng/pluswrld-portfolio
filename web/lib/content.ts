@@ -9,7 +9,7 @@ export type Settings = {
   name: string; fullName: string; role: string; location: string; marketReach: string; availability: string;
   email: string; whatsappNumber: string; whatsappUrl: string; heroTitle: string;
   heroDescription: string; aboutIntro: string; aboutStory: string; aboutPhilosophy: string;
-  tagline: string; secondaryTagline: string; secondaryTaglineMeaning: string; portraitUrl: string;
+  tagline: string; secondaryTagline: string; secondaryTaglineMeaning: string; portraitUrl: string; originalPortraitUrl: string;
 };
 export type Service = { _id: string; title: string; description: string; order?: number };
 export type Project = { _id: string; title: string; category: string; summary: string; liveUrl?: string; status: string; imageUrl: string };
@@ -31,7 +31,8 @@ const defaults: Settings = {
   aboutPhilosophy: "I focus on the shopping journey as much as the storefront itself. A good Shopify setup should help customers discover products, understand the offer and complete a purchase, while keeping product management and everyday store operations clear for the business owner.",
   tagline: "Build • Automate • Grow", secondaryTagline: "Knowledge comes from sensory ideas",
   secondaryTaglineMeaning: "",
-  portraitUrl: cdn("b4fa13154bf4e4fd6a2f4fee1fed00ade36bd022-1254x1254.png")
+  portraitUrl: cdn("b4fa13154bf4e4fd6a2f4fee1fed00ade36bd022-1254x1254.png"),
+  originalPortraitUrl: ""
 };
 
 const projectAssets: Record<string, string> = {
@@ -45,8 +46,8 @@ const projectAssets: Record<string, string> = {
 
 export async function getSettings(): Promise<Settings> {
   try {
-    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url}');
-    return { ...defaults, ...(data ?? {}), portraitUrl: data?.portraitUrl || defaults.portraitUrl };
+    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
+    return { ...defaults, ...(data ?? {}), portraitUrl: data?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: data?.originalPortraitUrl || defaults.originalPortraitUrl };
   } catch { return defaults; }
 }
 
