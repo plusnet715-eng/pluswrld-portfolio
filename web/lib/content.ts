@@ -15,7 +15,7 @@ export type Service = { _id: string; title: string; description: string; order?:
 export type Project = { _id: string; title: string; category: string; summary: string; liveUrl: string; status: string; imageUrl: string };
 export type ProcessStep = { _id: string; title: string; description: string; order?: number };
 export type Faq = { _id: string; question: string; answer: string; order?: number };
-export type Testimonial = { _id: string; quote: string; rating: number; reviewDate: string; reviewerHandle: string; reviewerLabel: string; platform: string; sourceUrl: string };
+export type Testimonial = { _id: string; quote: string; rating: number; reviewDate: string; reviewDateLabel?: string; reviewerHandle: string; reviewerLabel: string; reviewerCountry?: string; platform: string; sourceUrl?: string; featured?: boolean; repeatClient?: boolean };
 export type PresenceLink = { _id: string; name: string; url: string; order?: number };
 
 const defaults: Settings = {
@@ -76,7 +76,7 @@ export async function getFaqs(): Promise<Faq[]> {
   catch { return []; }
 }
 export async function getTestimonials(): Promise<Testimonial[]> {
-  try { return await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order(reviewDate desc){_id,quote,rating,reviewDate,reviewerHandle,reviewerLabel,platform,sourceUrl}'); }
+  try { return await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order(reviewDate desc){_id,quote,rating,reviewDate,reviewDateLabel,reviewerHandle,reviewerLabel,reviewerCountry,platform,sourceUrl,featured,repeatClient}'); }
   catch { return []; }
 }
 
