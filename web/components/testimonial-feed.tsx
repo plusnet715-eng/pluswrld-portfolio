@@ -28,7 +28,7 @@ export function TestimonialFeed({ reviews }: { reviews: Testimonial[] }) {
               <strong>{review.reviewerLabel || "Client review"}</strong>
               <span>{review.reviewerCountry || (review.reviewerHandle ? "@" + review.reviewerHandle : "Client feedback")}{review.repeatClient ? " · Repeat client" : ""}</span>
             </div>
-            {review.sourceUrl ? <a href={review.sourceUrl} target="_blank" rel="noreferrer">View source ↗</a> : <span className="testimonial-source-note">Shared client feedback</span>}
+            {review.sourceUrl ? <a href={review.sourceUrl} target="_blank" rel="noreferrer">{review.sourceLabel || "View source"} ↗</a> : <span className="testimonial-source-note">Shared client feedback</span>}
           </div>
         </article>;
       })}
