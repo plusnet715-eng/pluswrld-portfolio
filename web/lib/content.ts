@@ -29,7 +29,7 @@ const defaults: Settings = {
   aboutIntro: "I’m Paul Oloruntobi, the consultant behind Pluswrld. I help businesses make their digital storefronts, websites and connected workflows work better for the people who use them.",
   aboutStory: "My client work has included Shopify storefront builds and redesigns, a WooCommerce-to-Shopify migration, product catalogue and variant management, SKU setup, product-page usability improvements and connected digital workflows. I work across the business goal and the technical details, so the finished system is not just online — it is practical to operate and clear for customers to use.",
   aboutPhilosophy: "I start by understanding the problem, not by pushing a particular tool. I value clear scope, thoughtful implementation, practical usability and honest communication. I would rather recommend a simpler system that works than add complexity that the business does not need.",
-  tagline: "Build · Automate · Grow", secondaryTagline: "Knowledge comes from sensory ideas",
+  tagline: "Build • Automate • Grow", secondaryTagline: "Knowledge comes from sensory ideas",
   secondaryTaglineMeaning: "",
   freelancingSince: "2025-05-01", firstClientDate: "2025-06-01", firstClientName: "Ricardo Stewart",
   originalPortraitUrl: "",
