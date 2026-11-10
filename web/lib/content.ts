@@ -21,16 +21,16 @@ export type PresenceLink = { _id: string; name: string; url: string; order?: num
 const defaults: Settings = {
   name: "Pluswrld", fullName: "Paul Oloruntobi",
   role: "AI Automation Consultant · Shopify & Digital Systems Specialist",
-  location: "Nigeria · Working remotely with businesses worldwide",
+  location: "",
   availability: "Available for selected projects", email: "timileyinpaul26@gmail.com",
   whatsappNumber: "+234 916 161 2746", whatsappUrl: "https://wa.me/2349161612746",
   heroTitle: "I build digital systems that move your business forward.",
   heroDescription: "I help businesses build, improve and connect ecommerce stores, websites, no-code applications and AI-powered workflows. Practical solutions, clearly scoped and built around the business.",
-  aboutIntro: "I am a digital systems consultant working across Shopify ecommerce, web development, no-code applications and AI-driven business automation.",
-  aboutStory: "My work sits at the intersection of ecommerce, digital products and business operations. I approach projects as a consultant: understand the business objective, identify the real problem, define a workable scope and then implement the right solution.",
-  aboutPhilosophy: "Technology should solve a real business problem. I value clear scope, sound implementation, practical usability and honest communication.",
-  tagline: "Build · Automate · Grow", secondaryTagline: "EMMPIRISISSO",
-  secondaryTaglineMeaning: "Knowledge comes from sensory ideas.",
+  aboutIntro: "I’m Paul Oloruntobi, the consultant behind Pluswrld. I help businesses make their digital storefronts, websites and connected workflows work better for the people who use them.",
+  aboutStory: "My client work has included Shopify storefront builds and redesigns, a WooCommerce-to-Shopify migration, product catalogue and variant management, SKU setup, product-page usability improvements and connected digital workflows. I work across the business goal and the technical details, so the finished system is not just online — it is practical to operate and clear for customers to use.",
+  aboutPhilosophy: "I start by understanding the problem, not by pushing a particular tool. I value clear scope, thoughtful implementation, practical usability and honest communication. I would rather recommend a simpler system that works than add complexity that the business does not need.",
+  tagline: "Knowledge comes from sensory ideas", secondaryTagline: "",
+  secondaryTaglineMeaning: "",
   portraitUrl: cdn("b4fa13154bf4e4fd6a2f4fee1fed00ade36bd022-1254x1254.png")
 };
 
