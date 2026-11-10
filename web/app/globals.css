@@ -689,3 +689,51 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 .footer-brand-lockup .brand-philosophy{display:none}
 .contact-email-fallback{display:inline-block;margin-top:7px;color:#19743a;font-size:10px;font-weight:600}
 :root[data-theme="dark"] .contact-email-fallback{color:#91e19d}
+
+
+/* Footer identity now uses the same wordmark lockup as the header. The later footer blueprint can refine its layout. */
+.footer-brand-lockup{display:flex;align-items:flex-start;gap:0}
+.footer-brand-lockup .brand-text-lockup{max-width:245px}
+.footer-brand .brand-tagline{color:#a1e9ad}
+.footer-brand .brand-philosophy{color:#c3d4c7}
+:root[data-theme="dark"] .footer-brand .brand-tagline{color:#a1e9ad}
+:root[data-theme="dark"] .footer-brand .brand-philosophy{color:#c3d4c7}
+.footer-brand-emblem,.footer-emblem-curved-copy{display:none}
+
+/* Mobile-only progressive disclosure. Desktop keeps every group and page visible. */
+.mobile-drawer-toggle{display:none}
+.mobile-drawer-content{display:block}
+.mobile-drawer-toggle svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
+.mobile-drawer-toggle svg.is-open{transform:rotate(180deg)}
+.mobile-drawer-toggle:focus-visible{outline:2px solid #209144;outline-offset:3px}
+.platform-groups{align-items:start}
+.platform-groups>.platform-group{grid-column:span 1}
+.platform-groups-drawer{grid-column:span 3;min-width:0}
+.platform-groups-secondary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.platform-groups-secondary>.platform-group{min-width:0}
+.explore-more-drawer .mobile-drawer-content{width:100%}
+
+@media(max-width:760px){
+  .mobile-drawer-toggle{display:flex;width:100%;min-height:48px;align-items:center;justify-content:space-between;gap:14px;padding:13px 15px;border:1px solid #d8e5d8;border-radius:7px;background:#fff;color:#19331f;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.03em;text-align:left;cursor:pointer}
+  .mobile-drawer-content{display:none}
+  .mobile-drawer-content[data-expanded="true"]{display:block;animation:mobileDrawerReveal .22s ease-out}
+  :root[data-theme="dark"] .mobile-drawer-toggle{border-color:#334a38;background:#132319;color:#edf5ee}
+  .platform-groups{grid-template-columns:1fr}
+  .platform-groups-drawer{grid-column:auto;min-width:0}
+  .platform-groups-secondary{grid-template-columns:1fr;gap:11px;margin-top:11px}
+  .platform-wall-compact .platform-groups{grid-template-columns:1fr}
+  .platform-groups-drawer .mobile-drawer-toggle{margin-top:10px}
+  .explore-more-drawer .mobile-drawer-toggle{margin-bottom:0}
+  .explore-more-drawer .mobile-drawer-content{padding-top:10px}
+  .explore-more-drawer .explore-more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+  .explore-more-drawer .explore-more-grid{grid-template-columns:1fr}
+}
+@keyframes mobileDrawerReveal{
+  from{opacity:0;transform:translateY(-5px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .mobile-drawer-content[data-expanded="true"]{animation:none}
+}
