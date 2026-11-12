@@ -84,6 +84,8 @@ test("Approved vector logo has separate palettes for light and dark themes", () 
   assert.match(content, /logoUrl: "\/pluswrld-logo\.svg"/);
   assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-light/);
   assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-dark/);
+  assert.match(read("public/pluswrld-logo.svg"), /stop-color="#087b32"/);
+  assert.match(read("public/pluswrld-logo-dark.svg"), /stop-color="#a1f238"/);
 });
 
 
