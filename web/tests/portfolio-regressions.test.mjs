@@ -14,11 +14,13 @@ const about = page.slice(aboutStart, aboutEnd);
 const chrome = read("components/site-chrome.tsx");
 const css = read("app/globals.css");
 const content = read("lib/content.ts");
+const layout = read("app/layout.tsx");
+const schema = readFileSync(resolve(here, "../../studio/schemaTypes/index.ts"), "utf8");
 const projectCard = read("components/project-card.tsx");
 
 test("About page presents a scannable builder profile without duplicating the project gallery", () => {
   assert.match(about, /ABOUT PAUL \/ PLUSWRLD/);
-  assert.match(about, /A builder who cares about what happens after launch\./);
+  assert.match(about, /I do more than shape the idea\. I build the solution\./);
   assert.match(about, /Ecommerce & websites/);
   assert.match(about, /No-code applications/);
   assert.match(about, /Memberships & communities/);
@@ -72,9 +74,10 @@ test("Old unapproved logo is not used as a default fallback", () => {
 });
 
 test("Pluswrld positioning presents Paul as a digital builder with search and social visibility work", () => {
-  assert.match(page, /DIGITAL BUILDER · SEARCH & SOCIAL VISIBILITY/);
+  assert.match(page, /ABOUT PAUL \\/ PLUSWRLD/);
+  assert.match(layout, /lang="en-NG"/);
   assert.match(page, /<span>\{settings\.role\}<\/span>/);
-  assert.match(content, /role: "Digital Builder & Growth Systems Specialist"/);
+  assert.match(content, /role: "Digital Builder \\| Ecommerce, Automation & Visibility"/);
   assert.match(content, /strengthen their visibility across social media and search engines/);
 });
 test("Approved vector logo has separate palettes for light and dark themes", () => {
@@ -102,6 +105,9 @@ test("Social profile icons include a local vector LinkedIn mark", () => {
   assert.match(page, /className=\{"social-link social-link-" \+ slug\}/);
   assert.match(page, /slug === "linkedin"/);
   assert.match(page, /<svg className="social-link-icon-linkedin" viewBox="0 0 24 24"/);
+  assert.match(page, /social-mark-light/);
+  assert.match(page, /social-mark-dark/);
+  assert.doesNotMatch(css, /social-link-linkedin\\{color:#0a66c2/);
 });
 
 test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
