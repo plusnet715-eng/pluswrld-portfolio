@@ -762,19 +762,20 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 
 /* The approved full Pluswrld wordmark is shared by the header and footer. */
 .brand-image-lockup{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;width:220px;max-width:100%;padding:0;overflow:visible;border:0;border-radius:0;background:transparent;line-height:0}
-.brand-logo-image{display:block;width:100%;height:auto;max-height:96px;object-fit:contain}
-.site-header .brand-image-lockup{width:150px}
+.brand-logo-image{display:block;width:100%;height:auto;max-height:96px;object-fit:contain;filter:brightness(.76) saturate(1.14)}
+.site-header .brand-image-lockup{width:190px}
 .footer-brand-lockup .brand-image-lockup{width:220px}
 :root[data-theme="dark"] .brand-logo-image{filter:brightness(1.9) saturate(1.12)}
+:root[data-theme="dark"] .about-social-links img{filter:brightness(0) invert(1)}
 @media(max-width:760px){
- .site-header .brand-image-lockup{width:132px}
+ .site-header .brand-image-lockup{width:172px}
  .footer-brand-lockup .brand-image-lockup{width:190px}
  .brand-logo-image{max-height:82px}
 }
 @media(max-width:480px){
  .site-header .brand-image-lockup{width:165px}
  .footer-brand-lockup .brand-image-lockup{width:205px}
- .brand-logo-image{max-height:36px}
+ .brand-logo-image{max-height:70px}
 }
 
 /* Keep the existing CTA band intact; only darken the label text. */
