@@ -67,7 +67,7 @@ test("About social icons link only to approved profiles with valid URLs", () => 
 });
 
 test("Old unapproved logo is not used as a default fallback", () => {
-  assert.match(content, /logoUrl: "\/pluswrld-logo\\.svg"/);
+  assert.match(content, /logoUrl: "\/pluswrld-logo\.svg"/);
   assert.doesNotMatch(content, /98cba91b62b71c2bb3eef1129af6b63b7fab9095/);
 });
 
