@@ -5,13 +5,13 @@ import { SiteFooter, SiteHeader } from "../components/site-chrome";
 import { getPresenceLinks, getSettings } from "../lib/content";
 
 const workSans = Work_Sans({ subsets: ["latin"], display: "swap", variable: "--font-work-sans" });
-const themeInit = `try { const saved = localStorage.getItem("pluswrld-theme") || "system"; const mode = saved === "system" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : saved; document.documentElement.dataset.theme = mode; document.documentElement.style.colorScheme = mode; } catch { document.documentElement.dataset.theme = "light"; }`;
+const siteUrl = "https://pluswrld-portfolio.vercel.app";\nconst themeInit = `try { const saved = localStorage.getItem("pluswrld-theme") || "system"; const mode = saved === "system" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : saved; document.documentElement.dataset.theme = mode; document.documentElement.style.colorScheme = mode; } catch { document.documentElement.dataset.theme = "light"; }`;
 
 export const metadata: Metadata = {
-  title: { default: "Pluswrld — Knowledge comes from sensory ideas", template: "%s | Pluswrld" },
+  metadataBase: new URL(siteUrl),\n  title: { default: "Pluswrld | Digital Builder for Ecommerce, Websites & Automation", template: "%s | Pluswrld" },
   description: "Digital building for Shopify ecommerce, websites, no-code applications, business automation and online visibility across search and social media.",
   applicationName: "Pluswrld",
-  openGraph: { type: "website", siteName: "Pluswrld", title: "Pluswrld — Knowledge comes from sensory ideas", description: "Practical digital systems, clearly scoped and built around your business." },
+  alternates: { canonical: "/" },\n  openGraph: { type: "website", siteName: "Pluswrld", title: "Pluswrld | Digital Builder for Ecommerce, Websites & Automation", description: "Shopify ecommerce, websites, no-code applications, business automation and search and social visibility." },\n  twitter: { card: "summary_large_image", title: "Pluswrld | Digital Builder for Ecommerce, Websites & Automation", description: "Digital building, ecommerce, automation and online visibility for growing businesses." },\n  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   icons: { icon: [{ url: "https://cdn.sanity.io/images/a8mywjme/production/42120f93d9abacd9cd4b416d8c1de7678d7fd31e-512x512.png", type: "image/png" }], shortcut: [{ url: "https://cdn.sanity.io/images/a8mywjme/production/42120f93d9abacd9cd4b416d8c1de7678d7fd31e-512x512.png", type: "image/png" }] }
 };
 export const viewport: Viewport = { themeColor: "#08120d", colorScheme: "light dark" };
