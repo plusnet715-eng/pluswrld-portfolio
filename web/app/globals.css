@@ -979,3 +979,35 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 :root[data-theme="dark"] .about-social-links .social-mark-light{display:none}
 :root[data-theme="dark"] .about-social-links .social-mark-dark{display:block}
 :root[data-theme="dark"] .about-social-links .social-link-linkedin{color:#a1f238;background:#132319}
+
+
+/* Footer identity is fixed to its dark-surface wordmark, independent of the visitor's page theme. */
+.footer-brand-lockup .brand-image-lockup{width:250px;max-width:100%}
+.footer-brand-lockup .brand-logo-footer-fixed{display:block!important;width:100%;height:auto;max-height:108px;object-fit:contain;filter:none!important}
+@media(max-width:760px){
+  .footer-brand-lockup .brand-image-lockup{width:195px}
+  .footer-brand-lockup .brand-logo-footer-fixed{max-height:86px}
+}
+
+/* Use undistorted, original-colour platform marks on clean white icon tiles in both themes. */
+.about-social-links{display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+.about-social-links .social-link{
+  display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;
+  min-width:36px;min-height:36px;padding:0;box-sizing:border-box;
+  border:1px solid #dbe7dc;border-radius:50%;background:#fff;
+  color:inherit;overflow:hidden;line-height:0;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.about-social-links .social-link:hover{transform:translateY(-2px);border-color:#a8cdae;box-shadow:0 5px 13px #10391b14}
+.about-social-links .social-link img{
+  display:block!important;flex:0 0 18px;width:18px!important;height:18px!important;
+  min-width:18px;min-height:18px;max-width:18px;max-height:18px;
+  padding:0;margin:0;object-fit:contain;object-position:center;
+  filter:none!important;transform:none!important;opacity:1;
+}
+:root[data-theme="dark"] .about-social-links .social-link{
+  border-color:#dbe7dc;background:#fff;
+}
+:root[data-theme="dark"] .about-social-links .social-link img{
+  filter:none!important;
+}
