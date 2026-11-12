@@ -29,7 +29,7 @@ test("About page presents a scannable builder profile without duplicating the pr
   assert.match(about, /Connected business workflows/);
   assert.match(about, /WHO I WORK WITH/);
   assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
-  assert.match(about, /WHAT YOU CAN EXPECT/);
+  assert.match(about, /WHAT YOU CAN EXPECT/);\n  const order = ["INTRODUCTION", "MEET THE BUILDER", "WHAT I BUILD", "WHO I WORK WITH", "SEARCH & SOCIAL VISIBILITY", "HOW I WORK", "WHAT YOU CAN EXPECT", "PAST WORK"];\n  const positions = order.map((label) => about.indexOf(label));\n  assert.ok(positions.every((position) => position >= 0));\n  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
   assert.match(about, /Explore my past work/);
   assert.doesNotMatch(about, /MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\.map|ProjectCard/);
 });
@@ -80,11 +80,11 @@ test("Old unapproved logo is not used as a default fallback", () => {
 });
 
 test("Pluswrld positioning presents Paul as a digital builder with search and social visibility work", () => {
-  assert.match(page, /ABOUT PAUL \\/ PLUSWRLD/);
+  assert.match(page, /eyebrow="INTRODUCTION"/);\n  assert.match(page, /I build digital experiences that help businesses grow\\./);
   assert.match(layout, /lang="en-NG"/);
   assert.match(page, /<span>\{settings\.role\}<\/span>/);
   assert.match(content, /role: "Digital Builder \\| Ecommerce, Automation & Visibility"/);
-  assert.match(content, /Pluswrld is the brand name I chose to represent my digital work/);
+  assert.match(content, /I’m Paul Oloruntobi, a digital builder working under the name Pluswrld/);
 });
 test("Approved vector logo has separate palettes for light and dark themes", () => {
   assert.match(chrome, /src=\{settings\.logoUrl \|\| "\/pluswrld-logo\.svg"\}/);
@@ -112,7 +112,7 @@ test("About page is split into concise visitor-led sections", () => {
   assert.doesNotMatch(about, /THE THINKING BEHIND THE WORK|principle-block|profile-facts/);
 });
 
-test("Social profile icons include a local vector LinkedIn mark", () => {
+test("Social profile icons use original brand colours with fixed sizing in both themes", () => {
   assert.match(page, /className=\{"social-link social-link-" \+ slug\}/);
   assert.match(page, /slug === "linkedin"/);
   assert.match(page, /cdn\.simpleicons\.org/);
