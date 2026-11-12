@@ -105,7 +105,8 @@ test("Social profile icons include a local vector LinkedIn mark", () => {
 test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
   const match = content.match(/function normalizeCmsText\(value: string \| undefined \| null\): string \{[\s\S]*?\n\}/);
   assert.ok(match, "normalizer function is present");
-  const normalizeCmsText = runInNewContext("(" + match[0].replace("value: string | undefined | null", "value") + ")");
+  const executable = match[0].replace("value: string | undefined | null", "value").replace("): string {", ") {");
+  const normalizeCmsText = runInNewContext("(" + executable + ")");
   assert.equal(normalizeCmsText("First\\n\\nSecond"), "First\n\nSecond");
   assert.equal(normalizeCmsText("First\r\n\r\nSecond"), "First\n\nSecond");
   assert.match(content, /function normalizeObjectStrings/);
