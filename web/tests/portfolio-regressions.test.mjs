@@ -99,7 +99,7 @@ test("About page is split into concise visitor-led sections", () => {
 test("Social profile icons include a local vector LinkedIn mark", () => {
   assert.match(page, /className=\{"social-link social-link-" \+ slug\}/);
   assert.match(page, /slug === "linkedin"/);
-  assert.match(page, /<svg viewBox="0 0 24 24"/);
+  assert.match(page, /<svg className="social-link-icon-linkedin" viewBox="0 0 24 24"/);
 });
 
 test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
