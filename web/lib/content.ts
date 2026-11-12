@@ -26,10 +26,10 @@ const defaults: Settings = {
   whatsappNumber: "+234 916 161 2746", whatsappUrl: "https://wa.me/2349161612746",
   heroTitle: "I build digital systems that move your business forward.",
   heroDescription: "I help businesses build, improve and connect ecommerce stores, websites, no-code applications and AI-powered workflows. Practical solutions, clearly scoped and built around the business.",
-  aboutIntro: "I’m Paul Oloruntobi, the person behind Pluswrld. I work where business needs meet digital solutions—understanding what needs to happen, then shaping the tools and workflows to make it happen. My work spans ecommerce, websites and no-code applications, creator platforms, and AI-powered automation. Across all of it, the focus is the same: make technology useful, well-structured, and easier to work with.",
-  aboutStory: "I enjoy getting beneath the surface of a project. Before choosing a platform or starting a build, I want to understand the business, the people who will use the system, what needs to happen, and where the friction is. That context shapes the solution.",
-  aboutPhilosophy: "I value clear thinking, useful design, and careful execution. I ask the questions that make the scope clearer, pay attention to the details people interact with, and build with a clean handover in mind. The goal is not to add technology for its own sake; it is to make the business easier to run and the experience easier to use.",
-  tagline: "Build • Automate • Grow", secondaryTagline: "Knowledge comes from sensory ideas", logoUrl: "https://cdn.sanity.io/images/a8mywjme/production/98cba91b62b71c2bb3eef1129af6b63b7fab9095-1087x204.png",
+  aboutIntro: "I’m Paul Oloruntobi, the face behind Pluswrld. I work at the intersection of business, customer experience and technology—helping businesses turn ideas and operational challenges into practical digital solutions. My work spans ecommerce, websites and no-code applications, creator-commerce platforms, and AI-powered workflows. I’m interested in what the technology makes possible, how well people can use it, and whether it genuinely supports the business behind it.",
+  aboutStory: "Most projects begin with a gap between what a business wants to do and what its current tools allow it to do. A store may be difficult to navigate or manage. A service business may have too many manual steps. A creator may need a better way to present offers, manage memberships or give customers access. I enjoy understanding those situations and working out a practical way forward.\n\nThat perspective shapes the range of my work. In ecommerce, I build and improve Shopify stores, including theme customisation, redesign, product and variant organisation, product-page usability and the operational details owners work with every day. I also build websites and no-code applications, and help structure digital products, memberships and communities through platforms such as Whop, Skool and Discord. Where repetitive processes or disconnected tools slow things down, I look at workflow automation and integrations—including AI where it genuinely helps.\n\nWhat ties these areas together is not a particular tool. It is the goal of making a system clearer for the people using it and more useful for the business running it.",
+  aboutPhilosophy: "I start with the business question: what needs to happen, who needs to use the system, and what is currently getting in the way? That gives us a basis for choosing the right platform and agreeing on a realistic scope.\n\nFrom there, I care about the details—how a customer moves through a store, how a user finds their way around an app, how information is organised, and how connected tools behave together. I prefer to keep the solution as simple as it can be while still doing the job properly.\n\nGood delivery also includes communication, testing and a clear handover. The system should make sense after the build, not just look finished on launch day.",
+  tagline: "Build • Automate • Grow", secondaryTagline: "Knowledge comes from sensory ideas", logoUrl: "",
   secondaryTaglineMeaning: "",
   portraitUrl: cdn("b4fa13154bf4e4fd6a2f4fee1fed00ade36bd022-1254x1254.png"),
   originalPortraitUrl: ""
@@ -83,10 +83,19 @@ export async function getTestimonials(): Promise<Testimonial[]> {
   catch { return []; }
 }
 
+
+export async function getSocialLinks(): Promise<PresenceLink[]> {
+  try {
+    return await client.fetch<PresenceLink[]>(
+      '*[_type == "onlinePresence" && defined(url) && enabled == true && name in ["Instagram","Facebook","TikTok","LinkedIn","Threads"]] | order(order asc){_id,name,url,order}'
+    );
+  } catch { return []; }
+}
+
 export async function getPresenceLinks(): Promise<PresenceLink[]> {
   try {
     return await client.fetch<PresenceLink[]>(
-      '*[_type == "onlinePresence" && defined(url) && name in ["Fiverr profile","Upwork profile","Instagram","LinkedIn","Facebook","Threads","WhatsApp"] && (enabled != false)] | order(order asc){_id,name,url,order}'
+      '*[_type == "onlinePresence" && defined(url) && name in ["Fiverr profile","Upwork profile","Instagram","Facebook","TikTok","LinkedIn","Threads","WhatsApp"] && (enabled != false)] | order(order asc){_id,name,url,order}'
     );
   } catch {
     return [

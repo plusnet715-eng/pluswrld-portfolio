@@ -7,10 +7,10 @@ import { ProjectCard } from "../../components/project-card";
 import { TestimonialFeed } from "../../components/testimonial-feed";
 import { Reveal } from "../../components/reveal";
 import { MobileDrawer } from "../../components/mobile-drawer";
-import { getFaqs, getProcess, getProjects, getServices, getSettings, getTestimonials, type Project, type Settings, type Testimonial } from "../../lib/content";
+import { getFaqs, getProcess, getProjects, getServices, getSettings, getSocialLinks, getTestimonials, type PresenceLink, type Project, type Settings, type Testimonial } from "../../lib/content";
 
 const pageTitles: Record<string, string> = { "": "Knowledge comes from sensory ideas", about: "About me", "how-i-can-help": "How I can help you", services: "Services", process: "My process", work: "Selected work", testimonials: "Reviews & testimonials", faq: "Frequently asked questions", contact: "Discuss a project" };
-const pageDescriptions: Record<string, string> = { "": "Meet Pluswrld — practical digital systems, ecommerce, websites and automation built around business needs.", about: "Meet Paul Oloruntobi and the thinking, approach and digital work behind Pluswrld.", "how-i-can-help": "Start with the business challenge. We will map a practical solution.", services: "Shopify, ecommerce, websites, no-code applications, AI automation and creator-commerce systems.", process: "A clear process from discovery through implementation and handover.", work: "Selected client projects across Shopify ecommerce and digital systems.", testimonials: "Feedback shared by clients through Fiverr.", faq: "Answers about scope, platforms and delivery.", contact: "Share what you are building, improving or trying to connect." };
+const pageDescriptions: Record<string, string> = { "": "Meet Pluswrld — practical digital systems, ecommerce, websites and automation built around business needs.", about: "Meet Paul Oloruntobi, the person behind Pluswrld, and learn how he approaches ecommerce, digital products, no-code applications and automation.", "how-i-can-help": "Start with the business challenge. We will map a practical solution.", services: "Shopify, ecommerce, websites, no-code applications, AI automation and creator-commerce systems.", process: "A clear process from discovery through implementation and handover.", work: "Selected client projects across Shopify ecommerce and digital systems.", testimonials: "Feedback shared by clients through Fiverr.", faq: "Answers about scope, platforms and delivery.", contact: "Share what you are building, improving or trying to connect." };
 type RouteProps = { params: Promise<{ slug?: string[] }> };
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
   const route = (await params).slug?.join("/") || "";
@@ -121,33 +121,91 @@ async function Home({ settings }: { settings: Settings }) {
   </>;
 }
 
+function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
+  if (!links.length) return null;
+  const icons: Record<string, string> = {
+    instagram: "instagram",
+    facebook: "facebook",
+    tiktok: "tiktok",
+    linkedin: "linkedin",
+    threads: "threads"
+  };
+  return <nav className="about-social-links" aria-label="Social media profiles">
+    {links.map((link) => {
+      const slug = icons[link.name.toLowerCase()];
+      if (!slug) return null;
+      return <a key={link._id} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={"Visit " + link.name + " profile"} title={link.name}>
+        <img src={"https://cdn.simpleicons.org/" + slug + "/173b22"} alt="" loading="lazy"/>
+      </a>;
+    })}
+  </nav>;
+}
+
 async function About({ settings }: { settings: Settings }) {
-  const projects = await getProjects();
+  const socialLinks = await getSocialLinks();
+  const capabilities = [
+    { number:"01", label:"ECOMMERCE", title:"Shopify & ecommerce", description:"I build stores from scratch and improve existing ones—bringing together theme customisation, redesign, product and variant organisation, product-page usability, and the operational details owners need to manage every day." },
+    { number:"02", label:"WEB & APPLICATIONS", title:"Websites & no-code apps", description:"I create business websites and useful digital applications, from customer-facing experiences to portals and MVPs. My toolkit includes Webflow, Bubble, FlutterFlow, Glide and Adalo." },
+    { number:"03", label:"CREATOR COMMERCE", title:"Memberships & communities", description:"I help organise the systems behind digital products, courses, services and paid communities—including storefronts, membership tiers, onboarding and connected access through Whop, Skool and Discord." },
+    { number:"04", label:"CONNECTED WORKFLOWS", title:"AI & business automation", description:"I look at the work happening between tools and people, then help map and connect useful workflows. The aim is to reduce avoidable manual steps and introduce AI or integrations only where they genuinely help." }
+  ];
+  const approach = [
+    ["01","Understand the business","I start with the goal, the people involved and the process as it works today. That context matters more than choosing a popular platform too early."],
+    ["02","Define a sensible solution","I clarify what needs to be built, what should be improved, which tools fit, and what belongs inside the agreed scope."],
+    ["03","Build around real use","I pay attention to the experience of customers, members, teams and business owners—not just whether a screen or automation technically works."],
+    ["04","Test and hand over clearly","I check the important journeys and connected steps, communicate what has changed, and make the handover understandable for the people who will use the system."]
+  ];
 
   return <>
     <Intro eyebrow="ABOUT PAUL / THE FACE BEHIND PLUSWRLD" title="I’m Paul Oloruntobi." body={settings.aboutIntro}/>
     <section className="section container about-profile">
-      <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
+      <div className="about-profile-visual">
+        <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
+        <div className="about-profile-meta">
+          <div><strong>Paul Oloruntobi</strong><span>Digital Systems Consultant</span></div>
+          <AboutSocialLinks links={socialLinks}/>
+        </div>
+      </div>
       <div className="about-profile-copy">
-        <Reveal><Eyebrow>HOW I THINK ABOUT THE WORK</Eyebrow><h2>I look at the whole system, not just the tool.</h2>
-          <p>{settings.aboutStory}</p>
-          <p>That way of thinking connects my work across Shopify and ecommerce, websites and no-code applications, creator and community commerce, and AI-powered automation. The platform may change from project to project, but I bring the same attention to structure, user experience, and how the pieces fit together.</p>
+        <Reveal><Eyebrow>THE THINKING BEHIND THE WORK</Eyebrow><h2>Practical digital work, with the business goal in view.</h2>
+          {settings.aboutStory.split(/\n\s*\n/).filter(Boolean).map((paragraph,index)=><p key={index}>{paragraph}</p>)}
         </Reveal>
-        <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Understand first. Build with purpose.</h3><p>{settings.aboutPhilosophy}</p></div></Reveal>
+        <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Start with the problem. Choose the tools that serve it.</h3>
+          {settings.aboutPhilosophy.split(/\n\s*\n/).filter(Boolean).map((paragraph,index)=><p key={index}>{paragraph}</p>)}
+        </div></Reveal>
         <Reveal delay={130}><div className="profile-facts">
           <div><span>NAME</span><strong>Paul Oloruntobi</strong></div>
           <div><span>ROLE</span><strong>{settings.role}</strong></div>
-          <div><span>CORE WORK</span><strong>Ecommerce · No-code apps · Creator commerce · AI automation</strong></div>
-          <div><span>CLIENT MARKETS</span><strong>{settings.marketReach || "Worldwide"}</strong></div>
+          <div><span>FOCUS</span><strong>Ecommerce · No-code · Creator commerce · Automation</strong></div>
+          <div><span>CLIENT REACH</span><strong>{settings.marketReach || "Worldwide"}</strong></div>
         </div></Reveal>
       </div>
     </section>
-    <section className="section container client-experience">
-      <div className="section-heading"><div><Eyebrow>PORTFOLIO / CLIENT PROJECTS</Eyebrow><h2>Different platforms.<br/><span className="heading-muted">One practical approach.</span></h2></div>
-        <div className="section-heading-aside"><p>From ecommerce storefronts to creator platforms, these projects show how I translate different business needs into clear digital experiences and working systems.</p><Arrow href="/work">Explore all projects</Arrow></div></div>
-      <div className="project-grid project-grid-large">{projects.map((project,i)=><ProjectCard key={project._id} project={project} index={i}/>)}</div>
+    <section className="section section-soft about-capabilities">
+      <div className="container">
+        <div className="section-heading"><div><Eyebrow>WHERE I WORK</Eyebrow><h2>Different tools.<br/><span className="heading-muted">Connected thinking.</span></h2></div>
+          <div className="section-heading-aside"><p>My work crosses a few areas of digital business, but the approach stays consistent: understand what needs to happen, then build the most useful way to make it happen.</p></div></div>
+        <div className="about-capability-grid">{capabilities.map((item,index)=><Reveal key={item.number} delay={index*55}><article className="about-capability-card">
+          <span className="about-capability-index">{item.number} / {item.label}</span><h3>{item.title}</h3><p>{item.description}</p>
+        </article></Reveal>)}</div>
+      </div>
     </section>
-    <Cta title="Have a digital project taking shape?" body="Whether it is a store, website, application, membership platform or workflow that needs to work better, start by telling me what you want to achieve. We can clarify the right next step together."/>
+    <section className="section container about-approach">
+      <div className="about-approach-heading"><Eyebrow>HOW I APPROACH A PROJECT</Eyebrow><h2>Good implementation starts with good questions.</h2>
+        <p>I do not believe in adding technology for its own sake. A solution should fit the way the business works, feel clear to the people using it and remain practical after launch.</p>
+      </div>
+      <div className="about-approach-list">{approach.map(([number,title,description])=><article className="about-approach-step" key={number}>
+        <span>{number}</span><div><h3>{title}</h3><p>{description}</p></div>
+      </article>)}</div>
+    </section>
+    <section className="section section-soft about-work-bridge">
+      <div className="container">
+        <Eyebrow>PROOF IN PRACTICE</Eyebrow><h2>See how the thinking translates into real work.</h2>
+        <p>Explore the Selected Work page for a curated look at the stores, websites and digital experiences I’ve contributed to. Each project has its own space, so this page can stay focused on the person and the thinking behind the work.</p>
+        <Arrow href="/work">Explore my past work</Arrow>
+      </div>
+    </section>
+    <Cta title="Have a business problem worth solving?" body="Tell me what you are trying to build, improve or connect. We can work out a practical next step together."/>
   </>;
 }
 

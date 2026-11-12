@@ -15,14 +15,16 @@ const css = read("app/globals.css");
 const content = read("lib/content.ts");
 const projectCard = read("components/project-card.tsx");
 
-test("About page presents the full digital systems consultant identity", () => {
+test("About page is a detailed personal profile, not a project gallery", () => {
   assert.match(about, /THE FACE BEHIND PLUSWRLD/);
+  assert.match(about, /Practical digital work, with the business goal in view/);
   assert.match(about, /Shopify and ecommerce/i);
-  assert.match(about, /no-code applications/i);
-  assert.match(about, /creator and community commerce/i);
-  assert.match(about, /AI-powered automation/i);
-  assert.match(about, /Understand first\. Build with purpose\./);
-  assert.doesNotMatch(about, /THE PERSON BEHIND PLUSWRLD|Shopify stores built for customers and business owners|FREELANCE EXPERIENCE|MY PROFESSIONAL JOURNEY|experienceDuration|careerMilestones|careerStart|firstProjectDate/);
+  assert.match(about, /Websites & no-code apps/);
+  assert.match(about, /Memberships & communities/);
+  assert.match(about, /AI & business automation/);
+  assert.match(about, /Good implementation starts with good questions/);
+  assert.match(about, /Explore my past work/);
+  assert.doesNotMatch(about, /THE PERSON BEHIND PLUSWRLD|MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\\.map|ProjectCard/);
 });
 
 test("Explore dropdown closes from state and supports Escape and outside clicks", () => {
@@ -53,4 +55,15 @@ test("The same approved full wordmark is used in the header and footer", () => {
   assert.match(chrome, /settings\.logoUrl/);
   assert.match(chrome, /brand-image-lockup/);
   assert.match(content, /"logoUrl":logo\.asset->url/);
+});
+
+test("About social icons link only to approved profiles with valid URLs", () => {
+  assert.match(content, /enabled == true && name in \["Instagram","Facebook","TikTok","LinkedIn","Threads"\]/);
+  assert.match(page, /AboutSocialLinks links=\{socialLinks\}/);
+  assert.match(page, /cdn\\.simpleicons\\.org/);
+});
+
+test("Old unapproved logo is not used as a default fallback", () => {
+  assert.match(content, /logoUrl: ""/);
+  assert.doesNotMatch(content, /98cba91b62b71c2bb3eef1129af6b63b7fab9095/);
 });
