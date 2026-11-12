@@ -10,11 +10,11 @@ import { MobileDrawer } from "../../components/mobile-drawer";
 import { getFaqs, getProcess, getProjects, getServices, getSettings, getSocialLinks, getTestimonials, type PresenceLink, type Project, type Settings, type Testimonial } from "../../lib/content";
 
 const pageTitles: Record<string, string> = { "": "Knowledge comes from sensory ideas", about: "About me", "how-i-can-help": "How I can help you", services: "Services", process: "My process", work: "Selected work", testimonials: "Reviews & testimonials", faq: "Frequently asked questions", contact: "Discuss a project" };
-const pageDescriptions: Record<string, string> = { "": "Meet Pluswrld — practical digital systems, ecommerce, websites and automation built around business needs.", about: "Meet Paul Oloruntobi, the person behind Pluswrld, and learn how he approaches ecommerce, digital products, no-code applications and automation.", "how-i-can-help": "Start with the business challenge. We will map a practical solution.", services: "Shopify, ecommerce, websites, no-code applications, AI automation and creator-commerce systems.", process: "A clear process from discovery through implementation and handover.", work: "Selected client projects across Shopify ecommerce and digital systems.", testimonials: "Feedback shared by clients through Fiverr.", faq: "Answers about scope, platforms and delivery.", contact: "Share what you are building, improving or trying to connect." };
+const pageDescriptions: Record<string, string> = { "": "Meet Pluswrld — practical digital systems, ecommerce, websites and automation built around business needs.", about: "Meet Paul Oloruntobi, the digital builder behind Pluswrld, and explore his work across ecommerce, no-code applications, automation, search visibility and social media.", "how-i-can-help": "Start with the business challenge. We will map a practical solution.", services: "Shopify, ecommerce, websites, no-code applications, AI automation and creator-commerce systems.", process: "A clear process from discovery through implementation and handover.", work: "Selected client projects across Shopify ecommerce and digital systems.", testimonials: "Feedback shared by clients through Fiverr.", faq: "Answers about scope, platforms and delivery.", contact: "Share what you are building, improving or trying to connect." };
 type RouteProps = { params: Promise<{ slug?: string[] }> };
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
   const route = (await params).slug?.join("/") || "";
-  return { title: pageTitles[route] || "Page not found", description: pageDescriptions[route] || "Pluswrld — independent digital systems consultancy." };
+  return { title: pageTitles[route] || "Page not found", description: pageDescriptions[route] || "Pluswrld — digital building, ecommerce, automation and online visibility." };
 }
 function Eyebrow({ children }: { children: React.ReactNode }) { return <span className="eyebrow"><i className="eyebrow-line" />{children}</span>; }
 function Intro({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
@@ -75,7 +75,7 @@ function HeroShowcase({ projects }: { projects: Project[] }) {
 }
 function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   return <section className="home-hero"><div className="container home-hero-grid">
-    <div className="hero-copy"><Reveal><Eyebrow>INDEPENDENT DIGITAL SYSTEMS CONSULTANT</Eyebrow><h1>{settings.heroTitle}</h1><p className="hero-description">{settings.heroDescription}</p>
+    <div className="hero-copy"><Reveal><Eyebrow>DIGITAL BUILDER · SEARCH & SOCIAL VISIBILITY</Eyebrow><h1>{settings.heroTitle}</h1><p className="hero-description">{settings.heroDescription}</p>
       <div className="hero-actions"><Link href="/contact" className="button">Discuss a project <span>↗</span></Link><Link href="/work" className="button button-outline">Explore my work <span>↗</span></Link></div>
       <div className="hero-caption"><i className="availability-dot" />{settings.availability}</div></Reveal></div>
     <HeroShowcase projects={projects} />
@@ -86,7 +86,7 @@ function ExpertiseStrip() {
 }
 function ExploreMore() {
   const pages = [
-    { href: "/about", number: "01 / BACKGROUND", title: "About me", body: "Get to know the consultant and the thinking behind Pluswrld." },
+    { href: "/about", number: "01 / BACKGROUND", title: "About me", body: "Get to know the builder and the thinking behind Pluswrld." },
     { href: "/how-i-can-help", number: "02 / START HERE", title: "How I can help", body: "Explore the business situations I help solve." },
     { href: "/process", number: "03 / DELIVERY", title: "My process", body: "See how projects move from discovery to handover." },
     { href: "/faq", number: "04 / QUESTIONS", title: "FAQs & client reviews", body: "Find practical answers and read feedback from past buyers." }
@@ -108,7 +108,7 @@ async function Home({ settings }: { settings: Settings }) {
     </section>
     <section className="section section-soft"><div className="container"><div className="section-heading"><div><Eyebrow>SELECTED WORK</Eyebrow><h2>Built around<br /><span className="heading-muted">real business needs.</span></h2></div><div className="section-heading-aside"><p>Each project reflects a specific piece of work delivered. No invented performance figures or generic case-study claims.</p><Arrow href="/work">View all projects</Arrow></div></div><div className="project-grid">{projects.slice(0,4).map((p,i)=><ProjectCard key={p._id} project={p} index={i}/>)}</div></div></section>
     <section className="section container founder-feature">
-      <Reveal className="founder-feature-image"><Image src={settings.portraitUrl} alt="Paul Oloruntobi, digital systems consultant" fill sizes="(max-width: 760px) 86vw, 35vw"/></Reveal>
+      <Reveal className="founder-feature-image"><Image src={settings.portraitUrl} alt="Paul Oloruntobi, digital builder behind Pluswrld" fill sizes="(max-width: 760px) 86vw, 35vw"/></Reveal>
       <div className="founder-feature-copy"><Eyebrow>THE FACE BEHIND PLUSWRLD</Eyebrow><h2>Thoughtful systems. Practical execution.</h2>
         <p>I’m Paul Oloruntobi. I work with businesses to build and improve the digital experiences and workflows behind their day-to-day operations.</p>
         <Arrow href="/about">Meet Paul</Arrow>
@@ -162,7 +162,7 @@ async function About({ settings }: { settings: Settings }) {
       <div className="about-profile-visual">
         <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
         <div className="about-profile-meta">
-          <div><strong>Paul Oloruntobi</strong><span>Digital Systems Consultant</span></div>
+          <div><strong>Paul Oloruntobi</strong><span>{settings.role}</span></div>
           <AboutSocialLinks links={socialLinks}/>
         </div>
       </div>
@@ -176,7 +176,7 @@ async function About({ settings }: { settings: Settings }) {
         <Reveal delay={130}><div className="profile-facts">
           <div><span>NAME</span><strong>Paul Oloruntobi</strong></div>
           <div><span>ROLE</span><strong>{settings.role}</strong></div>
-          <div><span>FOCUS</span><strong>Ecommerce · No-code · Creator commerce · Automation</strong></div>
+          <div><span>FOCUS</span><strong>Ecommerce · Websites & apps · Automation · Search & social visibility</strong></div>
           <div><span>CLIENT REACH</span><strong>{settings.marketReach || "Worldwide"}</strong></div>
         </div></Reveal>
       </div>
