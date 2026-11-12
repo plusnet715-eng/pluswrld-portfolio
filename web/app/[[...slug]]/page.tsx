@@ -12,6 +12,23 @@ import { getFaqs, getProcess, getProjects, getServices, getSettings, getSocialLi
 const pageTitles: Record<string, string> = { "": "Digital Builder for Shopify, Websites & Automation", about: "About Paul Oloruntobi", "how-i-can-help": "Digital Solutions for Your Business", services: "Shopify, Website & Automation Services", process: "How I Plan and Deliver Projects", work: "Selected Shopify & Digital Projects", testimonials: "Client Reviews & Testimonials", faq: "Frequently Asked Questions", contact: "Discuss a Digital Project" };
 const pageDescriptions: Record<string, string> = { "": "Meet Pluswrld — practical digital systems, ecommerce, websites and automation built around business needs.", about: "Meet Paul Oloruntobi, the digital builder behind Pluswrld, and explore his work across ecommerce, no-code applications, automation, search visibility and social media.", "how-i-can-help": "Start with the business challenge. We will map a practical solution.", services: "Shopify, ecommerce, websites, no-code applications, AI automation and creator-commerce systems.", process: "A clear process from discovery through implementation and handover.", work: "Selected client projects across Shopify ecommerce and digital systems.", testimonials: "Feedback shared by clients through Fiverr.", faq: "Answers about scope, platforms and delivery.", contact: "Share what you are building, improving or trying to connect." };
 type RouteProps = { params: Promise<{ slug?: string[] }> };
+
+export const revalidate = 300;
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return [
+    { slug: [] },
+    { slug: ["about"] },
+    { slug: ["how-i-can-help"] },
+    { slug: ["services"] },
+    { slug: ["process"] },
+    { slug: ["work"] },
+    { slug: ["testimonials"] },
+    { slug: ["faq"] },
+    { slug: ["contact"] }
+  ];
+}
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
   const route = (await params).slug?.join("/") || "";
   const title = pageTitles[route] || "Page not found";
