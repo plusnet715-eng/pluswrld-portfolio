@@ -67,3 +67,15 @@ test("Old unapproved logo is not used as a default fallback", () => {
   assert.match(content, /logoUrl: ""/);
   assert.doesNotMatch(content, /98cba91b62b71c2bb3eef1129af6b63b7fab9095/);
 });
+
+test("Pluswrld positioning presents Paul as a digital builder with search and social visibility work", () => {
+  assert.match(page, /DIGITAL BUILDER · SEARCH & SOCIAL VISIBILITY/);
+  assert.match(page, /<span>\{settings\.role\}<\/span>/);
+  assert.match(content, /role: "Digital Builder & Growth Systems Specialist"/);
+  assert.match(content, /strengthen their visibility across social media and search engines/);
+});
+test("Approved transparent logo adapts to both light and dark themes", () => {
+  assert.match(chrome, /width=\{1932\} height=\{814\}/);
+  assert.match(css, /\.brand-logo-image\{[^}]*filter:brightness\(\.76\)/);
+  assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-image\{filter:brightness\(1\.9\)/);
+});
