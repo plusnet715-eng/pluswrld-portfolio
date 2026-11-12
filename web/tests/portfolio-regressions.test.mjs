@@ -18,7 +18,7 @@ const projectCard = read("components/project-card.tsx");
 test("About page is a detailed personal profile, not a project gallery", () => {
   assert.match(about, /THE FACE BEHIND PLUSWRLD/);
   assert.match(about, /Practical digital work, with the business goal in view/);
-  assert.match(about, /Shopify and ecommerce/i);
+  assert.match(about, /Shopify & ecommerce/i);
   assert.match(about, /Websites & no-code apps/);
   assert.match(about, /Memberships & communities/);
   assert.match(about, /AI & business automation/);
