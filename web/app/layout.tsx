@@ -79,6 +79,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://a8mywjme.apicdn.sanity.io" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://cdn.shopify.com" />
     </head>
     <body className={workSans.variable}>
