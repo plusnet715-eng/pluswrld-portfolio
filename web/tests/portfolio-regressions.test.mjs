@@ -112,9 +112,10 @@ test("About page is split into concise visitor-led sections", () => {
   assert.doesNotMatch(about, /THE THINKING BEHIND THE WORK|principle-block|profile-facts/);
 });
 
-test("Social profile icons use original brand colours and fixed sizing in both themes", () => {
-  assert.match(page, /className=\{"social-link social-link-" \+ icon\.slug\}/);
-  assert.doesNotMatch(page, /slug === "linkedin"/);
+test("Social profile icons use original brand colours and LinkedIn renders locally", () => {
+  assert.match(page, /icon\.slug === "linkedin"/);
+  assert.match(page, /className="social-link-icon-linkedin"/);
+  assert.match(page, /<path fill="#0A66C2"/);
   assert.match(page, /cdn\.simpleicons\.org/);
   assert.match(page, /colour: "E4405F"/);
   assert.match(page, /colour: "0866FF"/);
@@ -123,7 +124,6 @@ test("Social profile icons use original brand colours and fixed sizing in both t
   assert.match(css, /background:#fff/);
   assert.match(css, /:root\[data-theme="dark"\] \.about-social-links \.social-link/);
   assert.match(css, /filter:none!important/);
-  assert.doesNotMatch(css, /about-social-links img\{filter:brightness\(0\) invert\(1\)\}/);
 });
 
 test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
