@@ -139,6 +139,10 @@ test("CMS text normaliser converts escaped newline sequences into paragraph brea
 });
 
 
+test("WhiskerWise selected-work card uses its current official store image", () => {
+  assert.match(content, /"pluswrld-project-whiskerwise": "https:\/\/www\.whiskerwise\.com\.co\/cdn\/shop\/files\/e6290b16-ff40-479d-ac98-c11544ecd517\.jpg\?v=1763041494&width=1000"/);
+});
+
 test("CMS-uploaded project imagery overrides legacy static project images", () => {
   assert.match(content, /imageUrl: p\.cmsImageUrl \|\| projectAssets\[p\._id\] \|\| ""/);
 });
