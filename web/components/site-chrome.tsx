@@ -60,13 +60,18 @@ function ThemePicker() {
   </label>;
 }
 
-function Brand({ settings, priority = false }: { settings: Settings; priority?: boolean }) {
+function Brand({ settings, priority = false, appearance = "adaptive" }: { settings: Settings; priority?: boolean; appearance?: "adaptive" | "dark" }) {
   const tagline = settings.tagline || "Build • Automate • Grow";
   if (!settings.logoUrl) {
     return <Link href="/" className="brand brand-text-lockup" aria-label="Pluswrld home">
       <span className="brand-wordmark"><span className="brand-plus">Plus</span><span className="brand-wrld">wrld</span></span>
       <span className="brand-tagline">{tagline}</span>
       <span className="brand-philosophy">{settings.secondaryTagline || "Knowledge comes from sensory ideas"}</span>
+    </Link>;
+  }
+  if (appearance === "dark") {
+    return <Link href="/" className="brand brand-image-lockup" aria-label="Pluswrld home">
+      <Image src={settings.logoDarkUrl || "/pluswrld-logo-dark.svg"} alt="" width={1932} height={814} priority={priority} unoptimized sizes="(max-width: 480px) 190px, 250px" className="brand-logo-image brand-logo-footer-fixed"/>
     </Link>;
   }
   return <Link href="/" className="brand brand-image-lockup" aria-label="Pluswrld home">
@@ -76,7 +81,6 @@ function Brand({ settings, priority = false }: { settings: Settings; priority?: 
     </span>
   </Link>;
 }
-
 
 export function SiteHeader({ settings }: { settings: Settings }) {
   const [open, setOpen] = useState(false);
@@ -135,7 +139,7 @@ export function SiteFooter({ settings, profiles }: { settings: Settings; profile
   return <footer className="site-footer"><div className="container">
     <div className="footer-top">
       <div className="footer-brand">
-        <div className="footer-brand-lockup"><Brand settings={settings} /></div>
+        <div className="footer-brand-lockup"><Brand settings={settings} appearance="dark" /></div>
         
       </div>
       <div className="footer-column"><span className="footer-label">Explore</span><Link href="/about">About me</Link><Link href="/how-i-can-help">How I can help</Link><Link href="/services">Services</Link><Link href="/process">My process</Link><Link href="/work">Past work</Link><Link href="/testimonials">Reviews</Link><Link href="/faq">FAQ</Link></div>
