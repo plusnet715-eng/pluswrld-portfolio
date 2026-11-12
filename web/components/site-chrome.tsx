@@ -70,7 +70,10 @@ function Brand({ settings, priority = false }: { settings: Settings; priority?: 
     </Link>;
   }
   return <Link href="/" className="brand brand-image-lockup" aria-label="Pluswrld home">
-    <Image src="/pluswrld-logo.svg" alt={"Pluswrld — " + tagline} width={1932} height={814} priority={priority} unoptimized sizes="(max-width: 480px) 165px, (max-width: 760px) 185px, 220px" className="brand-logo-image brand-logo-vector"/>
+    <span className="brand-logo-theme-swap" aria-hidden="true">
+      <Image src="/pluswrld-logo.svg" alt="" width={1932} height={814} priority={priority} unoptimized sizes="(max-width: 480px) 165px, (max-width: 760px) 185px, 220px" className="brand-logo-image brand-logo-light"/>
+      <Image src="/pluswrld-logo-dark.svg" alt="" width={1932} height={814} priority={priority} unoptimized sizes="(max-width: 480px) 165px, (max-width: 760px) 185px, 220px" className="brand-logo-image brand-logo-dark"/>
+    </span>
   </Link>;
 }
 
