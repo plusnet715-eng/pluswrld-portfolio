@@ -9,7 +9,7 @@ const themeInit = `try { const saved = localStorage.getItem("pluswrld-theme") ||
 
 export const metadata: Metadata = {
   title: { default: "Pluswrld — Knowledge comes from sensory ideas", template: "%s | Pluswrld" },
-  description: "Independent digital systems consultancy for Shopify ecommerce, websites, no-code applications and AI-powered business automation.",
+  description: "Digital building for Shopify ecommerce, websites, no-code applications, business automation and online visibility across search and social media.",
   applicationName: "Pluswrld",
   openGraph: { type: "website", siteName: "Pluswrld", title: "Pluswrld — Knowledge comes from sensory ideas", description: "Practical digital systems, clearly scoped and built around your business." },
   icons: { icon: [{ url: "https://cdn.sanity.io/images/a8mywjme/production/42120f93d9abacd9cd4b416d8c1de7678d7fd31e-512x512.png", type: "image/png" }], shortcut: [{ url: "https://cdn.sanity.io/images/a8mywjme/production/42120f93d9abacd9cd4b416d8c1de7678d7fd31e-512x512.png", type: "image/png" }] }
@@ -19,7 +19,7 @@ export const revalidate = 300;
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const [settings, profiles] = await Promise.all([getSettings(), getPresenceLinks()]);
-  return <html lang="en" data-theme="light"><head>
+  return <html lang="en-NG" data-theme="light"><head>
     <script dangerouslySetInnerHTML={{ __html: themeInit }} />
     <link rel="preconnect" href="https://use.typekit.net" />
     <link rel="stylesheet" href="https://use.typekit.net/hmk3hsy.css" />
