@@ -74,10 +74,11 @@ test("Pluswrld positioning presents Paul as a digital builder with search and so
   assert.match(content, /strengthen their visibility across social media and search engines/);
 });
 test("Approved transparent logo adapts to both light and dark themes", () => {
+  assert.match(chrome, /src="\/pluswrld-logo\.svg"/);
   assert.match(chrome, /width=\{1932\} height=\{814\}/);
   assert.match(chrome, /unoptimized/);
   assert.match(css, /\.brand-logo-image\{filter:saturate\(1\.18\) contrast\(1\.06\)/);
-  assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-image\{filter:brightness\(1\.68\)/);
+  assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-vector\{filter:brightness\(1\.72\)/);
 });
 
 
@@ -101,4 +102,13 @@ test("CMS plain text normalises escaped newline sequences across content types",
   assert.match(content, /map\(normalizeObjectStrings\)/);
   assert.match(page, /function TextParagraphs/);
   assert.match(page, /TextParagraphs text=\{item\.answer\}/);
+});
+
+
+test("Pluswrld logo is an external vector asset with transparent background", () => {
+  const fs = read("public/pluswrld-logo.svg");
+  assert.match(fs, /<svg[^>]+viewBox="0 0 1932 814"/);
+  assert.match(fs, /<linearGradient/);
+  assert.doesNotMatch(fs, /<rect|<image/);
+  assert.match(chrome, /unoptimized/);
 });

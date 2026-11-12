@@ -903,3 +903,7 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
  .about-principle{grid-template-columns:1fr;gap:20px}
  .about-principle h2{font-size:34px}
 }
+
+/* The approved Pluswrld vector wordmark is resolution-independent and theme-adaptive. */
+.brand-logo-vector{filter:saturate(1.12) contrast(1.04)}
+:root[data-theme="dark"] .brand-logo-vector{filter:brightness(1.72) saturate(1.18) contrast(1.04)}
