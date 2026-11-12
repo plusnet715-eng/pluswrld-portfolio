@@ -19,8 +19,10 @@ const schema = readFileSync(resolve(here, "../../studio/schemaTypes/index.ts"), 
 const projectCard = read("components/project-card.tsx");
 
 test("About page presents a scannable builder profile without duplicating the project gallery", () => {
-  assert.match(about, /ABOUT PAUL \/ PLUSWRLD/);
-  assert.match(about, /I do more than shape the idea\. I build the solution\./);
+  assert.match(about, /INTRODUCTION/);
+  assert.match(about, /I build digital experiences that help businesses grow\./);
+  assert.match(about, /I stay involved from the first idea to the working solution\./);
+  assert.match(about, /MEET THE BUILDER/);
   assert.match(about, /Ecommerce stores/);
   assert.match(about, /Websites and no-code apps/);
   assert.match(about, /Memberships and communities/);
@@ -87,10 +89,13 @@ test("Pluswrld positioning presents Paul as a digital builder with search and so
 test("Approved vector logo has separate palettes for light and dark themes", () => {
   assert.match(chrome, /src=\{settings\.logoUrl \|\| "\/pluswrld-logo\.svg"\}/);
   assert.match(chrome, /src=\{settings\.logoDarkUrl \|\| "\/pluswrld-logo-dark\.svg"\}/);
+  assert.match(chrome, /appearance="dark"/);
+  assert.match(chrome, /brand-logo-footer-fixed/);
   assert.match(chrome, /width=\{1932\} height=\{814\}/);
   assert.match(content, /logoUrl: "\/pluswrld-logo\.svg", logoDarkUrl: "\/pluswrld-logo-dark\.svg"/);
   assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-light/);
   assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-dark/);
+  assert.match(css, /brand-logo-footer-fixed/);
   assert.match(schema, /Full wordmark logo — light theme/);
   assert.match(schema, /Full wordmark logo — dark theme/);
   assert.match(read("public/pluswrld-logo.svg"), /stop-color="#36bd2d"/);
@@ -110,11 +115,13 @@ test("About page is split into concise visitor-led sections", () => {
 test("Social profile icons include a local vector LinkedIn mark", () => {
   assert.match(page, /className=\{"social-link social-link-" \+ slug\}/);
   assert.match(page, /slug === "linkedin"/);
-  assert.match(page, /<svg className="social-link-icon-linkedin" viewBox="0 0 24 24"/);
-  assert.match(page, /social-mark-light/);
-  assert.match(page, /social-mark-dark/);
-  assert.match(css, /social-link-linkedin\{color:#087b32;background:#f5faf5\}/);
-  assert.match(css, /social-link-linkedin\{color:#a1f238;background:#132319\}/);
+  assert.match(page, /cdn\.simpleicons\.org/);
+  assert.match(page, /colour: "E4405F"/);
+  assert.match(page, /colour: "0866FF"/);
+  assert.match(page, /colour: "0A66C2"/);
+  assert.match(css, /width:18px!important;height:18px!important/);
+  assert.match(css, /:root\[data-theme="dark"\] \.about-social-links \.social-link img/);
+  assert.doesNotMatch(css, /about-social-links img\{filter:brightness\(0\) invert\(1\)\}/);
 });
 
 test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
