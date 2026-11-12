@@ -72,7 +72,8 @@ const siteSettings = defineType({
     defineField({ name: "aboutIntro", title: "About introduction", type: "text", rows: 3 }),
     defineField({ name: "aboutStory", title: "About story", type: "text", rows: 6 }),
     defineField({ name: "aboutPhilosophy", title: "Working philosophy", type: "text", rows: 4 }),
-    defineField({ name: "logo", title: "Full wordmark logo", type: "image", options: { hotspot: true } }),
+    defineField({ name: "logo", title: "Full wordmark logo — light theme", type: "image", options: { hotspot: true } }),
+    defineField({ name: "logoDark", title: "Full wordmark logo — dark theme", type: "image", options: { hotspot: true } }),
     defineField({ name: "favicon", title: "Favicon mark", type: "image" }),
     defineField({ name: "portrait", title: "Enhanced portrait / Homepage feature", type: "image", options: { hotspot: true } }),
     defineField({ name: "originalPortrait", title: "Original portrait / About page", type: "image", options: { hotspot: true } })
