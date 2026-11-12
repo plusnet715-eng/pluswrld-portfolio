@@ -14,7 +14,17 @@ const pageDescriptions: Record<string, string> = { "": "Meet Pluswrld — practi
 type RouteProps = { params: Promise<{ slug?: string[] }> };
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
   const route = (await params).slug?.join("/") || "";
-  return { title: pageTitles[route] || "Page not found", description: pageDescriptions[route] || "Pluswrld — digital building, ecommerce, automation and online visibility." };
+  const title = pageTitles[route] || "Page not found";
+  const description = pageDescriptions[route] || "Pluswrld — digital building, ecommerce, automation and online visibility.";
+  const canonical = route ? `/${route}` : "/";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { type: "website", siteName: "Pluswrld", title: `${title} | Pluswrld`, description, url: canonical },
+    twitter: { card: "summary_large_image", title: `${title} | Pluswrld`, description },
+    robots: { index: true, follow: true }
+  };
 }
 function Eyebrow({ children }: { children: React.ReactNode }) { return <span className="eyebrow"><i className="eyebrow-line" />{children}</span>; }
 function Intro({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
@@ -339,7 +349,8 @@ async function Testimonials() {
 }
 async function Faq() {
   const items = await getFaqs();
-  return <><Intro eyebrow="FAQ / BEFORE WE START" title="A few useful answers before we talk." body="A project is easier to start when the practical questions are answered. Here are some things clients commonly ask about scope, platforms, timelines and working together."/><section className="section container faq-list">{items.map((item,i)=><Reveal key={item._id}><details className="faq-item"><summary><span>{String(i+1).padStart(2,"0")}</span><strong>{item.question}</strong><i>+</i></summary><TextParagraphs text={item.answer} className="faq-answer-copy"/></details></Reveal>)}</section><Cta title="Still have a question?" body="Send it over with a little context about your project. I would rather clarify it early than make assumptions."/></>;
+  const faqStructuredData = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: items.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) };
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData).replace(/</g, "\\u003c") }} /><Intro eyebrow="FAQ / BEFORE WE START" title="A few useful answers before we talk." body="A project is easier to start when the practical questions are answered. Here are some things clients commonly ask about scope, platforms, timelines and working together."/><section className="section container faq-list">{items.map((item,i)=><Reveal key={item._id}><details className="faq-item"><summary><span>{String(i+1).padStart(2,"0")}</span><strong>{item.question}</strong><i>+</i></summary><TextParagraphs text={item.answer} className="faq-answer-copy"/></details>)}</section><Cta title="Still have a question?" body="Send it over with a little context about your project. I would rather clarify it early than make assumptions."/></>;
 }
 function Contact({ settings }: { settings: Settings }) {
   const contactEmail = settings.email?.trim() || "timileyinpaul26@gmail.com";
