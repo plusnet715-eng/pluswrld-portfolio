@@ -156,7 +156,7 @@ async function About({ settings }: { settings: Settings }) {
     { number:"04", label:"AI & AUTOMATION", title:"Connected business workflows", description:"Practical automations and integrations that connect tools, reduce repetitive work and make business processes easier to manage." }
   ];
   const audiences = [
-    { label:"Ecommerce owners", description:"Businesses that need a better online store, clearer product journeys or more reliable store operations." },
+    { label:"Ecommerce businesses", description:"Businesses that need a better online store, clearer product journeys or more reliable store operations." },
     { label:"Service businesses", description:"Businesses that need a stronger website, smoother customer experience or better-connected tools." },
     { label:"Creators and digital sellers", description:"People building digital offers, memberships, courses and paid communities." }
   ];
@@ -229,7 +229,7 @@ async function About({ settings }: { settings: Settings }) {
     </section>
     <section className="section section-soft about-principles">
       <div className="container">
-        <div className="section-heading"><div><Eyebrow>WHAT YOU CAN EXPECT</Eyebrow><h2>Work that is useful,<br/><span className="heading-muted">clear and ready to use.</span></h2></div>
+        <div className="section-heading"><div><Eyebrow>WHAT GOOD DELIVERY LOOKS LIKE</Eyebrow><h2>Work that is useful,<br/><span className="heading-muted">clear and ready to use.</span></h2></div>
           <div className="section-heading-aside"><p>The build is only one part of a good project. The experience, communication and handover matter too.</p></div></div>
         <div className="about-principle-grid">{principles.map((item,index)=><Reveal key={item.title} delay={index*45}><article className="about-principle-card"><span>0{index+1}</span><h3>{item.title}</h3><p>{item.description}</p></article></Reveal>)}</div>
       </div>
