@@ -16,13 +16,12 @@ const content = read("lib/content.ts");
 const projectCard = read("components/project-card.tsx");
 
 test("About page is a detailed personal profile, not a project gallery", () => {
-  assert.match(about, /THE FACE BEHIND PLUSWRLD/);
-  assert.match(about, /Practical digital work, with the business goal in view/);
-  assert.match(about, /Shopify & ecommerce/i);
-  assert.match(about, /Websites & no-code apps/);
+  assert.match(about, /ABOUT PAUL \/ PLUSWRLD/);
+  assert.match(about, /Builder by practice\. Problem-solver by approach\./);
+  assert.match(about, /Ecommerce & websites/);
+  assert.match(about, /No-code applications/);
   assert.match(about, /Memberships & communities/);
-  assert.match(about, /AI & business automation/);
-  assert.match(about, /Good implementation starts with good questions/);
+  assert.match(about, /AI & connected workflows/);
   assert.match(about, /Explore my past work/);
   assert.doesNotMatch(about, /THE PERSON BEHIND PLUSWRLD|MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\.map|ProjectCard/);
 });
@@ -76,6 +75,30 @@ test("Pluswrld positioning presents Paul as a digital builder with search and so
 });
 test("Approved transparent logo adapts to both light and dark themes", () => {
   assert.match(chrome, /width=\{1932\} height=\{814\}/);
-  assert.match(css, /\.brand-logo-image\{[^}]*filter:brightness\(\.76\)/);
-  assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-image\{filter:brightness\(1\.9\)/);
+  assert.match(chrome, /unoptimized/);
+  assert.match(css, /\.brand-logo-image\{filter:saturate\(1\.18\) contrast\(1\.06\)/);
+  assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-image\{filter:brightness\(1\.68\)/);
+});
+
+
+test("About page is split into concise visitor-led sections", () => {
+  assert.match(about, /WHAT I BUILD/);
+  assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
+  assert.match(about, /HOW I WORK/);
+  assert.match(about, /WHAT GUIDES THE WORK/);
+  assert.doesNotMatch(about, /THE THINKING BEHIND THE WORK|principle-block|profile-facts/);
+});
+
+test("Social profile icons include a local vector LinkedIn mark", () => {
+  assert.match(page, /className=\{"social-link social-link-" \+ slug\}/);
+  assert.match(page, /slug === "linkedin"/);
+  assert.match(page, /<svg viewBox="0 0 24 24"/);
+});
+
+test("CMS plain text normalises escaped newline sequences across content types", () => {
+  assert.match(content, /function normalizeCmsText/);
+  assert.match(content, /function normalizeObjectStrings/);
+  assert.match(content, /map\(normalizeObjectStrings\)/);
+  assert.match(page, /function TextParagraphs/);
+  assert.match(page, /TextParagraphs text=\{item\.answer\}/);
 });

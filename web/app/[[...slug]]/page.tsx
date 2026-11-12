@@ -121,6 +121,12 @@ async function Home({ settings }: { settings: Settings }) {
   </>;
 }
 
+function TextParagraphs({ text, className = "" }: { text: string; className?: string }) {
+  const normalized = (text || "").replace(/\\r\\n|\\n|\\r/g, "\n").replace(/\r\n?/g, "\n").trim();
+  const paragraphs = normalized.split(/\n\s*\n/).map((part) => part.replace(/\s*\n\s*/g, " ").trim()).filter(Boolean);
+  return <div className={className}>{paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>;
+}
+
 function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
   if (!links.length) return null;
   const icons: Record<string, string> = {
@@ -134,8 +140,10 @@ function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
     {links.map((link) => {
       const slug = icons[link.name.toLowerCase()];
       if (!slug) return null;
-      return <a key={link._id} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={"Visit " + link.name + " profile"} title={link.name}>
-        <img src={"https://cdn.simpleicons.org/" + slug + "/173b22"} alt="" loading="lazy"/>
+      return <a key={link._id} className={"social-link social-link-" + slug} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={"Visit " + link.name + " profile"} title={link.name}>
+        {slug === "linkedin"
+          ? <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fillRule="evenodd" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.919-2.064 2.063-2.064 1.14 0 2.064.926 2.064 2.064 0 1.139-.923 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+          : <img src={"https://cdn.simpleicons.org/" + slug + "/173b22"} alt="" loading="lazy"/>}
       </a>;
     })}
   </nav>;
@@ -144,71 +152,80 @@ function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
 async function About({ settings }: { settings: Settings }) {
   const socialLinks = await getSocialLinks();
   const capabilities = [
-    { number:"01", label:"ECOMMERCE", title:"Shopify & ecommerce", description:"I build stores from scratch and improve existing ones—bringing together theme customisation, redesign, product and variant organisation, product-page usability, and the operational details owners need to manage every day." },
-    { number:"02", label:"WEB & APPLICATIONS", title:"Websites & no-code apps", description:"I create business websites and useful digital applications, from customer-facing experiences to portals and MVPs. My toolkit includes Webflow, Bubble, FlutterFlow, Glide and Adalo." },
-    { number:"03", label:"CREATOR COMMERCE", title:"Memberships & communities", description:"I help organise the systems behind digital products, courses, services and paid communities—including storefronts, membership tiers, onboarding and connected access through Whop, Skool and Discord." },
-    { number:"04", label:"CONNECTED WORKFLOWS", title:"AI & business automation", description:"I look at the work happening between tools and people, then help map and connect useful workflows. The aim is to reduce avoidable manual steps and introduce AI or integrations only where they genuinely help." }
+    { number:"01", label:"BUILD", title:"Ecommerce & websites", description:"Shopify store builds, redesigns, theme and product customisation, responsive business websites and customer-facing experiences." },
+    { number:"02", label:"APPLICATIONS", title:"No-code applications", description:"Portals, internal tools and MVPs using Webflow, Bubble, FlutterFlow, Glide and Adalo—chosen around the actual use case." },
+    { number:"03", label:"CREATOR COMMERCE", title:"Memberships & communities", description:"Digital product, course, membership and paid-community setups, including Whop, Skool and Discord access workflows." },
+    { number:"04", label:"AUTOMATION", title:"AI & connected workflows", description:"Useful automations and integrations that connect tools, reduce repetitive steps and support everyday business operations." }
+  ];
+  const visibility = [
+    { label:"SEARCH VISIBILITY", title:"Help people find you on search engines", description:"I improve website structure, on-page content and relevant technical foundations so search engines can better understand a business and what it offers." },
+    { label:"SOCIAL VISIBILITY", title:"Make your social presence clearer", description:"I help set up and optimise business profiles, improve how products and services are presented, and configure relevant social-commerce touchpoints." }
   ];
   const approach = [
-    ["01","Understand the business","I start with the goal, the people involved and the process as it works today. That context matters more than choosing a popular platform too early."],
-    ["02","Define a sensible solution","I clarify what needs to be built, what should be improved, which tools fit, and what belongs inside the agreed scope."],
-    ["03","Build around real use","I pay attention to the experience of customers, members, teams and business owners—not just whether a screen or automation technically works."],
-    ["04","Test and hand over clearly","I check the important journeys and connected steps, communicate what has changed, and make the handover understandable for the people who will use the system."]
+    ["01","Understand the goal","Start with the business outcome, the people involved and what is getting in the way."],
+    ["02","Choose the right tools","Select a platform and a practical scope based on the job—not on trends or a fixed technology stack."],
+    ["03","Build and improve","Implement the agreed solution, paying attention to usability, content, structure and the details people rely on."],
+    ["04","Test and hand over","Check the important journeys, explain what has changed and make the system clear for the people who will use it."]
   ];
 
   return <>
-    <Intro eyebrow="ABOUT PAUL / THE FACE BEHIND PLUSWRLD" title="I’m Paul Oloruntobi." body={settings.aboutIntro}/>
+    <Intro eyebrow="ABOUT PAUL / PLUSWRLD" title="I build digital systems—and help businesses get found." body={settings.aboutIntro}/>
     <section className="section container about-profile">
       <div className="about-profile-visual">
-        <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, founder of Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
+        <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, digital builder behind Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
         <div className="about-profile-meta">
           <div><strong>Paul Oloruntobi</strong><span>{settings.role}</span></div>
           <AboutSocialLinks links={socialLinks}/>
         </div>
       </div>
       <div className="about-profile-copy">
-        <Reveal><Eyebrow>THE THINKING BEHIND THE WORK</Eyebrow><h2>Practical digital work, with the business goal in view.</h2>
-          {settings.aboutStory.split(/\n\s*\n/).filter(Boolean).map((paragraph,index)=><p key={index}>{paragraph}</p>)}
+        <Reveal>
+          <Eyebrow>THE PERSON BEHIND THE BUILD</Eyebrow>
+          <h2>Builder by practice. Problem-solver by approach.</h2>
+          <TextParagraphs text={settings.aboutStory} className="about-story-copy"/>
         </Reveal>
-        <Reveal delay={80}><div className="principle-block"><span>MY WORKING PRINCIPLE</span><h3>Start with the problem. Choose the tools that serve it.</h3>
-          {settings.aboutPhilosophy.split(/\n\s*\n/).filter(Boolean).map((paragraph,index)=><p key={index}>{paragraph}</p>)}
-        </div></Reveal>
-        <Reveal delay={130}><div className="profile-facts">
-          <div><span>NAME</span><strong>Paul Oloruntobi</strong></div>
-          <div><span>ROLE</span><strong>{settings.role}</strong></div>
-          <div><span>FOCUS</span><strong>Ecommerce · Websites & apps · Automation · Search & social visibility</strong></div>
-          <div><span>CLIENT REACH</span><strong>{settings.marketReach || "Worldwide"}</strong></div>
-        </div></Reveal>
       </div>
     </section>
     <section className="section section-soft about-capabilities">
       <div className="container">
-        <div className="section-heading"><div><Eyebrow>WHERE I WORK</Eyebrow><h2>Different tools.<br/><span className="heading-muted">Connected thinking.</span></h2></div>
-          <div className="section-heading-aside"><p>My work crosses a few areas of digital business, but the approach stays consistent: understand what needs to happen, then build the most useful way to make it happen.</p></div></div>
+        <div className="section-heading"><div><Eyebrow>WHAT I BUILD</Eyebrow><h2>Practical digital work.<br/><span className="heading-muted">Built around the business.</span></h2></div>
+          <div className="section-heading-aside"><p>From the storefront customers use to the workflows a team depends on, I build and improve the digital pieces that help a business operate.</p></div></div>
         <div className="about-capability-grid">{capabilities.map((item,index)=><Reveal key={item.number} delay={index*55}><article className="about-capability-card">
           <span className="about-capability-index">{item.number} / {item.label}</span><h3>{item.title}</h3><p>{item.description}</p>
         </article></Reveal>)}</div>
       </div>
     </section>
-    <section className="section container about-approach">
-      <div className="about-approach-heading"><Eyebrow>HOW I APPROACH A PROJECT</Eyebrow><h2>Good implementation starts with good questions.</h2>
-        <p>I do not believe in adding technology for its own sake. A solution should fit the way the business works, feel clear to the people using it and remain practical after launch.</p>
+    <section className="section container about-visibility">
+      <div className="section-heading"><div><Eyebrow>SEARCH & SOCIAL VISIBILITY</Eyebrow><h2>Being online is not the same as being discovered.</h2></div>
+        <div className="section-heading-aside"><p>A good digital presence should make it easier for the right people to find a business, understand its offer and take the next step.</p></div></div>
+      <div className="about-visibility-grid">{visibility.map((item,index)=><Reveal key={item.label} delay={index*70}><article className="about-visibility-card">
+        <span>{item.label}</span><h3>{item.title}</h3><p>{item.description}</p>
+      </article></Reveal>)}</div>
+    </section>
+    <section className="section section-soft about-approach">
+      <div className="container about-approach-layout">
+        <div className="about-approach-heading"><Eyebrow>HOW I WORK</Eyebrow><h2>Clear steps. Thoughtful execution.</h2>
+          <p>I keep the process practical and transparent, so the business goal and the implementation stay connected from the first conversation to handover.</p>
+        </div>
+        <div className="about-approach-list">{approach.map(([number,title,description])=><article className="about-approach-step" key={number}>
+          <span>{number}</span><div><h3>{title}</h3><p>{description}</p></div>
+        </article>)}</div>
       </div>
-      <div className="about-approach-list">{approach.map(([number,title,description])=><article className="about-approach-step" key={number}>
-        <span>{number}</span><div><h3>{title}</h3><p>{description}</p></div>
-      </article>)}</div>
+    </section>
+    <section className="section container about-principle">
+      <div><Eyebrow>WHAT GUIDES THE WORK</Eyebrow><h2>Make it useful. Make it clear. Make it work in the real world.</h2></div>
+      <TextParagraphs text={settings.aboutPhilosophy} className="about-principle-copy"/>
     </section>
     <section className="section section-soft about-work-bridge">
       <div className="container">
         <Eyebrow>PROOF IN PRACTICE</Eyebrow><h2>See how the thinking translates into real work.</h2>
-        <p>Explore the Selected Work page for a curated look at the stores, websites and digital experiences I’ve contributed to. Each project has its own space, so this page can stay focused on the person and the thinking behind the work.</p>
+        <p>Explore selected projects across ecommerce, websites and digital systems. Each project has its own space, so this page can stay focused on the person and the thinking behind the work.</p>
         <Arrow href="/work">Explore my past work</Arrow>
       </div>
     </section>
-    <Cta title="Have a business problem worth solving?" body="Tell me what you are trying to build, improve or connect. We can work out a practical next step together."/>
+    <Cta title="Have something worth building?" body="Tell me what you are trying to build, improve or make easier to find. We can work out a practical next step."/>
   </>;
 }
-
 function Help() {
   const items = [
     ["01 / STARTING SOMETHING NEW","You have an idea but need a digital foundation.","I help shape the scope, choose a practical platform and build the first working version around your business needs — a Shopify store, website, customer portal or no-code application."],
@@ -304,7 +321,7 @@ async function Testimonials() {
 }
 async function Faq() {
   const items = await getFaqs();
-  return <><Intro eyebrow="FAQ / BEFORE WE START" title="A few useful answers before we talk." body="A project is easier to start when the practical questions are answered. Here are some things clients commonly ask about scope, platforms, timelines and working together."/><section className="section container faq-list">{items.map((item,i)=><Reveal key={item._id}><details className="faq-item"><summary><span>{String(i+1).padStart(2,"0")}</span><strong>{item.question}</strong><i>+</i></summary><p>{item.answer}</p></details></Reveal>)}</section><Cta title="Still have a question?" body="Send it over with a little context about your project. I would rather clarify it early than make assumptions."/></>;
+  return <><Intro eyebrow="FAQ / BEFORE WE START" title="A few useful answers before we talk." body="A project is easier to start when the practical questions are answered. Here are some things clients commonly ask about scope, platforms, timelines and working together."/><section className="section container faq-list">{items.map((item,i)=><Reveal key={item._id}><details className="faq-item"><summary><span>{String(i+1).padStart(2,"0")}</span><strong>{item.question}</strong><i>+</i></summary><TextParagraphs text={item.answer} className="faq-answer-copy"/></details></Reveal>)}</section><Cta title="Still have a question?" body="Send it over with a little context about your project. I would rather clarify it early than make assumptions."/></>;
 }
 function Contact({ settings }: { settings: Settings }) {
   const contactEmail = settings.email?.trim() || "timileyinpaul26@gmail.com";

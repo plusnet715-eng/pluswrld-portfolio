@@ -35,6 +35,22 @@ const defaults: Settings = {
   originalPortraitUrl: ""
 };
 
+function normalizeCmsText(value: string | undefined | null): string {
+  return (value || "")
+    .replace(/\\r\\n/g, "\n")
+    .replace(/\\n/g, "\n")
+    .replace(/\\r/g, "\n")
+    .replace(/\r\n?/g, "\n");
+}
+
+function normalizeObjectStrings<T extends object>(record: T): T {
+  const normalized = { ...record } as unknown as Record<string, unknown>;
+  for (const [key, value] of Object.entries(normalized)) {
+    if (typeof value === "string") normalized[key] = normalizeCmsText(value);
+  }
+  return normalized as unknown as T;
+}
+
 const projectAssets: Record<string, string> = {
   "51741e8d-461a-43be-8465-4e3dc442cc20": cdn("ba70bc4fa271bfeb5654a807ca69fdf82faf9183-1024x1536.png"),
   "04d61980-cdaf-4e6b-905c-6c3684e0adfb": cdn("8c5e318b53beafb7af5422d09f1f220b52c86d67-1840x1040.png"),
@@ -47,14 +63,15 @@ const projectAssets: Record<string, string> = {
 export async function getSettings(): Promise<Settings> {
   try {
     const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"logoUrl":logo.asset->url,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
-    return { ...defaults, ...(data ?? {}), logoUrl: data?.logoUrl || defaults.logoUrl, portraitUrl: data?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: data?.originalPortraitUrl || defaults.originalPortraitUrl };
+    const normalized = data ? normalizeObjectStrings(data) : null;
+    return { ...defaults, ...(normalized ?? {}), logoUrl: normalized?.logoUrl || defaults.logoUrl, portraitUrl: normalized?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: normalized?.originalPortraitUrl || defaults.originalPortraitUrl };
   } catch { return defaults; }
 }
 
 export async function getServices(): Promise<Service[]> {
   try {
     const data = await client.fetch<Service[]>('*[_type == "service"] | order(order asc){_id,title,description,order}');
-    if (data?.length) return data;
+    if (data?.length) return data.map(normalizeObjectStrings);
   } catch {}
   return [
     { _id: "shopify", title: "Shopify & Ecommerce Systems", description: "Build, redesign and improve Shopify stores, product experiences and connected ecommerce operations." },
@@ -66,20 +83,20 @@ export async function getServices(): Promise<Service[]> {
 export async function getProjects(): Promise<Project[]> {
   try {
     const data = await client.fetch<(Omit<Project, "imageUrl"> & { cmsImageUrl?: string })[]>('*[_type == "project" && status != "Pending scope confirmation"] | order(order asc){_id,title,category,summary,liveUrl,status,"cmsImageUrl":coalesce(coverImage.asset->url,mainImage.asset->url)}');
-    return (data ?? []).map((p) => ({ ...p, imageUrl: projectAssets[p._id] || p.cmsImageUrl || "" }));
+    return (data ?? []).map((item) => { const p = normalizeObjectStrings(item); return { ...p, imageUrl: projectAssets[p._id] || p.cmsImageUrl || "" }; });
   } catch { return []; }
 }
 
 export async function getProcess(): Promise<ProcessStep[]> {
-  try { return await client.fetch<ProcessStep[]>('*[_type == "processStep"] | order(order asc){_id,title,description,order}'); }
+  try { const data = await client.fetch<ProcessStep[]>('*[_type == "processStep"] | order(order asc){_id,title,description,order}'); return (data ?? []).map(normalizeObjectStrings); }
   catch { return []; }
 }
 export async function getFaqs(): Promise<Faq[]> {
-  try { return await client.fetch<Faq[]>('*[_type == "faq"] | order(order asc){_id,question,answer,order}'); }
+  try { const data = await client.fetch<Faq[]>('*[_type == "faq"] | order(order asc){_id,question,answer,order}'); return (data ?? []).map(normalizeObjectStrings); }
   catch { return []; }
 }
 export async function getTestimonials(): Promise<Testimonial[]> {
-  try { return await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order(reviewDate desc){_id,quote,rating,reviewDate,reviewDateLabel,reviewerHandle,reviewerLabel,reviewerCountry,platform,sourceUrl,sourceLabel,featured,repeatClient}'); }
+  try { const data = await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order(reviewDate desc){_id,quote,rating,reviewDate,reviewDateLabel,reviewerHandle,reviewerLabel,reviewerCountry,platform,sourceUrl,sourceLabel,featured,repeatClient}'); return (data ?? []).map(normalizeObjectStrings); }
   catch { return []; }
 }
 
