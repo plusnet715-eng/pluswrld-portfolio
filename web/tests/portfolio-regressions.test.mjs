@@ -112,15 +112,17 @@ test("About page is split into concise visitor-led sections", () => {
   assert.doesNotMatch(about, /THE THINKING BEHIND THE WORK|principle-block|profile-facts/);
 });
 
-test("Social profile icons use original brand colours with fixed sizing in both themes", () => {
-  assert.match(page, /className=\{"social-link social-link-" \+ slug\}/);
-  assert.match(page, /slug === "linkedin"/);
+test("Social profile icons use original brand colours and fixed sizing in both themes", () => {
+  assert.match(page, /className=\{"social-link social-link-" \+ icon\.slug\}/);
+  assert.doesNotMatch(page, /slug === "linkedin"/);
   assert.match(page, /cdn\.simpleicons\.org/);
   assert.match(page, /colour: "E4405F"/);
   assert.match(page, /colour: "0866FF"/);
   assert.match(page, /colour: "0A66C2"/);
   assert.match(css, /width:18px!important;height:18px!important/);
-  assert.match(css, /:root\[data-theme="dark"\] \.about-social-links \.social-link img/);
+  assert.match(css, /background:#fff/);
+  assert.match(css, /:root\[data-theme="dark"\] \.about-social-links \.social-link/);
+  assert.match(css, /filter:none!important/);
   assert.doesNotMatch(css, /about-social-links img\{filter:brightness\(0\) invert\(1\)\}/);
 });
 
