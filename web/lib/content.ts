@@ -1,4 +1,4 @@
-import { createClient } from "@sanity/client";
+import { createClient } from "@sanity/client";\nimport { cache } from "react";
 
 const projectId = "a8mywjme";
 const dataset = "production";
@@ -60,7 +60,7 @@ const projectAssets: Record<string, string> = {
   "c25caa1f-4d7d-4db1-a5ca-8439fa456d52": "/soulvibevault-project.svg"
 };
 
-export async function getSettings(): Promise<Settings> {
+export const getSettings = cache(async (): Promise<Settings> => {
   try {
     const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"logoUrl":logo.asset->url,"logoDarkUrl":logoDark.asset->url,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
     const normalized = data ? normalizeObjectStrings(data) : null;
