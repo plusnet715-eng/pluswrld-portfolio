@@ -63,7 +63,7 @@ function DeviceView({ project, variant }: { project: Project & { liveUrl: string
       <span className="device-site-nav"><strong>{project.title}</strong><small>SHOP&nbsp;&nbsp; ABOUT&nbsp;&nbsp; CONTACT</small></span>
       <span className="device-site-hero">
         <span className="device-site-copy"><small>SELECTED CLIENT WORK</small><b>{project.title}</b><em>{variant === "phone" ? "Explore the collection" : "A storefront shaped around the brand."}</em><span className="device-site-cta">EXPLORE</span></span>
-        <span className="device-site-image">{project.imageUrl ? <Image src={project.imageUrl} alt={project.title + " project visual"} fill sizes="(max-width: 760px) 24vw, 260px" /> : <span className="mock-project-empty">PROJECT VISUAL</span>}</span>
+        <span className="device-site-image">{project.imageUrl ? <Image src={project.imageUrl} alt={project.title + " project visual"} fill sizes="(max-width: 760px) 24vw, 260px" priority={variant === "desktop"} /> : <span className="mock-project-empty">PROJECT VISUAL</span>}</span>
       </span>
       <span className="device-site-lower"><i /><i /><i /></span>
     </span>
