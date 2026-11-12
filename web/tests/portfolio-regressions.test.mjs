@@ -21,13 +21,13 @@ const projectCard = read("components/project-card.tsx");
 test("About page presents a scannable builder profile without duplicating the project gallery", () => {
   assert.match(about, /ABOUT PAUL \/ PLUSWRLD/);
   assert.match(about, /I do more than shape the idea\. I build the solution\./);
-  assert.match(about, /Ecommerce & websites/);
-  assert.match(about, /No-code applications/);
-  assert.match(about, /Memberships & communities/);
-  assert.match(about, /AI & connected workflows/);
+  assert.match(about, /Ecommerce stores/);
+  assert.match(about, /Websites and no-code apps/);
+  assert.match(about, /Memberships and communities/);
+  assert.match(about, /Connected business workflows/);
   assert.match(about, /WHO I WORK WITH/);
   assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
-  assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);
+  assert.match(about, /WHAT YOU CAN EXPECT/);
   assert.match(about, /Explore my past work/);
   assert.doesNotMatch(about, /MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\.map|ProjectCard/);
 });
@@ -60,6 +60,8 @@ test("Header and footer use the CMS wordmark when available and avoid an outdate
   assert.match(chrome, /settings\.logoUrl/);
   assert.match(chrome, /brand-image-lockup/);
   assert.match(content, /"logoUrl":logo\.asset->url/);
+  assert.match(content, /"logoDarkUrl":logoDark\.asset->url/);
+  assert.match(schema, /name: "logoDark"/);
 });
 
 test("About social icons link only to approved profiles with valid URLs", () => {
@@ -69,7 +71,7 @@ test("About social icons link only to approved profiles with valid URLs", () => 
 });
 
 test("Old unapproved logo is not used as a default fallback", () => {
-  assert.match(content, /logoUrl: "\/pluswrld-logo\.svg"/);
+  assert.match(content, /logoUrl: "\/pluswrld-logo\.svg", logoDarkUrl: "\/pluswrld-logo-dark\.svg"/);
   assert.doesNotMatch(content, /98cba91b62b71c2bb3eef1129af6b63b7fab9095/);
 });
 
@@ -78,17 +80,17 @@ test("Pluswrld positioning presents Paul as a digital builder with search and so
   assert.match(layout, /lang="en-NG"/);
   assert.match(page, /<span>\{settings\.role\}<\/span>/);
   assert.match(content, /role: "Digital Builder \\| Ecommerce, Automation & Visibility"/);
-  assert.match(content, /strengthen their visibility across social media and search engines/);
+  assert.match(content, /Pluswrld is the brand name I chose to represent my digital work/);
 });
 test("Approved vector logo has separate palettes for light and dark themes", () => {
-  assert.match(chrome, /src="\/pluswrld-logo\.svg"/);
-  assert.match(chrome, /src="\/pluswrld-logo-dark\.svg"/);
+  assert.match(chrome, /src=\{settings\.logoUrl \|\| "\/pluswrld-logo\.svg"\}/);
+  assert.match(chrome, /src=\{settings\.logoDarkUrl \|\| "\/pluswrld-logo-dark\.svg"\}/);
   assert.match(chrome, /width=\{1932\} height=\{814\}/);
   assert.match(content, /logoUrl: "\/pluswrld-logo\.svg"/);
   assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-light/);
   assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-dark/);
-  assert.match(read("public/pluswrld-logo.svg"), /stop-color="#087b32"/);
-  assert.match(read("public/pluswrld-logo-dark.svg"), /stop-color="#a1f238"/);
+  assert.match(read("public/pluswrld-logo.svg"), /stop-color="#36bd2d"/);
+  assert.match(read("public/pluswrld-logo-dark.svg"), /stop-color="#c3f35a"/);
 });
 
 
@@ -107,7 +109,8 @@ test("Social profile icons include a local vector LinkedIn mark", () => {
   assert.match(page, /<svg className="social-link-icon-linkedin" viewBox="0 0 24 24"/);
   assert.match(page, /social-mark-light/);
   assert.match(page, /social-mark-dark/);
-  assert.doesNotMatch(css, /social-link-linkedin\\{color:#0a66c2/);
+  assert.match(css, /social-link-linkedin\{color:#087b32;background:#f5faf5\}/);
+  assert.match(css, /social-link-linkedin\{color:#a1f238;background:#132319\}/);
 });
 
 test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
@@ -122,6 +125,10 @@ test("CMS text normaliser converts escaped newline sequences into paragraph brea
   assert.match(page, /TextParagraphs text=\{item\.answer\}/);
 });
 
+
+test("CMS-uploaded project imagery overrides legacy static project images", () => {
+  assert.match(content, /imageUrl: p\.cmsImageUrl \|\| projectAssets\[p\._id\] \|\| ""/);
+});
 
 test("Both Pluswrld theme logos are transparent vector assets", () => {
   const light = read("public/pluswrld-logo.svg");
