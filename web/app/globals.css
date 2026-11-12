@@ -948,3 +948,39 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   .about-fit-card h3,.about-principle-card h3{margin-top:15px}
   .about-work-bridge .container{grid-template-columns:1fr;gap:16px}
 }
+
+
+/* Final brand presentation: strong green gradients on white, luminous greens on black. */
+.brand-logo-theme-swap{width:100%;max-width:100%;line-height:0}
+.brand-logo-image{display:block;width:100%;height:auto;max-height:98px;object-fit:contain;filter:none!important;opacity:1}
+.footer-brand-lockup .brand-image-lockup{width:250px;max-width:100%}
+.footer-brand-lockup .brand-logo-image{max-height:108px}
+:root[data-theme="dark"] .brand-logo-light{display:none}
+:root[data-theme="dark"] .brand-logo-dark{display:block}
+:root:not([data-theme="dark"]) .brand-logo-light{display:block}
+:root:not([data-theme="dark"]) .brand-logo-dark{display:none}
+@media(max-width:760px){
+  .footer-brand-lockup .brand-image-lockup{width:195px}
+  .footer-brand-lockup .brand-logo-image{max-height:86px}
+}
+
+/* One Pluswrld green identity for every social mark; theme changes brightness, not brand. */
+.about-social-links{gap:9px;flex-wrap:wrap}
+.about-social-links .social-link{
+  display:grid;place-items:center;width:36px;height:36px;
+  border:1px solid #d5e7d8;border-radius:50%;background:#f5faf5;
+  color:#087b32;transition:transform .2s,border-color .2s,background .2s;
+}
+.about-social-links .social-link:hover{transform:translateY(-3px);border-color:#8fc99b;background:#edf8ef}
+.about-social-links .social-link svg{display:block;width:18px;height:18px;fill:currentColor}
+.about-social-links .social-mark-pair{display:grid;place-items:center;width:18px;height:18px}
+.about-social-links .social-mark-pair img{display:block;width:18px;height:18px;object-fit:contain}
+.about-social-links .social-mark-dark{display:none}
+.about-social-links .social-link-linkedin{color:#087b32;background:#f5faf5}
+:root[data-theme="dark"] .about-social-links .social-link{
+  border-color:#35543c;background:#132319;color:#a1f238;
+}
+:root[data-theme="dark"] .about-social-links .social-link:hover{border-color:#75ce79;background:#1a3522}
+:root[data-theme="dark"] .about-social-links .social-mark-light{display:none}
+:root[data-theme="dark"] .about-social-links .social-mark-dark{display:block}
+:root[data-theme="dark"] .about-social-links .social-link-linkedin{color:#a1f238;background:#132319}
