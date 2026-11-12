@@ -16,7 +16,7 @@ export type Project = { _id: string; title: string; category: string; summary: s
 export type ProcessStep = { _id: string; title: string; description: string; order?: number };
 export type Faq = { _id: string; question: string; answer: string; order?: number };
 export type Testimonial = { _id: string; quote: string; rating: number; reviewDate: string; reviewDateLabel?: string; reviewerHandle: string; reviewerLabel: string; reviewerCountry?: string; platform: string; sourceUrl?: string; sourceLabel?: string; featured?: boolean; repeatClient?: boolean };
-export type PresenceLink = { _id: string; name: string; url: string; order?: number };
+export type PresenceLink = { _id: string; name: string; url: string; order?: number; enabled?: boolean };
 
 const defaults: Settings = {
   name: "Pluswrld", fullName: "Paul Oloruntobi",
@@ -66,7 +66,7 @@ export const getSettings = cache(async (): Promise<Settings> => {
     const normalized = data ? normalizeObjectStrings(data) : null;
     return { ...defaults, ...(normalized ?? {}), logoUrl: normalized?.logoUrl || defaults.logoUrl, logoDarkUrl: normalized?.logoDarkUrl || defaults.logoDarkUrl, portraitUrl: normalized?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: normalized?.originalPortraitUrl || defaults.originalPortraitUrl };
   } catch { return defaults; }
-}
+});
 
 export async function getServices(): Promise<Service[]> {
   try {
@@ -101,18 +101,17 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 }
 
 
-export async function getSocialLinks(): Promise<PresenceLink[]> {
-  try {
-    return await client.fetch<PresenceLink[]>(
-      '*[_type == "onlinePresence" && defined(url) && enabled == true && name in ["Instagram","Facebook","TikTok","LinkedIn","Threads"]] | order(order asc){_id,name,url,order}'
-    );
-  } catch { return []; }
-}
+export const getSocialLinks = cache(async (): Promise<PresenceLink[]> => {
+  const links = await getPresenceLinks();
+  return links.filter((link) =>
+    link.enabled === true && ["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads"].includes(link.name)
+  );
+});
 
-export async function getPresenceLinks(): Promise<PresenceLink[]> {
+export const getPresenceLinks = cache(async (): Promise<PresenceLink[]> => {
   try {
     return await client.fetch<PresenceLink[]>(
-      '*[_type == "onlinePresence" && defined(url) && name in ["Fiverr profile","Upwork profile","Instagram","Facebook","TikTok","LinkedIn","Threads","WhatsApp"] && (enabled != false)] | order(order asc){_id,name,url,order}'
+      '*[_type == "onlinePresence" && defined(url) && name in ["Fiverr profile","Upwork profile","Instagram","Facebook","TikTok","LinkedIn","Threads","WhatsApp"] && (enabled != false)] | order(order asc){_id,name,url,order,enabled}'
     );
   } catch {
     return [
@@ -121,4 +120,4 @@ export async function getPresenceLinks(): Promise<PresenceLink[]> {
       { _id: "whatsapp", name: "WhatsApp", url: "https://wa.me/2349161612746", order: 7 }
     ];
   }
-}
+});
