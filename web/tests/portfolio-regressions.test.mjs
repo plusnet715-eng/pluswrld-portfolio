@@ -24,7 +24,7 @@ test("About page is a detailed personal profile, not a project gallery", () => {
   assert.match(about, /AI & business automation/);
   assert.match(about, /Good implementation starts with good questions/);
   assert.match(about, /Explore my past work/);
-  assert.doesNotMatch(about, /THE PERSON BEHIND PLUSWRLD|MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\\.map|ProjectCard/);
+  assert.doesNotMatch(about, /THE PERSON BEHIND PLUSWRLD|MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\.map|ProjectCard/);
 });
 
 test("Explore dropdown closes from state and supports Escape and outside clicks", () => {
@@ -51,7 +51,7 @@ test("CTA label is dark green while the existing band container stays unchanged"
   assert.match(css, /\.cta-band \.eyebrow\s*\{[^}]*color:#0b3d1b/i);
   assert.match(css, /\.cta-band\{[^}]*background:linear-gradient\(110deg,#0b2b16,#0a401c 52%,#087329\)/i);
 });
-test("The same approved full wordmark is used in the header and footer", () => {
+test("Header and footer use the CMS wordmark when available and avoid an outdated fallback", () => {
   assert.match(chrome, /settings\.logoUrl/);
   assert.match(chrome, /brand-image-lockup/);
   assert.match(content, /"logoUrl":logo\.asset->url/);
@@ -60,7 +60,7 @@ test("The same approved full wordmark is used in the header and footer", () => {
 test("About social icons link only to approved profiles with valid URLs", () => {
   assert.match(content, /enabled == true && name in \["Instagram","Facebook","TikTok","LinkedIn","Threads"\]/);
   assert.match(page, /AboutSocialLinks links=\{socialLinks\}/);
-  assert.match(page, /cdn\\.simpleicons\\.org/);
+  assert.match(page, /cdn\.simpleicons\.org/);
 });
 
 test("Old unapproved logo is not used as a default fallback", () => {
