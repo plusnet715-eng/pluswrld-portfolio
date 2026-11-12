@@ -907,3 +907,44 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 /* The approved Pluswrld vector wordmark is resolution-independent and theme-adaptive. */
 .brand-logo-vector{filter:saturate(1.12) contrast(1.04)}
 :root[data-theme="dark"] .brand-logo-vector{filter:brightness(1.72) saturate(1.18) contrast(1.04)}
+
+
+/* Theme-specific transparent vector marks: sharp at any zoom, without brightness filters. */
+.brand-logo-theme-swap{display:block;width:100%;line-height:0}
+.brand-logo-image{display:block;width:100%;height:auto;max-height:96px;object-fit:contain;filter:none!important;image-rendering:auto}
+.brand-logo-dark{display:none}
+:root[data-theme="dark"] .brand-logo-light{display:none}
+:root[data-theme="dark"] .brand-logo-dark{display:block}
+:root[data-theme="dark"] .brand-logo-image{filter:none!important}
+
+/* LinkedIn uses a local vector mark with a distinct, accessible brand colour. */
+.about-social-links .social-link-icon-linkedin{display:block;width:18px;height:18px;fill:currentColor}
+.about-social-links .social-link-linkedin{color:#0a66c2;background:#fff}
+:root[data-theme="dark"] .about-social-links .social-link-linkedin{color:#79bfff;background:#14261a}
+
+/* Short audience and delivery-principle cards make the About page easier to scan. */
+.about-fit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.about-fit-card{min-height:165px;padding:24px 25px;border:1px solid var(--line);background:#fff}
+.about-fit-card>span,.about-principle-card>span{display:block;color:#23783c;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:.13em}
+.about-fit-card h3,.about-principle-card h3{margin:21px 0 8px;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:21px;line-height:1.2;letter-spacing:-.03em}
+.about-fit-card p,.about-principle-card p{margin:0;color:#69776d;font-size:12px;line-height:1.8}
+.about-principle-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.about-principle-card{min-height:170px;padding:24px 25px;border:1px solid #dce8dc;background:#fff}
+.about-work-bridge .container{grid-template-columns:1fr minmax(280px,.75fr)}
+.about-work-bridge-heading h2{max-width:600px;margin:0;font-family:acumin-pro,"Acumin Pro",Arial,sans-serif;font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-.05em}
+.about-work-bridge .container>div:last-child{display:grid;gap:18px}
+.about-work-bridge .container>div:last-child .text-link{grid-column:1;justify-self:start}
+:root[data-theme="dark"] .about-fit-card,
+:root[data-theme="dark"] .about-principle-card{border-color:#2c4433;background:#132319}
+:root[data-theme="dark"] .about-fit-card h3,
+:root[data-theme="dark"] .about-principle-card h3{color:#edf5ee}
+:root[data-theme="dark"] .about-fit-card p,
+:root[data-theme="dark"] .about-principle-card p{color:#b7c6ba}
+:root[data-theme="dark"] .about-fit-card>span,
+:root[data-theme="dark"] .about-principle-card>span{color:#83d596}
+@media(max-width:760px){
+  .about-fit-grid,.about-principle-grid{grid-template-columns:1fr}
+  .about-fit-card,.about-principle-card{min-height:0;padding:22px}
+  .about-fit-card h3,.about-principle-card h3{margin-top:15px}
+  .about-work-bridge .container{grid-template-columns:1fr;gap:16px}
+}
