@@ -1,4 +1,5 @@
-import { createClient } from "@sanity/client";\nimport { cache } from "react";
+import { createClient } from "@sanity/client";
+import { cache } from "react";
 
 const projectId = "a8mywjme";
 const dataset = "production";
