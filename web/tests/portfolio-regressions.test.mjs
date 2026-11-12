@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import test from "node:test";
+import { runInNewContext } from "node:vm";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const read = (path) => readFileSync(resolve(here, "..", path), "utf8");
@@ -15,15 +16,18 @@ const css = read("app/globals.css");
 const content = read("lib/content.ts");
 const projectCard = read("components/project-card.tsx");
 
-test("About page is a detailed personal profile, not a project gallery", () => {
+test("About page presents a scannable builder profile without duplicating the project gallery", () => {
   assert.match(about, /ABOUT PAUL \/ PLUSWRLD/);
-  assert.match(about, /Builder by practice\. Problem-solver by approach\./);
+  assert.match(about, /A builder who cares about what happens after launch\./);
   assert.match(about, /Ecommerce & websites/);
   assert.match(about, /No-code applications/);
   assert.match(about, /Memberships & communities/);
   assert.match(about, /AI & connected workflows/);
+  assert.match(about, /WHO I WORK WITH/);
+  assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
+  assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);
   assert.match(about, /Explore my past work/);
-  assert.doesNotMatch(about, /THE PERSON BEHIND PLUSWRLD|MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\.map|ProjectCard/);
+  assert.doesNotMatch(about, /MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\.map|ProjectCard/);
 });
 
 test("Explore dropdown closes from state and supports Escape and outside clicks", () => {
@@ -63,7 +67,7 @@ test("About social icons link only to approved profiles with valid URLs", () => 
 });
 
 test("Old unapproved logo is not used as a default fallback", () => {
-  assert.match(content, /logoUrl: ""/);
+  assert.match(content, /logoUrl: "\/pluswrld-logo\\.svg"/);
   assert.doesNotMatch(content, /98cba91b62b71c2bb3eef1129af6b63b7fab9095/);
 });
 
@@ -73,20 +77,22 @@ test("Pluswrld positioning presents Paul as a digital builder with search and so
   assert.match(content, /role: "Digital Builder & Growth Systems Specialist"/);
   assert.match(content, /strengthen their visibility across social media and search engines/);
 });
-test("Approved transparent logo adapts to both light and dark themes", () => {
+test("Approved vector logo has separate palettes for light and dark themes", () => {
   assert.match(chrome, /src="\/pluswrld-logo\.svg"/);
+  assert.match(chrome, /src="\/pluswrld-logo-dark\.svg"/);
   assert.match(chrome, /width=\{1932\} height=\{814\}/);
-  assert.match(chrome, /unoptimized/);
-  assert.match(css, /\.brand-logo-image\{filter:saturate\(1\.18\) contrast\(1\.06\)/);
-  assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-vector\{filter:brightness\(1\.72\)/);
+  assert.match(content, /logoUrl: "\/pluswrld-logo\.svg"/);
+  assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-light/);
+  assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-dark/);
 });
 
 
 test("About page is split into concise visitor-led sections", () => {
   assert.match(about, /WHAT I BUILD/);
+  assert.match(about, /WHO I WORK WITH/);
   assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
   assert.match(about, /HOW I WORK/);
-  assert.match(about, /WHAT GUIDES THE WORK/);
+  assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);
   assert.doesNotMatch(about, /THE THINKING BEHIND THE WORK|principle-block|profile-facts/);
 });
 
@@ -96,19 +102,25 @@ test("Social profile icons include a local vector LinkedIn mark", () => {
   assert.match(page, /<svg viewBox="0 0 24 24"/);
 });
 
-test("CMS plain text normalises escaped newline sequences across content types", () => {
-  assert.match(content, /function normalizeCmsText/);
+test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
+  const match = content.match(/function normalizeCmsText\(value: string \| undefined \| null\): string \{[\s\S]*?\n\}/);
+  assert.ok(match, "normalizer function is present");
+  const normalizeCmsText = runInNewContext("(" + match[0].replace("value: string | undefined | null", "value") + ")");
+  assert.equal(normalizeCmsText("First\\n\\nSecond"), "First\n\nSecond");
+  assert.equal(normalizeCmsText("First\r\n\r\nSecond"), "First\n\nSecond");
   assert.match(content, /function normalizeObjectStrings/);
-  assert.match(content, /map\(normalizeObjectStrings\)/);
   assert.match(page, /function TextParagraphs/);
   assert.match(page, /TextParagraphs text=\{item\.answer\}/);
 });
 
 
-test("Pluswrld logo is an external vector asset with transparent background", () => {
-  const fs = read("public/pluswrld-logo.svg");
-  assert.match(fs, /<svg[^>]+viewBox="0 0 1932 814"/);
-  assert.match(fs, /<linearGradient/);
-  assert.doesNotMatch(fs, /<rect|<image/);
+test("Both Pluswrld theme logos are transparent vector assets", () => {
+  const light = read("public/pluswrld-logo.svg");
+  const dark = read("public/pluswrld-logo-dark.svg");
+  for (const svg of [light, dark]) {
+    assert.match(svg, /<svg[^>]+viewBox="0 0 1932 814"/);
+    assert.match(svg, /<linearGradient/);
+    assert.doesNotMatch(svg, /<rect|<image/);
+  }
   assert.match(chrome, /unoptimized/);
 });
