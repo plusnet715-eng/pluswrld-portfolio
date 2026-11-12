@@ -29,7 +29,7 @@ test("About page presents a scannable builder profile without duplicating the pr
   assert.match(about, /Connected business workflows/);
   assert.match(about, /WHO I WORK WITH/);
   assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
-  assert.match(about, /WHAT YOU CAN EXPECT/);\n  const order = ["INTRODUCTION", "MEET THE BUILDER", "WHAT I BUILD", "WHO I WORK WITH", "SEARCH & SOCIAL VISIBILITY", "HOW I WORK", "WHAT YOU CAN EXPECT", "PAST WORK"];\n  const positions = order.map((label) => about.indexOf(label));\n  assert.ok(positions.every((position) => position >= 0));\n  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
+  assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);\n  const order = ["INTRODUCTION", "MEET THE BUILDER", "WHAT I BUILD", "WHO I WORK WITH", "SEARCH & SOCIAL VISIBILITY", "HOW I WORK", "WHAT GOOD DELIVERY LOOKS LIKE", "PAST WORK"];\n  const positions = order.map((label) => about.indexOf(label));\n  assert.ok(positions.every((position) => position >= 0));\n  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
   assert.match(about, /Explore my past work/);
   assert.doesNotMatch(about, /MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\.map|ProjectCard/);
 });
