@@ -141,7 +141,9 @@ function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
       const icon = icons[link.name.toLowerCase()];
       if (!icon) return null;
       return <a key={link._id} className={"social-link social-link-" + icon.slug} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={"Visit " + link.name + " profile"} title={link.name}>
-        <img src={"https://cdn.simpleicons.org/" + icon.slug + "/" + icon.colour} alt="" width="18" height="18" loading="lazy"/>
+        {icon.slug === "linkedin"
+          ? <svg className="social-link-icon-linkedin" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.919-2.064 2.063-2.064 1.14 0 2.064.926 2.064 2.064 0 1.139-.923 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+          : <img src={"https://cdn.simpleicons.org/" + icon.slug + "/" + icon.colour} alt="" width="18" height="18" loading="lazy"/>}
       </a>;
     })}
   </nav>;
