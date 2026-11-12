@@ -62,6 +62,8 @@ test("Header and footer use the CMS wordmark when available and avoid an outdate
   assert.match(content, /"logoUrl":logo\.asset->url/);
   assert.match(content, /"logoDarkUrl":logoDark\.asset->url/);
   assert.match(schema, /name: "logoDark"/);
+  assert.match(content, /"logoDarkUrl":logoDark\.asset->url/);
+  assert.match(schema, /name: "logoDark"/);
 });
 
 test("About social icons link only to approved profiles with valid URLs", () => {
@@ -86,9 +88,11 @@ test("Approved vector logo has separate palettes for light and dark themes", () 
   assert.match(chrome, /src=\{settings\.logoUrl \|\| "\/pluswrld-logo\.svg"\}/);
   assert.match(chrome, /src=\{settings\.logoDarkUrl \|\| "\/pluswrld-logo-dark\.svg"\}/);
   assert.match(chrome, /width=\{1932\} height=\{814\}/);
-  assert.match(content, /logoUrl: "\/pluswrld-logo\.svg"/);
+  assert.match(content, /logoUrl: "\/pluswrld-logo\.svg", logoDarkUrl: "\/pluswrld-logo-dark\.svg"/);
   assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-light/);
   assert.match(css, /:root\[data-theme="dark"\] \.brand-logo-dark/);
+  assert.match(schema, /Full wordmark logo — light theme/);
+  assert.match(schema, /Full wordmark logo — dark theme/);
   assert.match(read("public/pluswrld-logo.svg"), /stop-color="#36bd2d"/);
   assert.match(read("public/pluswrld-logo-dark.svg"), /stop-color="#c3f35a"/);
 });
@@ -99,7 +103,7 @@ test("About page is split into concise visitor-led sections", () => {
   assert.match(about, /WHO I WORK WITH/);
   assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
   assert.match(about, /HOW I WORK/);
-  assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);
+  assert.match(about, /WHAT YOU CAN EXPECT/);
   assert.doesNotMatch(about, /THE THINKING BEHIND THE WORK|principle-block|profile-facts/);
 });
 
