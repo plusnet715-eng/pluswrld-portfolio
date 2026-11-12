@@ -42,7 +42,7 @@ export const revalidate = 300;
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const [settings, profiles] = await Promise.all([getSettings(), getPresenceLinks()]);
   const socialProfiles = profiles.filter((profile) =>
-    ["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads"].includes(profile.name)
+    profile.enabled === true && ["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads"].includes(profile.name)
   );
   const structuredData = [
     {
