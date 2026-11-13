@@ -120,7 +120,7 @@ test("Social profile icons use original brand colours and LinkedIn renders local
   assert.match(page, /icon\.slug === "linkedin"/);
   assert.match(page, /className="social-link-icon-linkedin"/);
   assert.match(page, /<path fill="#0A66C2"/);
-  assert.match(page, /cdn\.simpleicons\.org/);
+  assert.ok(page.includes('src={"/platform/" + icon.slug + ".svg"}'));
   assert.match(page, /colour: "E4405F"/);
   assert.match(page, /colour: "0866FF"/);
   assert.match(page, /colour: "0A66C2"/);
@@ -134,8 +134,8 @@ test("Platform wall icons are self-hosted instead of loaded from third-party ico
   const start = page.indexOf("const platformGroups");
   const end = page.indexOf("function PlatformWall", start);
   const groups = page.slice(start, end);
-  assert.match(groups, /src:"\\/platform\\/shopify\.svg"/);
-  assert.doesNotMatch(groups, /https:\\/\\//);
+  assert.ok(groups.includes('src:"/platform/shopify.svg"'));
+  assert.equal(groups.includes("https://"), false);
 });
 
 test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
