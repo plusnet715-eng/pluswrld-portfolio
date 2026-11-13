@@ -9,13 +9,13 @@ import { Reveal } from "../../components/reveal";
 import { MobileDrawer } from "../../components/mobile-drawer";
 import { getFaqs, getProcess, getProjects, getServices, getSettings, getSocialLinks, getTestimonials, type PresenceLink, type Project, type Settings, type Testimonial } from "../../lib/content";
 
-const pageTitles: Record<string, string> = { "": "Shopify Store Setup, Website Development & Automation", about: "About Paul Oloruntobi | Shopify & Digital Systems Builder", "how-i-can-help": "Shopify, Website & Automation Solutions for Businesses", services: "Shopify Store Setup, Redesign & Website Development", process: "Our Shopify & Website Development Process", work: "Shopify Stores, Websites & Digital Projects", testimonials: "Client Reviews & Testimonials", faq: "Frequently Asked Questions", contact: "Discuss a Digital Project", "services/shopify-store-setup": serviceLandingPages["services/shopify-store-setup"].title, "services/website-development": serviceLandingPages["services/website-development"].title, "services/ai-automation": serviceLandingPages["services/ai-automation"].title, "services/creator-commerce": serviceLandingPages["services/creator-commerce"].title, "services/seo-social-visibility": serviceLandingPages["services/seo-social-visibility"].title };
-const pageDescriptions: Record<string, string> = { "": "Pluswrld builds and improves Shopify stores, ecommerce websites, no-code applications and AI automations, with practical SEO and social visibility support.", about: "Meet Paul Oloruntobi, the Shopify and digital systems builder behind Pluswrld. Explore his ecommerce, website development, no-code, automation and online visibility work.", "how-i-can-help": "Get practical help with Shopify store setup, ecommerce improvements, website development, no-code apps and business automation.", services: "Shopify store setup, redesign, theme customisation, ecommerce website development, no-code applications, creator commerce and AI workflow automation.", process: "See how Shopify, website and automation projects are scoped, built, tested and handed over.", work: "Explore selected Shopify ecommerce stores, website builds and digital systems delivered for clients.", testimonials: "Read client feedback about Shopify store setup, website development and digital implementation work.", faq: "Answers about Shopify services, website development, project scope, platforms and delivery.", contact: "Discuss a Shopify store, ecommerce website, no-code application or business automation project with Pluswrld.", "services/shopify-store-setup": serviceLandingPages["services/shopify-store-setup"].description, "services/website-development": serviceLandingPages["services/website-development"].description, "services/ai-automation": serviceLandingPages["services/ai-automation"].description, "services/creator-commerce": serviceLandingPages["services/creator-commerce"].description, "services/seo-social-visibility": serviceLandingPages["services/seo-social-visibility"].description };
+const pageTitles: Record<string, string> = { "": "Shopify Store Setup, Website Development & Automation", about: "About Paul Oloruntobi | Shopify & Digital Systems Builder", "how-i-can-help": "Shopify, Website & Automation Solutions for Businesses", services: "Shopify Store Setup, Redesign & Website Development", process: "Our Shopify & Website Development Process", work: "Shopify Stores, Websites & Digital Projects", testimonials: "Client Reviews & Testimonials", faq: "Frequently Asked Questions", contact: "Discuss a Digital Project", "services/shopify-store-setup": "Shopify Store Setup, Redesign & Management", "services/website-development": "Website Development & No-Code Apps", "services/ai-automation": "AI Workflow & Business Automation", "services/creator-commerce": "Whop, Skool & Community Setup", "services/seo-social-visibility": "Website SEO & Social Commerce Setup" };
+const pageDescriptions: Record<string, string> = { "": "Pluswrld builds and improves Shopify stores, ecommerce websites, no-code applications and AI automations, with practical SEO and social visibility support.", about: "Meet Paul Oloruntobi, the Shopify and digital systems builder behind Pluswrld. Explore his ecommerce, website development, no-code, automation and online visibility work.", "how-i-can-help": "Get practical help with Shopify store setup, ecommerce improvements, website development, no-code apps and business automation.", services: "Shopify store setup, redesign, theme customisation, ecommerce website development, no-code applications, creator commerce and AI workflow automation.", process: "See how Shopify, website and automation projects are scoped, built, tested and handed over.", work: "Explore selected Shopify ecommerce stores, website builds and digital systems delivered for clients.", testimonials: "Read client feedback about Shopify store setup, website development and digital implementation work.", faq: "Answers about Shopify services, website development, project scope, platforms and delivery.", contact: "Discuss a Shopify store, ecommerce website, no-code application or business automation project with Pluswrld.", "services/shopify-store-setup": "Shopify store setup and redesign, theme customisation, product and variant setup, SEO foundations and store management by Pluswrld.", "services/website-development": "Business website development, Webflow builds, Bubble and FlutterFlow apps, customer portals and no-code MVP implementation by Pluswrld.", "services/ai-automation": "AI workflow automation, business process mapping, app integrations and repeatable operations systems designed and implemented by Pluswrld.", "services/creator-commerce": "Whop storefronts, Skool communities, memberships, digital products, Discord roles and paid-access automation setup by Pluswrld.", "services/seo-social-visibility": "Website SEO foundations, search metadata, indexing setup, social profile optimisation, Pinterest SEO and social-commerce connections by Pluswrld." };
 type RouteProps = { params: Promise<{ slug?: string[] }> };
 const serviceLandingPages: Record<string, { name: string; title: string; description: string; eyebrow: string; heading: string; intro: string; deliverables: { title: string; description: string }[]; scope: string; tools: string; cta: string }> = {
   "services/shopify-store-setup": {
     name: "Shopify Store Setup, Redesign & Management",
-    title: "Shopify Store Setup, Redesign & Management | Pluswrld",
+    title: "Shopify Store Setup, Redesign & Management",
     description: "Shopify store setup and redesign, theme customisation, product and variant setup, SEO foundations and store management by Pluswrld.",
     eyebrow: "SHOPIFY STORE SETUP & ECOMMERCE",
     heading: "Shopify stores built around how your business sells.",
@@ -34,7 +34,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
   },
   "services/website-development": {
     name: "Website Development and No-Code Applications",
-    title: "Website Development & No-Code Apps | Pluswrld",
+    title: "Website Development & No-Code Apps",
     description: "Business website development, Webflow builds, Bubble and FlutterFlow apps, customer portals and no-code MVP implementation by Pluswrld.",
     eyebrow: "WEBSITE DEVELOPMENT & NO-CODE",
     heading: "Websites and applications that make your business easier to use.",
@@ -53,7 +53,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
   },
   "services/ai-automation": {
     name: "AI Workflow and Business Automation",
-    title: "AI Workflow & Business Automation | Pluswrld",
+    title: "AI Workflow & Business Automation",
     description: "AI workflow automation, business process mapping, app integrations and repeatable operations systems designed and implemented by Pluswrld.",
     eyebrow: "AI & BUSINESS AUTOMATION",
     heading: "Connect your tools. Simplify repeatable work.",
@@ -72,7 +72,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
   },
   "services/creator-commerce": {
     name: "Whop, Skool and Community Commerce Setup",
-    title: "Whop, Skool & Community Setup | Pluswrld",
+    title: "Whop, Skool & Community Setup",
     description: "Whop storefronts, Skool communities, memberships, digital products, Discord roles and paid-access automation setup by Pluswrld.",
     eyebrow: "CREATOR & COMMUNITY COMMERCE",
     heading: "Build the systems behind your creator business.",
@@ -91,7 +91,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
   },
   "services/seo-social-visibility": {
     name: "Website SEO and Social Commerce Setup",
-    title: "Website SEO & Social Commerce Setup | Pluswrld",
+    title: "Website SEO & Social Commerce Setup",
     description: "Website SEO foundations, search metadata, indexing setup, social profile optimisation, Pinterest SEO and social-commerce connections by Pluswrld.",
     eyebrow: "SEARCH & SOCIAL VISIBILITY",
     heading: "Make your business easier to discover.",
