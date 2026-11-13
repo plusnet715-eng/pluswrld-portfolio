@@ -184,7 +184,7 @@ test("Wordmark is proportionally reduced and moved closer to the supporting tagl
 
 test("Logo wordmark is reduced independently of the supporting logo copy", () => {
   for (const path of ["public/pluswrld-logo.svg", "public/pluswrld-logo-dark.svg"]) {
-    assert.match(read(path), /translate\\(295 150\\) scale\\(0\\.70\\)/);
+    assert.match(read(path), /translate\(295 150\) scale\(0\.70\)/);
   }
 });
 
@@ -201,7 +201,7 @@ test("Testimonials prioritise the detailed Edison review and higher-rated feedba
 });
 
 test("Primary metadata describes the real Pluswrld services", () => {
-  assert.match(layout, /Shopify Store Setup, Websites & Automation \| Pluswrld/);
+  assert.match(layout, /Shopify, Websites, Automation & Paid Advertising \\| Pluswrld/);
   assert.match(layout, /plan, launch, manage and optimise paid advertising campaigns/);
   assert.doesNotMatch(layout, /knowledge comes from sensory ideas/i);
 });
