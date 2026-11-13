@@ -73,7 +73,8 @@ test("Header and footer use the CMS wordmark when available and avoid an outdate
 });
 
 test("About social icons link only to approved profiles with valid URLs", () => {
-  assert.match(content, /enabled == true && name in \["Instagram","Facebook","TikTok","LinkedIn","Threads"\]/);
+  assert.match(content, /link.enabled === true && \["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads", "WhatsApp", "X", "Twitter"\].includes\(link.name\)/);
+  assert.match(content, /name in \["Fiverr profile","Upwork profile","Instagram","Facebook","TikTok","LinkedIn","Threads","WhatsApp","X","Twitter"\]/);
   assert.match(page, /AboutSocialLinks links=\{socialLinks\}/);
   assert.match(page, /cdn\.simpleicons\.org/);
 });
@@ -85,7 +86,7 @@ test("Old unapproved logo is not used as a default fallback", () => {
 
 test("Pluswrld positioning presents Paul as a digital builder with search and social visibility work", () => {
   assert.match(page, /eyebrow="INTRODUCTION"/);
-  assert.match(page, /I build digital experiences that help businesses grow\\./);
+  assert.match(content, /I’m Paul Oloruntobi, a digital builder working under the name Pluswrld/);
   assert.match(layout, /lang="en-NG"/);
   assert.match(page, /<span>\{settings\.role\}<\/span>/);
   assert.match(content, /role: "Digital Builder \\| Ecommerce, Automation & Visibility"/);
@@ -113,7 +114,7 @@ test("About page is split into concise visitor-led sections", () => {
   assert.match(about, /WHO I WORK WITH/);
   assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
   assert.match(about, /HOW I WORK/);
-  assert.match(about, /WHAT YOU CAN EXPECT/);
+  assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);
   assert.doesNotMatch(about, /THE THINKING BEHIND THE WORK|principle-block|profile-facts/);
 });
 
