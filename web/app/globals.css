@@ -1011,3 +1011,16 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 :root[data-theme="dark"] .about-social-links .social-link img{
   filter:none!important;
 }
+
+
+/* Refined logo scale: keep the approved mark compact and proportional. */
+.site-header .brand-image-lockup{width:156px}
+.site-header .brand-logo-image{max-height:68px}
+.footer-brand-lockup .brand-image-lockup{width:164px;max-width:100%}
+.footer-brand-lockup .brand-logo-footer-fixed{max-height:70px}
+@media(max-width:760px){
+  .site-header .brand-image-lockup{width:142px}
+  .site-header .brand-logo-image{max-height:62px}
+  .footer-brand-lockup .brand-image-lockup{width:148px}
+  .footer-brand-lockup .brand-logo-footer-fixed{max-height:64px}
+}
