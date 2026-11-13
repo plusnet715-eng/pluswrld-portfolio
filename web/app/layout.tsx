@@ -9,19 +9,19 @@ const themeInit = `try { const saved = localStorage.getItem("pluswrld-theme") ||
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Shopify Store Setup, Website Development & Automation", template: "%s | Pluswrld" },
-  description: "Pluswrld helps businesses build and improve Shopify stores, ecommerce websites, no-code applications and AI automations, with practical SEO and social visibility support. Work with Paul Oloruntobi.",
+  description: "Build or improve your Shopify store, business website or no-code app. Pluswrld also connects AI workflows and strengthens search and social visibility.",
   applicationName: "Pluswrld",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Pluswrld",
-    title: "Shopify Store Setup, Website Development & Automation | Pluswrld",
+    title: "Shopify Store Setup, Websites & Automation | Pluswrld",
     description: "Shopify store setup and redesign, ecommerce websites, no-code apps, AI automation and SEO support by Paul Oloruntobi at Pluswrld."
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Builder for Shopify, Websites & Automation | Pluswrld",
-    description: "Shopify store setup, website development, no-code applications, AI workflows and search visibility for growing businesses."
+    title: "Shopify Store Setup, Websites & Automation | Pluswrld",
+    description: "Build or improve your Shopify store, business website or no-code app. Pluswrld also connects AI workflows and strengthens search and social visibility."
   },
   robots: {
     index: true,
@@ -40,9 +40,18 @@ export const revalidate = 300;
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const [settings, profiles] = await Promise.all([getSettings(), getPresenceLinks()]);
   const socialProfiles = profiles.filter((profile) =>
-    profile.enabled === true && ["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads"].includes(profile.name)
+    profile.enabled === true && ["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads", "WhatsApp", "X", "Twitter"].includes(profile.name)
   );
   const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Pluswrld",
+      url: siteUrl,
+      logo: `${siteUrl}/pluswrld-logo.svg`,
+      description: "Shopify store setup, website development, no-code applications, AI workflow automation and search and social visibility support.",
+      sameAs: socialProfiles.map((profile) => profile.url)
+    },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
