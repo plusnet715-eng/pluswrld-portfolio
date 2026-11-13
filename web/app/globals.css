@@ -1037,3 +1037,7 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   .footer-brand-lockup .brand-image-lockup{width:168px}
   .footer-brand-lockup .brand-logo-footer-fixed{max-height:71px}
 }
+
+
+/* Clarify the name used in Fiverr reviews. */
+.about-name-note{display:block;margin-top:4px;color:var(--muted,#69756d);font-size:.78rem;line-height:1.4}
