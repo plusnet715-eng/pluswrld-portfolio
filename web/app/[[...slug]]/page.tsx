@@ -300,7 +300,7 @@ async function About({ settings }: { settings: Settings }) {
   ];
   const visibility = [
     { label:"SEARCH VISIBILITY", title:"Help customers find you through search", description:"I improve website structure, on-page content and relevant technical foundations so search engines can understand the business and the pages it offers." },
-    { label:"SOCIAL VISIBILITY", title:"Make your social presence work harder", description:"I help set up and optimise social profiles, present offers clearly and connect relevant social-commerce features—giving people a clearer path from discovery to action." }
+    { label:"SOCIAL VISIBILITY", title:"Social profile setup and commerce connections", description:"I set up and optimise business social profiles, connect relevant social-commerce features and make it easier for people to move from discovery to your offer. I do not provide ongoing posting or paid campaign management." }
   ];
   const approach = [
     ["01","Understand the business","We start with what you want customers to do, what your team needs and what is getting in the way."],
