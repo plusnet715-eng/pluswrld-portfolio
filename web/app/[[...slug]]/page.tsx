@@ -160,7 +160,7 @@ function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
     facebook: { slug: "facebook", colour: "0866FF" },
     tiktok: { slug: "tiktok", colour: "000000" },
     linkedin: { slug: "linkedin", colour: "0A66C2" },
-    threads: { slug: "threads", colour: "000000" }
+    threads: { slug: "threads", colour: "000000" },\n    whatsapp: { slug: "whatsapp", colour: "25D366" },\n    x: { slug: "x", colour: "000000" },\n    twitter: { slug: "x", colour: "000000" }
   };
   if (!links.length) return null;
   return <nav className="about-social-links" aria-label="Social media profiles">
