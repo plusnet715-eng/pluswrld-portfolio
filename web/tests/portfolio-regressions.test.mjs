@@ -62,11 +62,10 @@ test("CTA label is dark green while the existing band container stays unchanged"
   assert.match(css, /\.cta-band \.eyebrow\s*\{[^}]*color:#0b3d1b/i);
   assert.match(css, /\.cta-band\{[^}]*background:linear-gradient\(110deg,#0b2b16,#0a401c 52%,#087329\)/i);
 });
-test("Header and footer use the CMS wordmark when available and avoid an outdated fallback", () => {
+test("Header and footer use the approved local vector wordmarks", () => {
   assert.match(chrome, /settings\.logoUrl/);
   assert.match(chrome, /brand-image-lockup/);
-  assert.match(content, /"logoUrl":logo\.asset->url/);
-  assert.match(content, /"logoDarkUrl":logoDark\.asset->url/);
+  assert.match(content, /logoUrl: defaults\.logoUrl, logoDarkUrl: defaults\.logoDarkUrl/);
   assert.match(schema, /name: "logoDark"/);
   assert.match(content, /"logoDarkUrl":logoDark\.asset->url/);
   assert.match(schema, /name: "logoDark"/);
