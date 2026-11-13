@@ -74,7 +74,7 @@ test("About social icons link only to approved profiles with valid URLs", () => 
   assert.match(content, /link.enabled === true && \["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads", "WhatsApp", "X", "Twitter"\].includes\(link.name\)/);
   assert.match(content, /name in \["Fiverr profile","Upwork profile","Instagram","Facebook","TikTok","LinkedIn","Threads","WhatsApp","X","Twitter"\]/);
   assert.match(page, /AboutSocialLinks links=\{socialLinks\}/);
-  assert.match(page, /cdn\.simpleicons\.org/);
+  assert.match(page, /src=\{\"\\/platform\\/\" \+ icon\.slug \+ \"\\.svg\"\}/);
 });
 
 test("Old unapproved logo is not used as a default fallback", () => {
@@ -128,6 +128,14 @@ test("Social profile icons use original brand colours and LinkedIn renders local
   assert.match(css, /background:#fff/);
   assert.match(css, /:root\[data-theme="dark"\] \.about-social-links \.social-link/);
   assert.match(css, /filter:none!important/);
+});
+
+test("Platform wall icons are self-hosted instead of loaded from third-party icon hosts", () => {
+  const start = page.indexOf("const platformGroups");
+  const end = page.indexOf("function PlatformWall", start);
+  const groups = page.slice(start, end);
+  assert.match(groups, /src:"\\/platform\\/shopify\.svg"/);
+  assert.doesNotMatch(groups, /https:\\/\\//);
 });
 
 test("CMS text normaliser converts escaped newline sequences into paragraph breaks", () => {
