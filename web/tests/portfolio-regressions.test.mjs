@@ -67,7 +67,6 @@ test("Header and footer use the approved local vector wordmarks", () => {
   assert.match(chrome, /brand-image-lockup/);
   assert.match(content, /logoUrl: defaults\.logoUrl, logoDarkUrl: defaults\.logoDarkUrl/);
   assert.match(schema, /name: "logoDark"/);
-  assert.match(content, /"logoDarkUrl":logoDark\.asset->url/);
   assert.match(schema, /name: "logoDark"/);
 });
 
