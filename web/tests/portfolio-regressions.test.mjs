@@ -167,7 +167,7 @@ test("Both Pluswrld theme logos are transparent vector assets", () => {
 test("Wordmark is proportionally reduced while supporting logo lines remain full scale", () => {
   for (const path of ["public/pluswrld-logo.svg", "public/pluswrld-logo-dark.svg"]) {
     const svg = read(path);
-    assert.match(svg, /translate\\(154\\.56 40\\.56\\) scale\\(0\\.84\\)/);
+    assert.match(svg, /translate\(154\.56 40\.56\) scale\(0\.84\)/);
     assert.match(svg, /Knowledge comes from sensory ideas/);
     assert.match(svg, /Build, Automate, Grow/);
   }
@@ -175,7 +175,7 @@ test("Wordmark is proportionally reduced while supporting logo lines remain full
 });
 
 test("Primary metadata describes the real Pluswrld services", () => {
-  assert.match(layout, /Shopify Store Setup, Websites & Automation \\| Pluswrld/);
-  assert.match(layout, /Shopify store setup, ecommerce websites, no-code applications and AI automations/);
+  assert.match(layout, /Shopify Store Setup, Websites & Automation \| Pluswrld/);
+  assert.match(layout, /Build or improve your Shopify store, business website or no-code app/);
   assert.doesNotMatch(layout, /knowledge comes from sensory ideas/i);
 });
