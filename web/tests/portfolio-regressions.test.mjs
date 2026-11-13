@@ -74,7 +74,7 @@ test("About social icons link only to approved profiles with valid URLs", () => 
   assert.match(content, /link.enabled === true && \["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads", "WhatsApp", "X", "Twitter"\].includes\(link.name\)/);
   assert.match(content, /name in \["Fiverr profile","Upwork profile","Instagram","Facebook","TikTok","LinkedIn","Threads","WhatsApp","X","Twitter"\]/);
   assert.match(page, /AboutSocialLinks links=\{socialLinks\}/);
-  assert.match(page, /src=\{\"\\/platform\\/\" \+ icon\.slug \+ \"\\.svg\"\}/);
+  assert.ok(page.includes('src={"/platform/" + icon.slug + ".svg"}'));
 });
 
 test("Old unapproved logo is not used as a default fallback", () => {
