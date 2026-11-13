@@ -105,14 +105,14 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 export const getSocialLinks = cache(async (): Promise<PresenceLink[]> => {
   const links = await getPresenceLinks();
   return links.filter((link) =>
-    link.enabled === true && ["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads"].includes(link.name)
+    link.enabled === true && ["Instagram", "Facebook", "TikTok", "LinkedIn", "Threads", "WhatsApp", "X", "Twitter"].includes(link.name)
   );
 });
 
 export const getPresenceLinks = cache(async (): Promise<PresenceLink[]> => {
   try {
     return await client.fetch<PresenceLink[]>(
-      '*[_type == "onlinePresence" && defined(url) && name in ["Fiverr profile","Upwork profile","Instagram","Facebook","TikTok","LinkedIn","Threads","WhatsApp"] && (enabled != false)] | order(order asc){_id,name,url,order,enabled}'
+      '*[_type == "onlinePresence" && defined(url) && name in ["Fiverr profile","Upwork profile","Instagram","Facebook","TikTok","LinkedIn","Threads","WhatsApp","X","Twitter"] && (enabled != false)] | order(order asc){_id,name,url,order,enabled}'
     );
   } catch {
     return [
