@@ -15,13 +15,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Pluswrld",
-    title: "Shopify Store Setup, Websites & Automation | Pluswrld",
+    title: "Shopify, Websites & Paid Advertising | Pluswrld",
     description: "Shopify store setup, websites, no-code apps, AI automation and paid advertising campaign management by Paul Oloruntobi at Pluswrld."
   },
   twitter: {
     card: "summary_large_image",
     title: "Shopify Store Setup, Websites & Automation | Pluswrld",
-    description: "Build or improve your Shopify store, business website or no-code app. Pluswrld also connects AI workflows and strengthens search and social visibility."
+    description: "Build or improve your Shopify store, website or no-code app, and plan, manage and optimise paid advertising campaigns with Pluswrld."
   },
   robots: {
     index: true,
