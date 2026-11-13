@@ -1,29 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Work_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteFooter, SiteHeader } from "../components/site-chrome";
 import { getPresenceLinks, getSettings } from "../lib/content";
 
-const workSans = Work_Sans({ subsets: ["latin"], display: "swap", variable: "--font-work-sans" });
 const siteUrl = "https://pluswrld-portfolio.vercel.app";
 const themeInit = `try { const saved = localStorage.getItem("pluswrld-theme") || "system"; const mode = saved === "system" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : saved; document.documentElement.dataset.theme = mode; document.documentElement.style.colorScheme = mode; } catch { document.documentElement.dataset.theme = "light"; }`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "Digital Builder for Shopify, Websites & Automation", template: "%s | Pluswrld" },
-  description: "Paul Oloruntobi (Pluswrld) builds Shopify ecommerce stores, websites, no-code applications and business automations, and helps businesses improve search and social visibility.",
+  title: { default: "Shopify Store Setup, Website Development & Automation", template: "%s | Pluswrld" },
+  description: "Pluswrld helps businesses build and improve Shopify stores, ecommerce websites, no-code applications and AI automations, with practical SEO and social visibility support. Work with Paul Oloruntobi.",
   applicationName: "Pluswrld",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Pluswrld",
-    title: "Digital Builder for Shopify, Websites & Automation | Pluswrld",
-    description: "Shopify ecommerce, websites, no-code applications, business automation and search and social visibility."
+    title: "Shopify Store Setup, Website Development & Automation | Pluswrld",
+    description: "Shopify store setup and redesign, ecommerce websites, no-code apps, AI automation and SEO support by Paul Oloruntobi at Pluswrld."
   },
   twitter: {
     card: "summary_large_image",
     title: "Digital Builder for Shopify, Websites & Automation | Pluswrld",
-    description: "Digital building, ecommerce, automation and online visibility for growing businesses."
+    description: "Shopify store setup, website development, no-code applications, AI workflows and search visibility for growing businesses."
   },
   robots: {
     index: true,
@@ -82,7 +80,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <link rel="preconnect" href="https://a8mywjme.apicdn.sanity.io" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://cdn.shopify.com" />
     </head>
-    <body className={workSans.variable}>
+    <body>
       <SiteHeader settings={settings} />
       <main>{children}</main>
       <SiteFooter settings={settings} profiles={profiles} />
