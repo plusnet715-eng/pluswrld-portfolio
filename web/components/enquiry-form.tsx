@@ -55,6 +55,7 @@ export function EnquiryForm({ email, whatsappUrl }: { email: string; whatsappUrl
         <option>Website / no-code application</option>
         <option>AI automation / integrations</option>
         <option>Whop / Skool / creator commerce</option>
+        <option>Paid advertising / campaign management</option>
         <option>Merchant Center / social commerce setup</option>
         <option>Not sure yet — need guidance</option>
         <option>Something else</option>
