@@ -8,15 +8,15 @@ const themeInit = `try { const saved = localStorage.getItem("pluswrld-theme") ||
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "Shopify Store Setup, Website Development & Automation", template: "%s | Pluswrld" },
-  description: "Build or improve your Shopify store, business website or no-code app. Pluswrld also connects AI workflows and strengthens search and social visibility.",
+  title: { default: "Shopify, Websites, Automation & Paid Advertising", template: "%s | Pluswrld" },
+  description: "Build and improve Shopify stores, websites and automations, and manage paid advertising campaigns that help businesses reach the right customers.",
   applicationName: "Pluswrld",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Pluswrld",
     title: "Shopify Store Setup, Websites & Automation | Pluswrld",
-    description: "Shopify store setup and redesign, ecommerce websites, no-code apps, AI automation and SEO support by Paul Oloruntobi at Pluswrld."
+    description: "Shopify store setup, websites, no-code apps, AI automation and paid advertising campaign management by Paul Oloruntobi at Pluswrld."
   },
   twitter: {
     card: "summary_large_image",
@@ -49,7 +49,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       name: "Pluswrld",
       url: siteUrl,
       logo: `${siteUrl}/pluswrld-logo.svg`,
-      description: "Shopify store setup, website development, no-code applications, AI workflow automation and search and social visibility support.",
+      description: "Shopify store setup, website development, no-code applications, AI workflow automation and paid advertising campaign management.",
       sameAs: socialProfiles.map((profile) => profile.url)
     },
     {
@@ -66,7 +66,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       alternateName: "Pluswrld",
       url: siteUrl,
       jobTitle: "Digital Builder",
-      description: "Digital builder helping businesses with Shopify ecommerce, websites, no-code applications, business automation, search visibility and social media visibility.",
+      description: "Digital builder helping businesses with Shopify ecommerce, websites, no-code applications, business automation and paid advertising campaign management.",
       worksFor: { "@type": "Organization", name: "Pluswrld", url: siteUrl },
       knowsAbout: [
         "Shopify ecommerce",
@@ -75,7 +75,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         "Business automation",
         "Search engine optimisation",
         "Social media optimisation",
-        "Creator commerce"
+        "Creator commerce",
+        "Paid advertising campaign management",
+        "Campaign strategy and optimisation"
       ],
       sameAs: socialProfiles.map((profile) => profile.url)
     }
