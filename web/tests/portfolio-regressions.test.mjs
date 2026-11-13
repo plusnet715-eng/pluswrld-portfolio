@@ -171,7 +171,7 @@ test("Both Pluswrld theme logos are transparent vector assets", () => {
 });
 
 
-test("Wordmark is proportionally reduced while supporting logo lines remain full scale", () => {
+test("Wordmark is proportionally reduced and moved closer to the supporting tagline", () => {
   for (const path of ["public/pluswrld-logo.svg", "public/pluswrld-logo-dark.svg"]) {
     const svg = read(path);
     assert.match(svg, /translate\(295 65\) scale\(0.70\)/);
@@ -183,16 +183,16 @@ test("Wordmark is proportionally reduced while supporting logo lines remain full
 
 test("Logo wordmark is reduced independently of the supporting logo copy", () => {
   for (const path of ["public/pluswrld-logo.svg", "public/pluswrld-logo-dark.svg"]) {
-    assert.match(read(path), /translate\(295 65\) scale\(0\.70\)/);
+    assert.match(read(path), /translate\\(295 150\\) scale\\(0\\.70\\)/);
   }
 });
 
-test("Enquiry form uses WhatsApp with an email fallback and no paid-advertising option", () => {
+test("Enquiry form supports paid advertising enquiries alongside WhatsApp and email", () => {
   const form = read("components/enquiry-form.tsx");
   assert.match(form, /Continue to WhatsApp/);
   assert.match(form, /Use email instead/);
   assert.match(form, /Merchant Center \/ social commerce setup/);
-  assert.doesNotMatch(form, /<option>Paid advertising<\/option>/);
+  assert.match(form, /Paid advertising \/ campaign management/);
 });
 
 test("Testimonials prioritise the detailed Edison review and higher-rated feedback", () => {
@@ -201,6 +201,6 @@ test("Testimonials prioritise the detailed Edison review and higher-rated feedba
 
 test("Primary metadata describes the real Pluswrld services", () => {
   assert.match(layout, /Shopify Store Setup, Websites & Automation \| Pluswrld/);
-  assert.match(layout, /Build or improve your Shopify store, business website or no-code app/);
+  assert.match(layout, /plan, launch, manage and optimise paid advertising campaigns/);
   assert.doesNotMatch(layout, /knowledge comes from sensory ideas/i);
 });
