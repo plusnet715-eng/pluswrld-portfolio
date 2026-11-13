@@ -225,14 +225,14 @@ function HeroShowcase({ projects }: { projects: Project[] }) {
 }
 function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   return <section className="home-hero"><div className="container home-hero-grid">
-    <div className="hero-copy"><Reveal><Eyebrow>DIGITAL BUILDER · SEARCH & SOCIAL VISIBILITY</Eyebrow><h1>{settings.heroTitle}</h1><p className="hero-description">{settings.heroDescription}</p>
+    <div className="hero-copy"><Reveal><Eyebrow>SHOPIFY · WEBSITES · AUTOMATION · NO-CODE</Eyebrow><h1>{settings.heroTitle}</h1><p className="hero-description">{settings.heroDescription}</p>
       <div className="hero-actions"><Link href="/contact" className="button">Discuss a project <span>↗</span></Link><Link href="/work" className="button button-outline">Explore my work <span>↗</span></Link></div>
       <div className="hero-caption"><i className="availability-dot" />{settings.availability}</div></Reveal></div>
     <HeroShowcase projects={projects} />
-  </div><div className="container hero-bottom-line"><span>STRATEGY WITH PRACTICAL IMPLEMENTATION</span><span>ECOMMERCE · AUTOMATION · DIGITAL SYSTEMS</span></div></section>;
+  </div><div className="container hero-bottom-line"><span>BUILT AROUND YOUR BUSINESS</span><span>SHOPIFY · WEBSITES · NO-CODE · CONNECTED SYSTEMS</span></div></section>;
 }
 function ExpertiseStrip() {
-  return <div className="expertise-strip"><div className="container expertise-track">{["Shopify & ecommerce","AI workflows","No-code applications","Creator commerce","Connected systems"].map((x,i)=><span key={x}><i>0{i+1}</i>{x}</span>)}</div></div>;
+  return <div className="expertise-strip"><div className="container expertise-track">{["Shopify & ecommerce","Website development","No-code applications","AI & business automation","Online communities & memberships"].map((x,i)=><span key={x}><i>0{i+1}</i>{x}</span>)}</div></div>;
 }
 function ExploreMore() {
   const pages = [
