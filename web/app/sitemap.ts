@@ -11,7 +11,12 @@ const routes = [
   "/work",
   "/testimonials",
   "/faq",
-  "/contact"
+  "/contact",
+  "/services/shopify-store-setup",
+  "/services/website-development",
+  "/services/ai-automation",
+  "/services/creator-commerce",
+  "/services/seo-social-visibility"
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
