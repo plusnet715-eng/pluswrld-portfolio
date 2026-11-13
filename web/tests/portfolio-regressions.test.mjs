@@ -29,7 +29,11 @@ test("About page presents a scannable builder profile without duplicating the pr
   assert.match(about, /Connected business workflows/);
   assert.match(about, /WHO I WORK WITH/);
   assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
-  assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);\n  const order = ["INTRODUCTION", "MEET THE BUILDER", "WHAT I BUILD", "WHO I WORK WITH", "SEARCH & SOCIAL VISIBILITY", "HOW I WORK", "WHAT GOOD DELIVERY LOOKS LIKE", "PAST WORK"];\n  const positions = order.map((label) => about.indexOf(label));\n  assert.ok(positions.every((position) => position >= 0));\n  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
+  assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);
+  const order = ["INTRODUCTION", "MEET THE BUILDER", "WHAT I BUILD", "WHO I WORK WITH", "SEARCH & SOCIAL VISIBILITY", "HOW I WORK", "WHAT GOOD DELIVERY LOOKS LIKE", "PAST WORK"];
+  const positions = order.map((label) => about.indexOf(label));
+  assert.ok(positions.every((position) => position >= 0));
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
   assert.match(about, /Explore my past work/);
   assert.doesNotMatch(about, /MY PROFESSIONAL JOURNEY|careerMilestones|careerStart|firstProjectDate|projects\.map|ProjectCard/);
 });
@@ -80,7 +84,8 @@ test("Old unapproved logo is not used as a default fallback", () => {
 });
 
 test("Pluswrld positioning presents Paul as a digital builder with search and social visibility work", () => {
-  assert.match(page, /eyebrow="INTRODUCTION"/);\n  assert.match(page, /I build digital experiences that help businesses grow\\./);
+  assert.match(page, /eyebrow="INTRODUCTION"/);
+  assert.match(page, /I build digital experiences that help businesses grow\\./);
   assert.match(layout, /lang="en-NG"/);
   assert.match(page, /<span>\{settings\.role\}<\/span>/);
   assert.match(content, /role: "Digital Builder \\| Ecommerce, Automation & Visibility"/);
@@ -156,4 +161,21 @@ test("Both Pluswrld theme logos are transparent vector assets", () => {
     assert.doesNotMatch(svg, /<rect|<image/);
   }
   assert.match(chrome, /unoptimized/);
+});
+
+
+test("Wordmark is proportionally reduced while supporting logo lines remain full scale", () => {
+  for (const path of ["public/pluswrld-logo.svg", "public/pluswrld-logo-dark.svg"]) {
+    const svg = read(path);
+    assert.match(svg, /translate\\(154\\.56 40\\.56\\) scale\\(0\\.84\\)/);
+    assert.match(svg, /Knowledge comes from sensory ideas/);
+    assert.match(svg, /Build, Automate, Grow/);
+  }
+  assert.match(css, /\.site-header \.brand-image-lockup\{width:180px\}/);
+});
+
+test("Primary metadata describes the real Pluswrld services", () => {
+  assert.match(layout, /Shopify Store Setup, Websites & Automation \\| Pluswrld/);
+  assert.match(layout, /Shopify store setup, ecommerce websites, no-code applications and AI automations/);
+  assert.doesNotMatch(layout, /knowledge comes from sensory ideas/i);
 });
