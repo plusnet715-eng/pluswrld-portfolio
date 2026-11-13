@@ -97,7 +97,7 @@ export async function getFaqs(): Promise<Faq[]> {
   catch { return []; }
 }
 export async function getTestimonials(): Promise<Testimonial[]> {
-  try { const data = await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order(reviewDate desc){_id,quote,rating,reviewDate,reviewDateLabel,reviewerHandle,reviewerLabel,reviewerCountry,platform,sourceUrl,sourceLabel,featured,repeatClient}'); return (data ?? []).map(normalizeObjectStrings); }
+  try { const data = await client.fetch<Testimonial[]>('*[_type == "testimonial" && defined(quote)] | order((reviewerHandle == "edison_tim") desc, rating desc, reviewDate desc){_id,quote,rating,reviewDate,reviewDateLabel,reviewerHandle,reviewerLabel,reviewerCountry,platform,sourceUrl,sourceLabel,featured,repeatClient}'); return (data ?? []).map(normalizeObjectStrings); }
   catch { return []; }
 }
 
