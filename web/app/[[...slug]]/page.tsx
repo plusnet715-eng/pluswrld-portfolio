@@ -280,7 +280,7 @@ function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
       return <a key={link._id} className={"social-link social-link-" + icon.slug} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={"Visit " + link.name + " profile"} title={link.name}>
         {icon.slug === "linkedin"
           ? <svg className="social-link-icon-linkedin" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.919-2.064 2.063-2.064 1.14 0 2.064.926 2.064 2.064 0 1.139-.923 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
-          : <img src={"https://cdn.simpleicons.org/" + icon.slug + "/" + icon.colour} alt="" width="18" height="18" loading="lazy"/>}
+          : <img src={"/platform/" + icon.slug + ".svg"} alt="" width="18" height="18" loading="lazy"/>}
       </a>;
     })}
   </nav>;
@@ -392,34 +392,34 @@ function Help() {
 
 const platformGroups = [
   { title: "Ecommerce, search & social commerce", items: [
-    {name:"Shopify",src:"https://cdn.simpleicons.org/shopify/95BF47"},
-    {name:"Google",src:"https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png"},
+    {name:"Shopify",src:"/platform/shopify.svg"},
+    {name:"Google",src:"/platform/google.svg"},
     {name:"Microsoft",src:"/platform/microsoft.svg"},
-    {name:"TikTok",src:"https://cdn.simpleicons.org/tiktok/111111"},
-    {name:"Pinterest",src:"https://cdn.simpleicons.org/pinterest/BD081C"},
-    {name:"Facebook",src:"https://cdn.simpleicons.org/facebook/0866FF"},
-    {name:"Instagram",src:"https://cdn.simpleicons.org/instagram/E4405F"}
+    {name:"TikTok",src:"/platform/tiktok.svg"},
+    {name:"Pinterest",src:"/platform/pinterest.svg"},
+    {name:"Facebook",src:"/platform/facebook.svg"},
+    {name:"Instagram",src:"/platform/instagram.svg"}
   ]},
   { title: "Websites & no-code", items: [
-    {name:"Webflow",src:"https://cdn.simpleicons.org/webflow/146EF5"},
-    {name:"Bubble",src:"https://www.google.com/s2/favicons?domain=bubble.io&sz=128"},
-    {name:"FlutterFlow",src:"https://www.google.com/s2/favicons?domain=flutterflow.io&sz=128"},
-    {name:"Glide",src:"https://cdn.simpleicons.org/glide/6B46C1"},
-    {name:"Adalo",src:"https://www.google.com/s2/favicons?domain=adalo.com&sz=128"}
+    {name:"Webflow",src:"/platform/webflow.svg"},
+    {name:"Bubble",src:"/platform/bubble.svg"},
+    {name:"FlutterFlow",src:"/platform/flutterflow.svg"},
+    {name:"Glide",src:"/platform/glide.svg"},
+    {name:"Adalo",src:"/platform/adalo.svg"}
   ]},
   { title: "AI & automation", items: [
-    {name:"OpenAI",src:"https://openai.com/favicon.ico"},
-    {name:"n8n",src:"https://cdn.simpleicons.org/n8n/EA4B71"},
-    {name:"Make",src:"https://cdn.simpleicons.org/make/6D00CC"},
-    {name:"Zapier",src:"https://cdn.simpleicons.org/zapier/FF4A00"},
-    {name:"Claude",src:"https://cdn.simpleicons.org/claude/D97757"}
+    {name:"OpenAI",src:"/platform/openai.svg"},
+    {name:"n8n",src:"/platform/n8n.svg"},
+    {name:"Make",src:"/platform/make.svg"},
+    {name:"Zapier",src:"/platform/zapier.svg"},
+    {name:"Claude",src:"/platform/claude.svg"}
   ]},
   { title: "Creator, community & email", items: [
-    {name:"Whop",src:"https://www.google.com/s2/favicons?domain=whop.com&sz=128"},
-    {name:"Skool",src:"https://www.google.com/s2/favicons?domain=skool.com&sz=128"},
-    {name:"Discord",src:"https://cdn.simpleicons.org/discord/5865F2"},
-    {name:"Klaviyo",src:"https://www.google.com/s2/favicons?domain=klaviyo.com&sz=128"},
-    {name:"Brevo",src:"https://cdn.simpleicons.org/brevo/0B996E"}
+    {name:"Whop",src:"/platform/whop.svg"},
+    {name:"Skool",src:"/platform/skool.svg"},
+    {name:"Discord",src:"/platform/discord.svg"},
+    {name:"Klaviyo",src:"/platform/klaviyo.svg"},
+    {name:"Brevo",src:"/platform/brevo.svg"}
   ]}
 ];
 function PlatformWall({ compact = false }: { compact?: boolean }) {
