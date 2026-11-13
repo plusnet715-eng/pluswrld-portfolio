@@ -16,7 +16,8 @@ const routes = [
   "/services/website-development",
   "/services/ai-automation",
   "/services/creator-commerce",
-  "/services/seo-social-visibility"
+  "/services/seo-social-visibility",
+  "/services/paid-advertising"
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
