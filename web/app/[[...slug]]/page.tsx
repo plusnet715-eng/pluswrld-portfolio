@@ -160,11 +160,18 @@ function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
     facebook: { slug: "facebook", colour: "0866FF" },
     tiktok: { slug: "tiktok", colour: "000000" },
     linkedin: { slug: "linkedin", colour: "0A66C2" },
-    threads: { slug: "threads", colour: "000000" },\n    whatsapp: { slug: "whatsapp", colour: "25D366" },\n    x: { slug: "x", colour: "000000" },\n    twitter: { slug: "x", colour: "000000" }
+    threads: { slug: "threads", colour: "000000" },
+    whatsapp: { slug: "whatsapp", colour: "25D366" },
+    x: { slug: "x", colour: "000000" },
+    twitter: { slug: "x", colour: "000000" }
   };
-  if (!links.length) return null;
+  const visibleLinks = [...links];
+  if (!visibleLinks.some((link) => link.name.toLowerCase() === "whatsapp")) {
+    visibleLinks.push({ _id: "pluswrld-whatsapp", name: "WhatsApp", url: "https://wa.me/2349161612746", order: 7, enabled: true });
+  }
+  if (!visibleLinks.length) return null;
   return <nav className="about-social-links" aria-label="Social media profiles">
-    {links.map((link) => {
+    {visibleLinks.map((link) => {
       const icon = icons[link.name.toLowerCase()];
       if (!icon) return null;
       return <a key={link._id} className={"social-link social-link-" + icon.slug} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={"Visit " + link.name + " profile"} title={link.name}>
@@ -175,7 +182,6 @@ function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
     })}
   </nav>;
 }
-
 async function About({ settings }: { settings: Settings }) {
   const socialLinks = await getSocialLinks();
   const capabilities = [
