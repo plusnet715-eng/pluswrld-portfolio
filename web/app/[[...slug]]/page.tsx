@@ -320,7 +320,7 @@ async function About({ settings }: { settings: Settings }) {
       <div className="about-profile-visual">
         <Reveal className="about-image"><Image src={settings.originalPortraitUrl || settings.portraitUrl} alt="Paul Oloruntobi, the person behind Pluswrld" fill sizes="(max-width: 760px) 85vw, 40vw"/></Reveal>
         <div className="about-profile-meta">
-          <div><strong>Paul Oloruntobi</strong><span>{settings.role}</span></div>
+          <div><strong>Paul Oloruntobi</strong><span>{settings.role}</span><small className="about-name-note">Some Fiverr clients know me as Timma.</small></div>
           <AboutSocialLinks links={socialLinks}/>
         </div>
       </div>
