@@ -29,6 +29,7 @@ test("About page presents a scannable builder profile without duplicating the pr
   assert.match(about, /Connected business workflows/);
   assert.match(about, /WHO I WORK WITH/);
   assert.match(about, /SEARCH & SOCIAL VISIBILITY/);
+  assert.match(about, /PAID ADVERTISING/);
   assert.match(about, /WHAT GOOD DELIVERY LOOKS LIKE/);
   const order = ["INTRODUCTION", "MEET THE BUILDER", "WHAT I BUILD", "WHO I WORK WITH", "SEARCH & SOCIAL VISIBILITY", "HOW I WORK", "WHAT GOOD DELIVERY LOOKS LIKE", "PAST WORK"];
   const positions = order.map((label) => about.indexOf(label));
