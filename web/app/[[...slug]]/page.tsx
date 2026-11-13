@@ -9,9 +9,107 @@ import { Reveal } from "../../components/reveal";
 import { MobileDrawer } from "../../components/mobile-drawer";
 import { getFaqs, getProcess, getProjects, getServices, getSettings, getSocialLinks, getTestimonials, type PresenceLink, type Project, type Settings, type Testimonial } from "../../lib/content";
 
-const pageTitles: Record<string, string> = { "": "Shopify Store Setup, Website Development & Automation", about: "About Paul Oloruntobi | Shopify & Digital Systems Builder", "how-i-can-help": "Shopify, Website & Automation Solutions for Businesses", services: "Shopify Store Setup, Redesign & Website Development", process: "Our Shopify & Website Development Process", work: "Shopify Stores, Websites & Digital Projects", testimonials: "Client Reviews & Testimonials", faq: "Frequently Asked Questions", contact: "Discuss a Digital Project" };
-const pageDescriptions: Record<string, string> = { "": "Pluswrld builds and improves Shopify stores, ecommerce websites, no-code applications and AI automations, with practical SEO and social visibility support.", about: "Meet Paul Oloruntobi, the Shopify and digital systems builder behind Pluswrld. Explore his ecommerce, website development, no-code, automation and online visibility work.", "how-i-can-help": "Get practical help with Shopify store setup, ecommerce improvements, website development, no-code apps and business automation.", services: "Shopify store setup, redesign, theme customisation, ecommerce website development, no-code applications, creator commerce and AI workflow automation.", process: "See how Shopify, website and automation projects are scoped, built, tested and handed over.", work: "Explore selected Shopify ecommerce stores, website builds and digital systems delivered for clients.", testimonials: "Read client feedback about Shopify store setup, website development and digital implementation work.", faq: "Answers about Shopify services, website development, project scope, platforms and delivery.", contact: "Discuss a Shopify store, ecommerce website, no-code application or business automation project with Pluswrld." };
+const pageTitles: Record<string, string> = { "": "Shopify Store Setup, Website Development & Automation", about: "About Paul Oloruntobi | Shopify & Digital Systems Builder", "how-i-can-help": "Shopify, Website & Automation Solutions for Businesses", services: "Shopify Store Setup, Redesign & Website Development", process: "Our Shopify & Website Development Process", work: "Shopify Stores, Websites & Digital Projects", testimonials: "Client Reviews & Testimonials", faq: "Frequently Asked Questions", contact: "Discuss a Digital Project", "services/shopify-store-setup": serviceLandingPages["services/shopify-store-setup"].title, "services/website-development": serviceLandingPages["services/website-development"].title, "services/ai-automation": serviceLandingPages["services/ai-automation"].title, "services/creator-commerce": serviceLandingPages["services/creator-commerce"].title, "services/seo-social-visibility": serviceLandingPages["services/seo-social-visibility"].title };
+const pageDescriptions: Record<string, string> = { "": "Pluswrld builds and improves Shopify stores, ecommerce websites, no-code applications and AI automations, with practical SEO and social visibility support.", about: "Meet Paul Oloruntobi, the Shopify and digital systems builder behind Pluswrld. Explore his ecommerce, website development, no-code, automation and online visibility work.", "how-i-can-help": "Get practical help with Shopify store setup, ecommerce improvements, website development, no-code apps and business automation.", services: "Shopify store setup, redesign, theme customisation, ecommerce website development, no-code applications, creator commerce and AI workflow automation.", process: "See how Shopify, website and automation projects are scoped, built, tested and handed over.", work: "Explore selected Shopify ecommerce stores, website builds and digital systems delivered for clients.", testimonials: "Read client feedback about Shopify store setup, website development and digital implementation work.", faq: "Answers about Shopify services, website development, project scope, platforms and delivery.", contact: "Discuss a Shopify store, ecommerce website, no-code application or business automation project with Pluswrld.", "services/shopify-store-setup": serviceLandingPages["services/shopify-store-setup"].description, "services/website-development": serviceLandingPages["services/website-development"].description, "services/ai-automation": serviceLandingPages["services/ai-automation"].description, "services/creator-commerce": serviceLandingPages["services/creator-commerce"].description, "services/seo-social-visibility": serviceLandingPages["services/seo-social-visibility"].description };
 type RouteProps = { params: Promise<{ slug?: string[] }> };
+const serviceLandingPages: Record<string, { name: string; title: string; description: string; eyebrow: string; heading: string; intro: string; deliverables: { title: string; description: string }[]; scope: string; tools: string; cta: string }> = {
+  "services/shopify-store-setup": {
+    name: "Shopify Store Setup, Redesign & Management",
+    title: "Shopify Store Setup, Redesign & Management | Pluswrld",
+    description: "Shopify store setup and redesign, theme customisation, product and variant setup, SEO foundations and store management by Pluswrld.",
+    eyebrow: "SHOPIFY STORE SETUP & ECOMMERCE",
+    heading: "Shopify stores built around how your business sells.",
+    intro: "Whether you are launching a new store or improving an existing one, I help set up and refine Shopify stores with clear product structure, responsive storefronts and practical day-to-day operations.",
+    deliverables: [
+      { title: "New Shopify store builds", description: "Store setup, theme selection and core configuration based on your products, brand and agreed requirements." },
+      { title: "Theme customisation and redesign", description: "Responsive storefront layouts and usability improvements that respect your existing brand direction." },
+      { title: "Products, collections and variants", description: "Product uploads, collection organisation, options, SKUs and clearer product-page structure." },
+      { title: "SEO and conversion foundations", description: "Page titles, meta descriptions, product-page structure, navigation and practical shopping-experience improvements." },
+      { title: "Store operations and integrations", description: "Relevant setup for Google Merchant Center, TikTok Shop, Pinterest and supported marketplace connections." },
+      { title: "Store management and handover", description: "Agreed store-management support, operational checks and clear handover notes for your team." }
+    ],
+    scope: "Paid advertising campaign management and ongoing social posting are not included. Social-commerce setup, tracking configuration and organic visibility foundations can be scoped separately.",
+    tools: "Shopify · Google Merchant Center · TikTok Shop · Pinterest · Marketplace Connect",
+    cta: "Tell me whether you are starting a new Shopify store or improving an existing one."
+  },
+  "services/website-development": {
+    name: "Website Development and No-Code Applications",
+    title: "Website Development & No-Code Apps | Pluswrld",
+    description: "Business website development, Webflow builds, Bubble and FlutterFlow apps, customer portals and no-code MVP implementation by Pluswrld.",
+    eyebrow: "WEBSITE DEVELOPMENT & NO-CODE",
+    heading: "Websites and applications that make your business easier to use.",
+    intro: "I design and build practical websites and no-code applications around the people who will use them. The work can range from a clear business website to a customer portal, internal tool or early product MVP.",
+    deliverables: [
+      { title: "Business website design and build", description: "Page structure, responsive layouts and clear content presentation for service businesses and growing brands." },
+      { title: "Webflow development", description: "CMS-backed websites, reusable page structures and responsive implementation in Webflow." },
+      { title: "No-code applications", description: "Practical app interfaces, workflows and MVPs built with platforms such as Bubble, FlutterFlow, Glide and Adalo." },
+      { title: "Customer portals and internal tools", description: "Structured experiences that help customers, members or teams access information and complete tasks." },
+      { title: "Integrations and usability", description: "Forms, data connections and workflow improvements that support the intended user journey." },
+      { title: "Testing and handover", description: "Responsive checks, agreed functionality testing and clear guidance for managing the finished solution." }
+    ],
+    scope: "The platform and implementation approach are selected after the requirements are understood. Complex custom integrations, subscriptions or third-party costs are confirmed before work begins.",
+    tools: "Webflow · Bubble · FlutterFlow · Glide · Adalo",
+    cta: "Share what the website or application needs to help people do."
+  },
+  "services/ai-automation": {
+    name: "AI Workflow and Business Automation",
+    title: "AI Workflow & Business Automation | Pluswrld",
+    description: "AI workflow automation, business process mapping, app integrations and repeatable operations systems designed and implemented by Pluswrld.",
+    eyebrow: "AI & BUSINESS AUTOMATION",
+    heading: "Connect your tools. Simplify repeatable work.",
+    intro: "I help map business processes and implement automations that reduce repetitive work. The focus is on useful workflows, reliable connections between tools and clear handling when something needs human attention.",
+    deliverables: [
+      { title: "Workflow discovery and mapping", description: "Understand the current process, handoffs, data and points where manual work creates friction." },
+      { title: "Automation implementation", description: "Build trigger-based workflows that move information and actions between the tools you already use." },
+      { title: "AI-assisted workflows", description: "Introduce AI for suitable tasks such as classification, drafting, extraction and structured assistance, with human review where needed." },
+      { title: "Application and API integrations", description: "Connect supported CRMs, forms, spreadsheets, communication tools and business applications." },
+      { title: "Testing and exception handling", description: "Check normal and edge cases, reduce avoidable failures and define what happens when a step needs attention." },
+      { title: "Documentation and handover", description: "Explain the workflow, dependencies and practical steps for maintaining the automation." }
+    ],
+    scope: "Automation is designed around the actual process and available platform access. Third-party subscriptions, API usage and ongoing monitoring are scoped separately where required.",
+    tools: "OpenAI · n8n · Make · Zapier · APIs · Business applications",
+    cta: "Describe the repetitive task or disconnected process you want to improve."
+  },
+  "services/creator-commerce": {
+    name: "Whop, Skool and Community Commerce Setup",
+    title: "Whop, Skool & Community Setup | Pluswrld",
+    description: "Whop storefronts, Skool communities, memberships, digital products, Discord roles and paid-access automation setup by Pluswrld.",
+    eyebrow: "CREATOR & COMMUNITY COMMERCE",
+    heading: "Build the systems behind your creator business.",
+    intro: "I help creators and digital sellers organise the storefront, membership and access systems behind their offers. That includes paid communities, digital products, subscription tiers and connected Discord experiences.",
+    deliverables: [
+      { title: "Digital storefront and offer setup", description: "Organise products, services, pricing tiers and the customer path from offer discovery to purchase." },
+      { title: "Memberships and subscriptions", description: "Configure access levels, recurring offers and member experiences around the agreed business model." },
+      { title: "Discord access automation", description: "Connect paid access to appropriate Discord roles and membership permissions where supported." },
+      { title: "Community platform configuration", description: "Set up the structure, spaces and core settings needed to deliver a clear member experience." },
+      { title: "Customer onboarding workflows", description: "Connect welcome steps, access instructions and relevant email or platform automations." },
+      { title: "Testing and handover", description: "Check purchase-to-access journeys and document how to manage the setup after launch." }
+    ],
+    scope: "Platform fees, payment processing and third-party access requirements remain subject to each provider. Ongoing community moderation, content posting and paid advertising are not included.",
+    tools: "Whop · Skool · Discord · Kajabi · Circle",
+    cta: "Tell me what you sell, where your community lives and how members should get access."
+  },
+  "services/seo-social-visibility": {
+    name: "Website SEO and Social Commerce Setup",
+    title: "Website SEO & Social Commerce Setup | Pluswrld",
+    description: "Website SEO foundations, search metadata, indexing setup, social profile optimisation, Pinterest SEO and social-commerce connections by Pluswrld.",
+    eyebrow: "SEARCH & SOCIAL VISIBILITY",
+    heading: "Make your business easier to discover.",
+    intro: "I help strengthen the foundations that make a business easier to understand and find across search engines and social platforms. This includes website SEO hygiene, accurate service wording, profile optimisation and relevant social-commerce setup.",
+    deliverables: [
+      { title: "Technical SEO foundations", description: "Review crawl access, indexability, canonical URLs, sitemap, robots rules and important page structure." },
+      { title: "On-page SEO and metadata", description: "Improve page titles, descriptions, headings, internal links and content wording around real customer searches." },
+      { title: "Search indexing setup", description: "Prepare sitemap submission and ownership verification workflows for supported search tools such as Google Search Console and Bing Webmaster Tools." },
+      { title: "Social profile optimisation", description: "Improve business profile information, links, descriptions and presentation so visitors understand what you offer." },
+      { title: "Social-commerce connections", description: "Set up relevant product catalogues, channel connections, pixels or tracking foundations where supported." },
+      { title: "Pinterest and content discoverability", description: "Structure boards, profile details and product pins to support organic discovery on Pinterest." }
+    ],
+    scope: "SEO improvements support discoverability but do not guarantee indexing, rankings or leads. Paid advertising management and ongoing social media posting are not included.",
+    tools: "Google Search Console · Bing Webmaster Tools · Shopify · Pinterest · Meta business tools",
+    cta: "Share your website and the services or products you want customers to find."
+  }
+};
+
 
 export const revalidate = 300;
 export const dynamicParams = false;
@@ -26,7 +124,12 @@ export function generateStaticParams() {
     { slug: ["work"] },
     { slug: ["testimonials"] },
     { slug: ["faq"] },
-    { slug: ["contact"] }
+    { slug: ["contact"] },
+    { slug: ["services", "shopify-store-setup"] },
+    { slug: ["services", "website-development"] },
+    { slug: ["services", "ai-automation"] },
+    { slug: ["services", "creator-commerce"] },
+    { slug: ["services", "seo-social-visibility"] }
   ];
 }
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
@@ -339,14 +442,39 @@ function PlatformWall({ compact = false }: { compact?: boolean }) {
   </section>;
 }
 
+
+function ServiceLanding({ route }: { route: string }) {
+  const service = serviceLandingPages[route];
+  if (!service) notFound();
+  const serviceUrl = `https://pluswrld-portfolio.vercel.app/${route}`;
+  const structuredData = { "@context": "https://schema.org", "@type": "Service", name: service.name, description: service.description, url: serviceUrl, areaServed: "Worldwide", provider: { "@type": "Organization", name: "Pluswrld", url: "https://pluswrld-portfolio.vercel.app/" } };
+  const steps = [
+    ["01", "Understand the requirement", "Clarify the business goal, current setup, constraints and what a successful delivery needs to do."],
+    ["02", "Agree the scope", "Confirm the platform, deliverables, dependencies, exclusions and handover expectations before implementation."],
+    ["03", "Build and test", "Implement the agreed work, check the important user journeys and address issues found during testing."],
+    ["04", "Handover clearly", "Review what has been delivered and explain the next steps for using or maintaining the setup."]
+  ];
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
+    <Intro eyebrow={service.eyebrow} title={service.heading} body={service.intro} />
+    <section className="section container">
+      <div className="section-heading"><div><Eyebrow>WHAT THE WORK CAN INCLUDE</Eyebrow><h2>Practical deliverables.<br/><span className="heading-muted">A clear scope.</span></h2></div><div className="section-heading-aside"><p>Every project is scoped around the actual requirements. The items below are possible areas of work, not a fixed package that assumes every business needs the same thing.</p></div></div>
+      <div className="service-grid">{service.deliverables.map((item,index)=><Reveal key={item.title} delay={index*45}><article className="service-card"><span className="card-number">0{index+1} / DELIVERY AREA</span><h3>{item.title}</h3><p>{item.description}</p></article></Reveal>)}</div>
+    </section>
+    <section className="section section-soft"><div className="container"><div className="section-heading"><div><Eyebrow>HOW I WORK</Eyebrow><h2>From a clear brief<br/><span className="heading-muted">to a working solution.</span></h2></div></div><div className="process-preview-list">{steps.map(([number,title,description])=><article className="preview-step" key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
+    <section className="scope-note container"><div><Eyebrow>TOOLS & PROJECT SCOPE</Eyebrow><h2>Choose the tools that fit the job.</h2></div><div><p>{service.scope}</p><div className="tools-line"><span>PLATFORMS & TOOLS</span><p>{service.tools}</p></div><Arrow href="/services">View all services</Arrow></div></section>
+    <Cta title="Let's make the next step clear." body={service.cta} />
+  </>;
+}
+
 function Services() {
   const cards = [
-    {title:"Shopify & Ecommerce Systems",intro:"Build, improve and operate an ecommerce experience that is ready for real customers and day-to-day management.",items:["Shopify store setup and builds from scratch","Theme customisation, redesign and responsive layouts","Product uploads, collections, variants and SKU setup","Store management and ecommerce VA support","On-page SEO, technical hygiene and CRO improvements","Google Merchant Center and social-commerce setup","Paid advertising campaign planning, setup, management and optimisation"],tools:"Shopify · Google Merchant Center · TikTok Shop · Pinterest · Marketplace Connect"},
-    {title:"Websites & No-Code Applications",intro:"Create useful websites and applications that make it easier for customers, teams or communities to get things done.",items:["Business and service websites","Customer portals and internal tools","No-code MVPs and SaaS concepts","Workflow and interface configuration","Responsive layouts and usability improvements"],tools:"Webflow · Bubble · FlutterFlow · Glide · Adalo"},
-    {title:"AI & Business Automation",intro:"Reduce repetitive work by mapping the process first, then connecting the tools and automations that genuinely help.",items:["Workflow discovery and process mapping","AI-assisted workflows and business operations","CRM and application integrations","Email automation and customer journeys","Testing, documentation and handover"],tools:"AI tools · Klaviyo · Brevo · APIs · No-code automation platforms"},
-    {title:"Creator & Community Commerce",intro:"Structure the experience behind digital products, paid communities, memberships and service-led creator businesses.",items:["Digital storefront and offer setup","Courses, memberships and subscription tiers","Discord roles and paid-access workflows","Community platform configuration","Customer journey and onboarding setup"],tools:"Whop · Skool · Discord · Kajabi · Circle"}
+    {title:"Shopify & Ecommerce Systems",href:"/services/shopify-store-setup",intro:"Build, improve and operate an ecommerce experience that is ready for real customers and day-to-day management.",items:["Shopify store setup and builds from scratch","Theme customisation, redesign and responsive layouts","Product uploads, collections, variants and SKU setup","Store management and ecommerce VA support","On-page SEO, technical hygiene and CRO improvements","Google Merchant Center and social-commerce setup","Social-commerce setup and channel connections"],tools:"Shopify · Google Merchant Center · TikTok Shop · Pinterest · Marketplace Connect"},
+    {title:"Websites & No-Code Applications",href:"/services/website-development",intro:"Create useful websites and applications that make it easier for customers, teams or communities to get things done.",items:["Business and service websites","Customer portals and internal tools","No-code MVPs and SaaS concepts","Workflow and interface configuration","Responsive layouts and usability improvements"],tools:"Webflow · Bubble · FlutterFlow · Glide · Adalo"},
+    {title:"AI & Business Automation",href:"/services/ai-automation",intro:"Reduce repetitive work by mapping the process first, then connecting the tools and automations that genuinely help.",items:["Workflow discovery and process mapping","AI-assisted workflows and business operations","CRM and application integrations","Email automation and customer journeys","Testing, documentation and handover"],tools:"AI tools · Klaviyo · Brevo · APIs · No-code automation platforms"},
+    {title:"Creator & Community Commerce",href:"/services/creator-commerce",intro:"Structure the experience behind digital products, paid communities, memberships and service-led creator businesses.",items:["Digital storefront and offer setup","Courses, memberships and subscription tiers","Discord roles and paid-access workflows","Community platform configuration","Customer journey and onboarding setup"],tools:"Whop · Skool · Discord · Kajabi · Circle"}
   ];
-  return <><Intro eyebrow="SERVICES / WHAT I DO" title="Practical digital solutions, thoughtfully built." body="I help businesses plan and implement the digital tools behind their customer experience and operations. Choose a service area to explore, or bring me the problem and we can work out the right combination."/><section className="section container service-detail-list">{cards.map((c,i)=><Reveal key={c.title}><article className="service-detail-card"><div className="service-detail-number">0{i+1}</div><div className="service-detail-main"><Eyebrow>{c.title.toUpperCase()}</Eyebrow><h2>{c.title}</h2><p className="service-detail-intro">{c.intro}</p><ul className="check-list">{c.items.map((item)=><li key={item}>{item}</li>)}</ul><div className="tools-line"><span>PLATFORMS & TOOLS</span><p>{c.tools}</p></div></div></article></Reveal>)}</section><section className="scope-note container"><div><Eyebrow>CLEAR SCOPE</Eyebrow><h2>Implementation, not vague promises.</h2></div><p>Deliverables, exclusions, dependencies and handover expectations are clarified before work begins. Paid advertising campaign support can be included in an agreed scope; ongoing social posting is handled separately.</p></section><PlatformWall compact /><Cta title="Not sure which service fits?" body="Start with the outcome you need. We can clarify the right combination of services together."/></>;
+  return <><Intro eyebrow="SERVICES / WHAT I DO" title="Practical digital solutions, thoughtfully built." body="I help businesses plan and implement the digital tools behind their customer experience and operations. Choose a service area to explore, or bring me the problem and we can work out the right combination."/><section className="section container service-detail-list">{cards.map((c,i)=><Reveal key={c.title}><article className="service-detail-card"><div className="service-detail-number">0{i+1}</div><div className="service-detail-main"><Eyebrow>{c.title.toUpperCase()}</Eyebrow><h2>{c.title}</h2><p className="service-detail-intro">{c.intro}</p><ul className="check-list">{c.items.map((item)=><li key={item}>{item}</li>)}</ul><div className="tools-line"><span>PLATFORMS & TOOLS</span><p>{c.tools}</p></div><Arrow href={c.href}>Explore service details</Arrow></div></article></Reveal>)}</section><section className="scope-note container"><div><Eyebrow>CLEAR SCOPE</Eyebrow><h2>Implementation, not vague promises.</h2></div><p>Deliverables, exclusions, dependencies and handover expectations are clarified before work begins. I provide store, website, organic visibility and social-commerce setup—not paid advertising campaign management or ongoing social posting.</p></section><PlatformWall compact /><Cta title="Not sure which service fits?" body="Start with the outcome you need. We can clarify the right combination of services together."/></>;
 }
 async function Process() {
   const stored = await getProcess();
@@ -383,8 +511,9 @@ function Contact({ settings }: { settings: Settings }) {
 }
 export default async function Page({ params }: RouteProps) {
   const route = (await params).slug?.join("/") || "";
-  const allowed = ["","about","how-i-can-help","services","process","work","testimonials","faq","contact"];
+  const allowed = ["","about","how-i-can-help","services","process","work","testimonials","faq","contact", ...Object.keys(serviceLandingPages)];
   if (!allowed.includes(route)) notFound();
+  if (serviceLandingPages[route]) return <ServiceLanding route={route}/>;
   const settings = await getSettings();
   switch(route) {
     case "": return <Home settings={settings}/>;
