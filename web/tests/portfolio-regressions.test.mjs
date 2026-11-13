@@ -174,7 +174,7 @@ test("Both Pluswrld theme logos are transparent vector assets", () => {
 test("Wordmark is proportionally reduced and moved closer to the supporting tagline", () => {
   for (const path of ["public/pluswrld-logo.svg", "public/pluswrld-logo-dark.svg"]) {
     const svg = read(path);
-    assert.match(svg, /translate\(295 65\) scale\(0.70\)/);
+    assert.match(svg, /translate\(295 150\) scale\(0.70\)/);
     assert.match(svg, /Knowledge comes from sensory ideas/);
     assert.match(svg, /Build, Automate, Grow/);
   }
