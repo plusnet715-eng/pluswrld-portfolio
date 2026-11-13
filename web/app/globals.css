@@ -1013,20 +1013,13 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 }
 
 
-/* Refined logo scale: keep the approved mark compact and proportional. */
-.site-header .brand-image-lockup{width:156px}
-.site-header .brand-logo-image{max-height:68px}
-.footer-brand-lockup .brand-image-lockup{width:164px;max-width:100%}
-.footer-brand-lockup .brand-logo-footer-fixed{max-height:70px}
-@media(max-width:760px){
-  .site-header .brand-image-lockup{width:142px}
-  .site-header .brand-logo-image{max-height:62px}
-  .footer-brand-lockup .brand-image-lockup{width:148px}
-  .footer-brand-lockup .brand-logo-footer-fixed{max-height:64px}
-}
 
 
-/* Refined Pluswrld lockup: scale the wordmark inside the SVG while keeping both supporting lines legible. */
+/* Clarify the name used in Fiverr reviews. */
+.about-name-note{display:block;margin-top:4px;color:var(--muted,#69756d);font-size:.78rem;line-height:1.4}
+
+
+/* Final compact logo sizing; the SVG itself scales only the Pluswrld wordmark. */
 .site-header .brand-image-lockup{width:180px}
 .site-header .brand-logo-image{max-height:76px}
 .footer-brand-lockup .brand-image-lockup{width:184px;max-width:100%}
@@ -1038,6 +1031,4 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   .footer-brand-lockup .brand-logo-footer-fixed{max-height:71px}
 }
 
-
-/* Clarify the name used in Fiverr reviews. */
 .about-name-note{display:block;margin-top:4px;color:var(--muted,#69756d);font-size:.78rem;line-height:1.4}
