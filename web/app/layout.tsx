@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shopify Store Setup, Websites & Automation | Pluswrld",
-    description: "Build or improve your Shopify store, website or no-code app, and plan, manage and optimise paid advertising campaigns with Pluswrld."
+    title: "Shopify, Websites, Automation & Paid Advertising | Pluswrld",
+    description: "Build and improve Shopify stores, websites and automations, and plan, launch, manage and optimise paid advertising campaigns with Pluswrld."
   },
   robots: {
     index: true,
