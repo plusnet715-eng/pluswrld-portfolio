@@ -63,9 +63,9 @@ const projectAssets: Record<string, string> = {
 
 export const getSettings = cache(async (): Promise<Settings> => {
   try {
-    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"logoUrl":logo.asset->url,"logoDarkUrl":logoDark.asset->url,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
+    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
     const normalized = data ? normalizeObjectStrings(data) : null;
-    return { ...defaults, ...(normalized ?? {}), logoUrl: normalized?.logoUrl || defaults.logoUrl, logoDarkUrl: normalized?.logoDarkUrl || defaults.logoDarkUrl, portraitUrl: normalized?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: normalized?.originalPortraitUrl || defaults.originalPortraitUrl };
+    return { ...defaults, ...(normalized ?? {}), logoUrl: defaults.logoUrl, logoDarkUrl: defaults.logoDarkUrl, portraitUrl: normalized?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: normalized?.originalPortraitUrl || defaults.originalPortraitUrl };
   } catch { return defaults; }
 });
 
