@@ -173,7 +173,25 @@ test("Wordmark is proportionally reduced while supporting logo lines remain full
   assert.match(css, /\.site-header \.brand-image-lockup\{width:180px\}/);
 });
 
-test("Logo wordmark is reduced independently of the supporting logo copy", () => {\n  for (const path of ["public/pluswrld-logo.svg", "public/pluswrld-logo-dark.svg"]) {\n    assert.match(read(path), /translate\\(295 65\\) scale\\(0\\.70\\)/);\n  }\n});\n\ntest("Enquiry form uses WhatsApp with an email fallback and no paid-advertising option", () => {\n  const form = read("components/enquiry-form.tsx");\n  assert.match(form, /Continue to WhatsApp/);\n  assert.match(form, /Use email instead/);\n  assert.match(form, /Merchant Center \/ social commerce setup/);\n  assert.doesNotMatch(form, /<option>Paid advertising<\\/option>/);\n});\n\ntest("Testimonials prioritise the detailed Edison review and higher-rated feedback", () => {\n  assert.match(content, /order\\(\\(reviewerHandle == "edison_tim"\\) desc, rating desc, reviewDate desc\\)/);\n});\n\ntest("Primary metadata describes the real Pluswrld services", () => {
+test("Logo wordmark is reduced independently of the supporting logo copy", () => {
+  for (const path of ["public/pluswrld-logo.svg", "public/pluswrld-logo-dark.svg"]) {
+    assert.match(read(path), /translate\(295 65\) scale\(0\.70\)/);
+  }
+});
+
+test("Enquiry form uses WhatsApp with an email fallback and no paid-advertising option", () => {
+  const form = read("components/enquiry-form.tsx");
+  assert.match(form, /Continue to WhatsApp/);
+  assert.match(form, /Use email instead/);
+  assert.match(form, /Merchant Center \/ social commerce setup/);
+  assert.doesNotMatch(form, /<option>Paid advertising<\/option>/);
+});
+
+test("Testimonials prioritise the detailed Edison review and higher-rated feedback", () => {
+  assert.match(content, /order\(\(reviewerHandle == "edison_tim"\) desc, rating desc, reviewDate desc\)/);
+});
+
+test("Primary metadata describes the real Pluswrld services", () => {
   assert.match(layout, /Shopify Store Setup, Websites & Automation \| Pluswrld/);
   assert.match(layout, /Build or improve your Shopify store, business website or no-code app/);
   assert.doesNotMatch(layout, /knowledge comes from sensory ideas/i);
