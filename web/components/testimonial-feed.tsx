@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Testimonial } from "../lib/content";
 
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 6;
 
 export function TestimonialFeed({ reviews }: { reviews: Testimonial[] }) {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
