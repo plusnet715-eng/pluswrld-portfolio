@@ -89,11 +89,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return <html lang="en-NG" data-theme="light">
     <head>
       <link rel="preconnect" href="https://use.typekit.net" />
-      <link rel="stylesheet" href="https://use.typekit.net/hmk3hsy.css" />
+      <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
+      <link id="pluswrld-typekit" rel="stylesheet" href="https://use.typekit.net/hmk3hsy.css" media="print" />
+      <script dangerouslySetInnerHTML={{ __html: `(function(){var link=document.getElementById("pluswrld-typekit");if(link){link.addEventListener("load",function(){link.media="all";},{once:true});}})();` }} />
       <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
-      <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://a8mywjme.apicdn.sanity.io" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://cdn.shopify.com" />
     </head>
     <body className={workSans.variable}>
