@@ -1,0 +1,34 @@
+# Pluswrld
+
+> Pluswrld is the digital consultancy of Paul Oloruntobi. It builds and improves Shopify and ecommerce stores, business websites, no-code applications, AI and business automations, creator-commerce and membership systems, and paid advertising campaigns.
+
+## Main pages
+
+- [Home](https://pluswrld-portfolio.vercel.app/): Overview of Pluswrld's work and capabilities.
+- [About](https://pluswrld-portfolio.vercel.app/about): Background, working approach and capabilities of Paul Oloruntobi.
+- [How I Can Help](https://pluswrld-portfolio.vercel.app/how-i-can-help): Common business needs supported by Pluswrld.
+- [Services](https://pluswrld-portfolio.vercel.app/services): Service overview and delivery scope.
+- [Process](https://pluswrld-portfolio.vercel.app/process): Project discovery, planning, implementation, testing and handover.
+- [Selected Work](https://pluswrld-portfolio.vercel.app/work): Portfolio of selected digital projects.
+- [Testimonials](https://pluswrld-portfolio.vercel.app/testimonials): Published client feedback.
+- [Frequently Asked Questions](https://pluswrld-portfolio.vercel.app/faq): Common questions about working with Pluswrld.
+- [Contact](https://pluswrld-portfolio.vercel.app/contact): Project enquiry and contact options.
+
+## Service pages
+
+- [Shopify Store Setup, Redesign and Management](https://pluswrld-portfolio.vercel.app/services/shopify-store-setup)
+- [Website Development and No-Code Applications](https://pluswrld-portfolio.vercel.app/services/website-development)
+- [AI Workflow and Business Automation](https://pluswrld-portfolio.vercel.app/services/ai-automation)
+- [Creator Commerce, Whop and Skool](https://pluswrld-portfolio.vercel.app/services/creator-commerce)
+- [SEO and Social Visibility](https://pluswrld-portfolio.vercel.app/services/seo-social-visibility)
+- [Paid Advertising Campaign Management](https://pluswrld-portfolio.vercel.app/services/paid-advertising)
+
+## Contact
+
+- Email: timileyinpaul26@gmail.com
+- [Contact page](https://pluswrld-portfolio.vercel.app/contact)
+
+## Site discovery
+
+- [XML sitemap](https://pluswrld-portfolio.vercel.app/sitemap.xml)
+- [Robots.txt](https://pluswrld-portfolio.vercel.app/robots.txt)
