@@ -24,7 +24,7 @@ export function LiveWebsitePreview({ url, title, poster, className = "" }: Props
       for (const entry of entries) {
         if (entry.isIntersecting) {
           if (timerRef.current !== null) window.clearTimeout(timerRef.current);
-          timerRef.current = window.setTimeout(() => setActive(true), 2600);
+          timerRef.current = window.setTimeout(() => setActive(true), 2200);
         } else {
           if (timerRef.current !== null) window.clearTimeout(timerRef.current);
           timerRef.current = null;
@@ -32,7 +32,7 @@ export function LiveWebsitePreview({ url, title, poster, className = "" }: Props
           setLoaded(false);
         }
       }
-    }, { threshold: 0.65 });
+    }, { threshold: 0.35, rootMargin: "0px 0px -10% 0px" });
     observer.observe(node);
     return () => {
       observer.disconnect();
@@ -55,9 +55,11 @@ export function LiveWebsitePreview({ url, title, poster, className = "" }: Props
     {active && <iframe
       src={url}
       title={title + " live website preview"}
-      loading="lazy"
-      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+      loading="eager"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       referrerPolicy="strict-origin-when-cross-origin"
+      aria-hidden="true"
+      tabIndex={-1}
       onLoad={() => setLoaded(true)}
       className={loaded ? "is-loaded" : ""}
     />}
