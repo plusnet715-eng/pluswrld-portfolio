@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   url: string;
@@ -40,17 +40,16 @@ export function LiveWebsitePreview({ url, title, poster, className = "" }: Props
     };
   }, []);
 
-  const handlePointerEnter = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse") setActive(true);
+  const handleMouseEnter = () => {
+    setActive(true);
+    setLoaded(false);
   };
-  const handlePointerLeave = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse") {
-      setActive(false);
-      setLoaded(false);
-    }
+  const handleMouseLeave = () => {
+    setActive(false);
+    setLoaded(false);
   };
 
-  return <div ref={rootRef} className={`live-website-preview ${active ? "is-previewing" : ""} ${className}`} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
+  return <div ref={rootRef} className={`live-website-preview ${active ? "is-previewing" : ""} ${className}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
     {poster && <Image className="live-preview-poster" src={poster} alt={title + " website preview poster"} fill sizes="(max-width: 760px) 100vw, 50vw" unoptimized={poster.endsWith(".svg") || (!poster.startsWith("/") && !poster.includes("cdn.sanity.io") && !poster.includes("cdn.shopify.com"))} />}
     {active && <iframe
       src={url}
