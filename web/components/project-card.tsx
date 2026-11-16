@@ -23,7 +23,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
       <h3>{project.liveUrl ? <a href={project.liveUrl} target="_blank" rel="noreferrer">{project.title}</a> : project.title}</h3>
       <p>{project.summary}</p>
       {project.liveUrl
-        ? <a className="text-link" href={project.liveUrl} target="_blank" rel="noreferrer">Visit live website <span>↗</span></a>
+        ? <a className="text-link" href={project.liveUrl} target="_blank" rel="noreferrer">{"Visit " + project.title + " website"} <span>↗</span></a>
         : <span className="project-private-note">Public preview unavailable</span>}
     </div>
   </article></Reveal>;
