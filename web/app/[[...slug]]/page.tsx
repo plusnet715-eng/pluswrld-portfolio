@@ -231,6 +231,7 @@ function serviceHref(title: string) {
   if (value.includes("website") || value.includes("no-code")) return "/services/website-development";
   if (value.includes("automation") || value.includes("ai")) return "/services/ai-automation";
   if (value.includes("advert")) return "/services/paid-advertising";
+  if (value.includes("seo") || value.includes("social")) return "/services/seo-social-visibility";
   if (value.includes("creator") || value.includes("community")) return "/services/creator-commerce";
   if (value.includes("graphic") || value.includes("design")) return "/services/graphic-design";
   return "/services";
@@ -241,7 +242,7 @@ function DeviceView({ project, variant }: { project: Project & { liveUrl: string
   try { projectHost = new URL(project.liveUrl).hostname.replace(/^www\\./, ""); } catch {}
   return <a className={"device-view device-view-" + variant} href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={"Open " + project.title + " website"}>
     <span className="device-browser"><i /><i /><i /><span>{projectHost}</span></span>
-    <span className="device-screen"><LiveWebsitePreview url={project.liveUrl} title={project.title} poster={project.imageUrl} className="live-preview-device" /></span>
+    <div className="device-screen"><LiveWebsitePreview url={project.liveUrl} title={project.title} poster={project.imageUrl} className="live-preview-device" /></div>
     <span className="device-view-label">{project.title} <span>↗</span></span>
   </a>;
 }
