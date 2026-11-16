@@ -88,6 +88,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return <html lang="en-NG" data-theme="light">
     <head>
+      <link rel="preconnect" href="https://use.typekit.net" />
+      <link rel="stylesheet" href="https://use.typekit.net/hmk3hsy.css" />
       <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
