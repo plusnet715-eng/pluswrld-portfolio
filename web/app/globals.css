@@ -1186,3 +1186,11 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   .footer-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:27px 18px}
   .footer-contact{grid-column:1/-1}
 }
+
+
+/* Final fit for the longer, exact homepage headline and four-card mobile metrics */
+.hero-copy h1{max-width:700px;font-size:clamp(43px,5.1vw,68px);line-height:1.04}
+@media(max-width:760px){
+  .hero-copy h1{font-size:clamp(41px,10.8vw,60px)}
+  .about-metric:last-child{grid-column:auto}
+}
