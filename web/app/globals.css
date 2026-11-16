@@ -1008,7 +1008,7 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   border-color:#dbe7dc;background:#fff;
 }
 :root[data-theme="dark"] .about-social-links .social-link img{
-  filter:none!important;
+  filter:grayscale(1) brightness(0) saturate(100%) invert(25%) sepia(71%) saturate(1045%) hue-rotate(89deg) brightness(88%) contrast(98%)!important;
 }
 
 
