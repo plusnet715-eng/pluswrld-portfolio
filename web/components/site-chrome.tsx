@@ -7,13 +7,14 @@ import type { PresenceLink, Settings } from "../lib/content";
 const primaryLinks = [
   { href: "/services", label: "Services" },
   { href: "/work", label: "Selected work" },
-  { href: "/about", label: "About me" },
+  { href: "/about", label: "About" },
   { href: "/testimonials", label: "Reviews" },
   { href: "/faq", label: "FAQ" }
 ];
 const exploreLinks = [
   { href: "/how-i-can-help", label: "How I can help", description: "Find the right starting point" },
-  { href: "/process", label: "My process", description: "How projects are scoped and delivered" }
+  { href: "/process", label: "My process", description: "How projects are scoped and delivered" },
+  { href: "/graphic-design", label: "Graphic design portfolio", description: "Browse flyers, posters and promotional designs" }
 ];
 type ThemePreference = "system" | "light" | "dark";
 
@@ -142,8 +143,9 @@ export function SiteFooter({ settings, profiles }: { settings: Settings; profile
         <div className="footer-brand-lockup"><Brand settings={settings} appearance="dark" /></div>
         
       </div>
-      <div className="footer-column"><span className="footer-label">Explore</span><Link href="/about">About me</Link><Link href="/how-i-can-help">How I can help</Link><Link href="/services">Services</Link><Link href="/process">My process</Link><Link href="/work">Past work</Link><Link href="/testimonials">Reviews</Link><Link href="/faq">FAQ</Link></div>
-      <div className="footer-column"><span className="footer-label">Connect</span><a href="https://www.fiverr.com/timi_p1" target="_blank" rel="noreferrer">Fiverr ↗</a><a href="https://www.upwork.com/freelancers/~016b078cb44626d3a3" target="_blank" rel="noreferrer">Upwork ↗</a><a href={settings.whatsappUrl} target="_blank" rel="noreferrer">WhatsApp ↗</a><a href={"mailto:" + contactEmail} aria-label={"Email " + contactEmail}>Email ↗</a></div>
+      <div className="footer-column"><span className="footer-label">Explore</span><Link href="/services">Services</Link><Link href="/work">Selected work</Link><Link href="/graphic-design">Graphic design portfolio</Link><Link href="/about">About</Link></div>
+      <div className="footer-column"><span className="footer-label">Project guide</span><Link href="/how-i-can-help">How I can help</Link><Link href="/process">My process</Link><Link href="/testimonials">Client reviews</Link><Link href="/faq">FAQ</Link></div>
+      <div className="footer-column"><span className="footer-label">Connect</span><a href="https://www.fiverr.com/timi_p1" target="_blank" rel="noreferrer">Fiverr ↗</a><a href="https://www.upwork.com/freelancers/~016b078cb44626d3a3" target="_blank" rel="noreferrer">Upwork ↗</a><a href="https://x.com/pluswrld_1p" target="_blank" rel="noreferrer">X ↗</a><a href={settings.whatsappUrl} target="_blank" rel="noreferrer">WhatsApp ↗</a><a href={"mailto:" + contactEmail} aria-label={"Email " + contactEmail}>Email ↗</a></div>
       <div className="footer-contact"><span className="footer-label">Have a project in mind?</span><h3>Let&apos;s make the next step clear.</h3><Link href="/contact" className="text-link">Start a conversation <span>↗</span></Link></div>
     </div>
     <div className="footer-bottom"><span>© {new Date().getFullYear()} Pluswrld. All rights reserved.</span><span>{settings.tagline || "Build • Automate • Grow"}</span></div>
