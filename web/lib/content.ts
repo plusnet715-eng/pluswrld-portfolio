@@ -11,6 +11,7 @@ export type Settings = {
   email: string; whatsappNumber: string; whatsappUrl: string; logoUrl: string; logoDarkUrl: string; heroTitle: string;
   heroDescription: string; aboutIntro: string; aboutStory: string; aboutPhilosophy: string;
   tagline: string; secondaryTagline: string; secondaryTaglineMeaning: string; portraitUrl: string; originalPortraitUrl: string;
+  metrics?: { yearsExperience?: string; completedProjects?: string; satisfiedClients?: string; marketReach?: string };
 };
 export type Service = { _id: string; title: string; description: string; shortDescription?: string; icon?: string; order?: number };
 export type Project = { _id: string; title: string; category: string; summary: string; liveUrl?: string; status: string; featured?: boolean; imageUrl: string };
@@ -25,8 +26,9 @@ const defaults: Settings = {
   location: "", marketReach: "Worldwide",
   availability: "Available for selected projects", freelancingSince: "2025-05-01", email: "timileyinpaul26@gmail.com",
   whatsappNumber: "+234 916 161 2746", whatsappUrl: "https://wa.me/2349161612746",
-  heroTitle: "Shopify. Websites. Systems that work together.",
-  heroDescription: "I build the digital foundations behind your business—from ecommerce and websites to no-code apps, automation and paid campaigns.",
+  heroTitle: "Your store, website, community and automations, set up properly.",
+  heroDescription: "I build Shopify stores, Webflow and Framer sites, Whop and Skool communities and GoHighLevel automations, and I set up the Google, Pinterest and TikTok side so people can find them.",
+  metrics: { yearsExperience: "2+", completedProjects: "80+", satisfiedClients: "15+", marketReach: "Worldwide" },
   aboutIntro: "I’m Paul Oloruntobi, the digital builder behind Pluswrld. I build and improve Shopify stores, websites, no-code applications and business automations. I also manage paid advertising campaigns, helping businesses reach relevant audiences, bring qualified traffic to their offers and make better use of their marketing budgets.",
   aboutStory: "I’m a hands-on builder. I take time to understand what a business needs, then help plan and implement a practical solution. That might be a Shopify store, a website, a no-code application, a membership setup, an automation that connects tools or a paid advertising campaign built around a clear business objective.\n\nI pay attention to how the finished system works for real people: how customers move through a store, how products and information are organised, how a team manages the setup and what happens after launch. For advertising projects, I look at the offer, audience, campaign structure, budget, tracking and performance so the work is guided by the business goal rather than clicks alone.\n\nI also help businesses become more discoverable through website SEO, social profile optimisation, social-commerce connections and paid campaigns. The aim is to connect the right foundations with a practical route to reach potential customers.",
   aboutPhilosophy: "I want every project to be useful for the business and clear for the people using it. I start with the goal, choose tools and channels that fit the job and keep the experience straightforward.\n\nFor paid advertising, that means agreeing on the objective, audience, budget, creative requirements, tracking and reporting before launch. I monitor performance and make optimisation decisions against the agreed goals, while keeping advertising spend and third-party costs separate from my service fee.\n\nI stay involved from planning through implementation, testing and handover. I communicate clearly, check the important journeys and explain what has been delivered so you can move forward with confidence.",
@@ -63,9 +65,9 @@ const projectAssets: Record<string, string> = {
 
 export const getSettings = cache(async (): Promise<Settings> => {
   try {
-    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,freelancingSince,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
+    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,freelancingSince,metrics, email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
     const normalized = data ? normalizeObjectStrings(data) : null;
-    return { ...defaults, ...(normalized ?? {}), logoUrl: defaults.logoUrl, logoDarkUrl: defaults.logoDarkUrl, portraitUrl: normalized?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: normalized?.originalPortraitUrl || defaults.originalPortraitUrl };
+    return { ...defaults, ...(normalized ?? {}), heroTitle: defaults.heroTitle, heroDescription: defaults.heroDescription, metrics: normalized?.metrics ?? defaults.metrics, logoUrl: defaults.logoUrl, logoDarkUrl: defaults.logoDarkUrl, portraitUrl: normalized?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: normalized?.originalPortraitUrl || defaults.originalPortraitUrl };
   } catch { return defaults; }
 });
 
