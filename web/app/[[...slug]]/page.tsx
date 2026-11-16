@@ -511,6 +511,7 @@ const platformGroups = [
   ]},
   { title: "Websites & no-code", items: [
     {name:"Webflow",src:"/platform/webflow.svg"},
+    {name:"Framer",src:"https://framerusercontent.com/images/dVpT3X2jfKMoj2h0OfcGhqTqs.svg?height=54&width=200"},
     {name:"Bubble",src:"/platform/bubble.svg"},
     {name:"FlutterFlow",src:"/platform/flutterflow.svg"},
     {name:"Glide",src:"/platform/glide.svg"},
@@ -518,6 +519,7 @@ const platformGroups = [
   ]},
   { title: "AI & automation", items: [
     {name:"OpenAI",src:"/platform/openai.svg"},
+    {name:"GoHighLevel",src:"https://assets.cdn.filesafe.space/zELBHkVp0JPbbLvKIlF5/media/690a5f4a57ea175183408da2.png"},
     {name:"n8n",src:"/platform/n8n.svg"},
     {name:"Make",src:"/platform/make.svg"},
     {name:"Zapier",src:"/platform/zapier.svg"},
