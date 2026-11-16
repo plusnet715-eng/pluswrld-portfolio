@@ -417,7 +417,7 @@ function Help() {
 const platformGroups = [
   { title: "Ecommerce, search & social commerce", items: [
     {name:"Shopify",src:"/platform/shopify.svg"},
-    {name:"Google",src:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Google_2026_logo.svg"},
+    {name:"Google",src:"https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png"},
     {name:"Microsoft",src:"/platform/microsoft.svg"},
     {name:"TikTok",src:"/platform/tiktok.svg"},
     {name:"Pinterest",src:"/platform/pinterest.svg"},
@@ -439,7 +439,7 @@ const platformGroups = [
     {name:"Claude",src:"/platform/claude.svg"}
   ]},
   { title: "Creator, community & email", items: [
-    {name:"Whop",src:"https://brand.whop.com/images/logos/whop_logo_lockup_duo_black.svg"},
+    {name:"Whop",src:"https://brand.whop.com/images/logos/whop_brandmark_orange.svg"},
     {name:"Skool",src:"/platform/skool.svg"},
     {name:"Discord",src:"/platform/discord.svg"},
     {name:"Klaviyo",src:"/platform/klaviyo.svg"},
