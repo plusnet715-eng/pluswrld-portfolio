@@ -10,8 +10,8 @@ import { Reveal } from "../../components/reveal";
 import { MobileDrawer } from "../../components/mobile-drawer";
 import { getFaqs, getProcess, getProjects, getServices, getSettings, getSocialLinks, getTestimonials, type PresenceLink, type Project, type Settings, type Testimonial } from "../../lib/content";
 
-const pageTitles: Record<string, string> = { "": "Shopify, Websites, Automation & Paid Advertising", about: "About Paul Oloruntobi | Shopify, Digital Systems & Paid Advertising", "how-i-can-help": "Shopify, Websites, Automation & Paid Advertising", services: "Shopify, Websites, Automation & Paid Advertising", process: "Our Shopify, Website & Advertising Process", work: "Selected Shopify, Website & Graphic Design Work", testimonials: "Client Reviews & Testimonials", faq: "Frequently Asked Questions", contact: "Discuss a Digital Project", "services/shopify-store-setup": "Shopify Store Setup, Redesign & Management", "services/website-development": "Website Development & No-Code Apps", "services/ai-automation": "AI Workflow & Business Automation", "services/creator-commerce": "Whop, Skool & Community Setup", "services/seo-social-visibility": "Website SEO & Social Commerce Setup", "services/paid-advertising": "Paid Advertising Campaign Management", "services/graphic-design": "Graphic Design & Visual Communication" };
-const pageDescriptions: Record<string, string> = { "": "Pluswrld builds Shopify stores, websites and automations, and plans, manages and optimises paid advertising campaigns to help businesses reach the right customers.", about: "Meet Paul Oloruntobi, the builder behind Pluswrld. Explore his Shopify, website development, automation and paid advertising services.", "how-i-can-help": "Get practical help with Shopify, ecommerce, website development, no-code apps, business automation and paid advertising campaigns.", services: "Shopify store setup, ecommerce website development, no-code applications, AI workflow automation and paid advertising campaign management.", process: "See how Shopify, website, automation and paid advertising projects are scoped, implemented, tested and reviewed.", work: "Explore selected Shopify ecommerce stores, website projects, digital systems and graphic-design samples from Pluswrld.", testimonials: "Read client feedback about Shopify store setup, website development and digital implementation work.", faq: "Answers about Shopify services, website development, project scope, platforms and delivery.", contact: "Discuss Shopify, website development, automation or a paid advertising campaign with Pluswrld.", "services/shopify-store-setup": "Shopify store setup, redesign, management and ecommerce improvements, with paid advertising support available to help attract qualified traffic.", "services/website-development": "Business website development, Webflow builds, Bubble and FlutterFlow apps, customer portals and no-code MVP implementation by Pluswrld.", "services/ai-automation": "AI workflow automation, business process mapping, app integrations and repeatable operations systems designed and implemented by Pluswrld.", "services/creator-commerce": "Whop storefronts, Skool communities, memberships, digital products, Discord roles and paid-access automation setup by Pluswrld.", "services/seo-social-visibility": "Website SEO foundations, search metadata, social profile optimisation and social-commerce connections, alongside paid advertising campaign management.", "services/paid-advertising": "Paid advertising strategy, campaign setup, management, tracking and optimisation by Pluswrld.", "services/graphic-design": "Promotional graphics, event flyers, posters and visual assets designed around your message." };
+const pageTitles: Record<string, string> = { "": "Shopify, Websites, Automation & Paid Advertising", about: "About Paul Oloruntobi | Shopify, Digital Systems & Paid Advertising", "how-i-can-help": "Shopify, Websites, Automation & Paid Advertising", services: "Shopify, Websites, Automation & Paid Advertising", process: "Our Shopify, Website & Advertising Process", work: "Selected Shopify & Website Work", "graphic-design": "Graphic Design Portfolio | Pluswrld", testimonials: "Client Reviews & Testimonials", faq: "Frequently Asked Questions", contact: "Discuss a Digital Project", "services/shopify-store-setup": "Shopify Store Setup, Redesign & Management", "services/website-development": "Website Development & No-Code Apps", "services/ai-automation": "AI Workflow & Business Automation", "services/creator-commerce": "Whop, Skool & Community Setup", "services/seo-social-visibility": "Website SEO & Social Commerce Setup", "services/paid-advertising": "Paid Advertising Campaign Management", "services/graphic-design": "Graphic Design & Visual Communication" };
+const pageDescriptions: Record<string, string> = { "": "Pluswrld builds Shopify stores, websites and automations, and plans, manages and optimises paid advertising campaigns to help businesses reach the right customers.", about: "Meet Paul Oloruntobi, the builder behind Pluswrld. Explore his Shopify, website development, automation and paid advertising services.", "how-i-can-help": "Get practical help with Shopify, ecommerce, website development, no-code apps, business automation and paid advertising campaigns.", services: "Shopify store setup, ecommerce website development, no-code applications, AI workflow automation and paid advertising campaign management.", process: "See how Shopify, website, automation and paid advertising projects are scoped, implemented, tested and reviewed.", work: "Explore selected Shopify stores, websites and digital projects by Pluswrld.", "graphic-design": "Browse event flyers, posters and promotional graphic-design work from Pluswrld.", testimonials: "Read client feedback about Shopify store setup, website development and digital implementation work.", faq: "Answers about Shopify services, website development, project scope, platforms and delivery.", contact: "Discuss Shopify, website development, automation or a paid advertising campaign with Pluswrld.", "services/shopify-store-setup": "Shopify store setup, redesign, management and ecommerce improvements, with paid advertising support available to help attract qualified traffic.", "services/website-development": "Business websites in Webflow and Framer, no-code apps in Bubble, Glide, FlutterFlow and Adalo, customer portals and MVP implementation by Pluswrld.", "services/ai-automation": "GoHighLevel CRM pipelines, AI-assisted workflow automation, app integrations and repeatable operations systems designed and implemented by Pluswrld.", "services/creator-commerce": "Whop storefronts, Skool communities, memberships, digital products and GoHighLevel-powered onboarding and follow-up automations by Pluswrld.", "services/seo-social-visibility": "Website SEO foundations, search metadata, social profile optimisation and social-commerce connections, alongside paid advertising campaign management.", "services/paid-advertising": "Paid advertising strategy, campaign setup, management, tracking and optimisation by Pluswrld.", "services/graphic-design": "Promotional graphics, event flyers, posters and visual assets designed around your message." };
 type RouteProps = { params: Promise<{ slug?: string[] }> };
 const serviceLandingPages: Record<string, { name: string; title: string; description: string; eyebrow: string; heading: string; intro: string; deliverables: { title: string; description: string }[]; scope: string; tools: string; cta: string }> = {
   "services/shopify-store-setup": {
@@ -26,7 +26,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
       { title: "Theme customisation and redesign", description: "Responsive storefront layouts and usability improvements that respect your existing brand direction." },
       { title: "Products, collections and variants", description: "Product uploads, collection organisation, options, SKUs and clearer product-page structure." },
       { title: "SEO and conversion foundations", description: "Page titles, meta descriptions, product-page structure, navigation and practical shopping-experience improvements." },
-      { title: "Store operations and integrations", description: "Relevant setup for Google Merchant Center, TikTok Shop, Pinterest and supported marketplace connections." },
+      { title: "Store operations and integrations", description: "Relevant setup for Google Merchant Center and Bing Merchant Center feed troubleshooting, plus relevant Shopify channel connections." },
       { title: "Store management and handover", description: "Agreed store-management support, operational checks and clear handover notes for your team." }
     ],
     scope: "Paid advertising campaigns can be planned and managed as part of an ecommerce growth project or as a separate engagement. Ad spend and third-party platform fees are separate from the service fee. Ongoing organic social posting is scoped separately.",
@@ -49,7 +49,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
       { title: "Testing and handover", description: "Responsive checks, agreed functionality testing and clear guidance for managing the finished solution." }
     ],
     scope: "The platform and implementation approach are selected after the requirements are understood. Complex custom integrations, subscriptions or third-party costs are confirmed before work begins.",
-    tools: "Webflow · Bubble · FlutterFlow · Glide · Adalo",
+    tools: "Webflow · Framer · Bubble · Glide · FlutterFlow · Adalo",
     cta: "Share what the website or application needs to help people do."
   },
   "services/ai-automation": {
@@ -68,7 +68,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
       { title: "Documentation and handover", description: "Explain the workflow, dependencies and practical steps for maintaining the automation." }
     ],
     scope: "Automation is designed around the actual process and available platform access. Third-party subscriptions, API usage and ongoing monitoring are scoped separately where required.",
-    tools: "OpenAI · n8n · Make · Zapier · APIs · Business applications",
+    tools: "GoHighLevel · OpenAI · n8n · Make · Zapier · APIs",
     cta: "Describe the repetitive task or disconnected process you want to improve."
   },
   "services/creator-commerce": {
@@ -87,7 +87,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
       { title: "Testing and handover", description: "Check purchase-to-access journeys and document how to manage the setup after launch." }
     ],
     scope: "Paid campaigns can support the launch or growth of a creator offer and can be scoped alongside the storefront and membership setup. Ad spend, platform fees and community moderation are separate considerations.",
-    tools: "Whop · Skool · Discord · Kajabi · Circle",
+    tools: "Whop · Skool · GoHighLevel · Discord",
     cta: "Tell me what you sell, where your community lives and how members should get access."
   },
   "services/graphic-design": {
@@ -140,7 +140,7 @@ const serviceLandingPages: Record<string, { name: string; title: string; descrip
       { title: "Search indexing setup", description: "Prepare sitemap submission and ownership verification workflows for supported search tools such as Google Search Console and Bing Webmaster Tools." },
       { title: "Social profile optimisation", description: "Improve business profile information, links, descriptions and presentation so visitors understand what you offer." },
       { title: "Social-commerce connections", description: "Set up relevant product catalogues, channel connections, pixels or tracking foundations where supported." },
-      { title: "Pinterest and content discoverability", description: "Structure boards, profile details and product pins to support organic discovery on Pinterest." }
+      { title: "Pinterest and content discoverability", description: "Set up Pinterest profiles, boards and product pins, and create TikTok content that helps people understand and discover the offer." }
     ],
     scope: "SEO supports organic discoverability, while paid campaigns provide a separate route to reach targeted audiences. Advertising objectives, platform, budget, tracking and optimisation are agreed before launch. Results are not guaranteed.",
     tools: "Google Search Console · Bing Webmaster Tools · Shopify · Pinterest · Meta business tools",
@@ -160,6 +160,7 @@ export function generateStaticParams() {
     { slug: ["services"] },
     { slug: ["process"] },
     { slug: ["work"] },
+    { slug: ["graphic-design"] },
     { slug: ["testimonials"] },
     { slug: ["faq"] },
     { slug: ["contact"] },
@@ -283,40 +284,110 @@ function ExploreMore() {
     <MobileDrawer className="explore-more-drawer" label="Explore all four pages" expandedLabel="Close explore pages">
       <div className="explore-more-grid">{pages.map((page,i)=><Reveal key={page.href} delay={i*45}><Link className="explore-more-card" href={page.href}><span>{page.number}</span><h3>{page.title}</h3><p>{page.body}</p><b>Explore page ↗</b></Link></Reveal>)}</div>
     </MobileDrawer>
+    <div className="section-end-cta"><Arrow href="/contact">Discuss a project</Arrow></div>
   </div></section>;
 }
 
 async function Home({ settings }: { settings: Settings }) {
-  const [services, projects, steps, reviews] = await Promise.all([getServices(), getProjects(), getProcess(), getTestimonials()]);
-  const selectedProjects = [
-    ...projects.filter((project) => project.liveUrl && project.category?.toLowerCase().includes("shopify")).slice(0, 3),
-    ...projects.filter((project) => project.category?.toLowerCase().includes("graphic design")).slice(0, 1)
+  const [projects, steps, reviews] = await Promise.all([getProjects(), getProcess(), getTestimonials()]);
+  const selectedProjects = projects
+    .filter((project) => project.liveUrl && project.category?.toLowerCase().includes("shopify"))
+    .slice(0, 3);
+  const capabilityGroups = [
+    {
+      title: "Sell online",
+      body: "Shopify store design and management, plus Google and Bing Merchant Center feed fixes.",
+      href: "/services/shopify-store-setup",
+      platforms: [
+        { label: "Shopify", src: "/platform/shopify.svg" },
+        { label: "Google", src: "/platform/google.svg" },
+        { label: "Bing", src: "/platform/bing.svg" }
+      ]
+    },
+    {
+      title: "Get found",
+      body: "Pinterest marketing foundations and TikTok content creation that help people discover your offer.",
+      href: "/services/seo-social-visibility",
+      platforms: [
+        { label: "Pinterest", src: "/platform/pinterest.svg" },
+        { label: "TikTok", src: "/platform/tiktok.svg" }
+      ]
+    },
+    {
+      title: "Build sites and apps",
+      body: "Webflow and Framer websites, plus no-code apps built with Bubble, Glide, FlutterFlow and Adalo.",
+      href: "/services/website-development",
+      platforms: [
+        { label: "Webflow", src: "/platform/webflow.svg" },
+        { label: "Framer", src: "https://framerusercontent.com/images/dVpT3X2jfKMoj2h0OfcGhqTqs.svg?height=54&width=200" },
+        { label: "Bubble", src: "/platform/bubble.svg" },
+        { label: "Glide", src: "/platform/glide.svg" },
+        { label: "FlutterFlow", src: "/platform/flutterflow.svg" },
+        { label: "Adalo", src: "/platform/adalo.svg" }
+      ]
+    },
+    {
+      title: "Run communities and automation",
+      body: "Whop and Skool community setups, membership journeys and GoHighLevel automation.",
+      href: "/services/creator-commerce",
+      platforms: [
+        { label: "Whop", src: "/platform/whop.svg" },
+        { label: "Skool", src: "/platform/skool.svg" },
+        { label: "GoHighLevel", src: "https://assets.cdn.filesafe.space/zELBHkVp0JPbbLvKIlF5/media/690a5f4a57ea175183408da2.png" }
+      ]
+    }
   ];
   return <>
     <Hero settings={settings} projects={projects} />
-    <section className="section container home-services-section">
-      <div className="section-heading">
-        <div><Eyebrow>MY SERVICES</Eyebrow><h2>Practical digital work,<br/><span className="heading-muted">built around your business.</span></h2></div>
-        <div className="section-heading-aside"><p>From your online store and website to automation, design and paid campaigns, I build the pieces that help your business work better.</p><Arrow href="/services">Explore all services</Arrow></div>
+    <section className="home-capabilities-section">
+      <div className="container">
+        <div className="section-heading">
+          <div><Eyebrow>MY SERVICES</Eyebrow><h2>What your digital setup<br/><span className="heading-muted">needs to do well.</span></h2></div>
+          <div className="section-heading-aside"><p>From selling and discovery to websites, apps, communities and connected workflows, I build the practical pieces that make your setup work together.</p></div>
+        </div>
+        <div className="capability-grid">
+          {capabilityGroups.map((group, index) => <Reveal key={group.title} delay={index * 55}>
+            <article className="capability-card">
+              <h3>{group.title}</h3>
+              <p>{group.body}</p>
+              <div className="capability-logos" aria-label={group.title + " platforms"}>
+                {group.platforms.map((platform) => <span className="capability-brand" key={platform.label}>
+                  <img src={platform.src} alt="" loading="lazy"/>
+                  <span>{platform.label}</span>
+                </span>)}
+              </div>
+              <Arrow href={group.href}>Explore this area</Arrow>
+            </article>
+          </Reveal>)}
+        </div>
+        <div className="section-end-cta"><Arrow href="/services">View all services</Arrow></div>
       </div>
-      <div className="service-grid home-service-grid">{services.slice(0, 6).map((service, index) => <Reveal key={service._id} delay={index * 55}><article className="service-card home-service-card">
-        <ServiceIcon label={service.title} />
-        <h3>{service.title}</h3>
-        <p>{service.description}</p>
-        <Arrow href={serviceHref(service.title)}>Explore service</Arrow>
-      </article></Reveal>)}</div>
     </section>
-    <section className="section section-soft"><div className="container"><div className="section-heading"><div><Eyebrow>SELECTED WORK</Eyebrow><h2>Work that speaks<br/><span className="heading-muted">for itself.</span></h2></div><div className="section-heading-aside"><p>Explore live storefronts and selected graphic-design samples. Each card shows the work itself, without inflated performance claims.</p><Arrow href="/work">View all selected work</Arrow></div></div><div className="project-grid">{selectedProjects.map((project, index) => <ProjectCard key={project._id} project={project} index={index} />)}</div></div></section>
+    <section className="section section-soft home-selected-work">
+      <div className="container">
+        <div className="section-heading"><div><Eyebrow>SELECTED WORK</Eyebrow><h2>Real builds.<br/><span className="heading-muted">Useful outcomes.</span></h2></div><div className="section-heading-aside"><p>A few live Shopify projects and ecommerce builds. Website previews open from the cards, with each project available to visit directly.</p></div></div>
+        <div className="project-grid home-project-grid">{selectedProjects.map((project, index) => <ProjectCard key={project._id} project={project} index={index}/>)}</div>
+        <div className="section-end-cta"><Arrow href="/work">View all selected work</Arrow></div>
+      </div>
+    </section>
     <section className="section container founder-feature">
       <Reveal className="founder-feature-image"><Image src={settings.portraitUrl} alt="Paul Oloruntobi, digital builder behind Pluswrld" fill sizes="(max-width: 760px) 86vw, 35vw"/></Reveal>
       <div className="founder-feature-copy"><Eyebrow>THE PERSON BEHIND PLUSWRLD</Eyebrow><h2>Thoughtful systems. Practical execution.</h2>
-        <p>I’m Paul Oloruntobi. I build and improve digital experiences, connect business tools and manage paid campaigns that bring the right people to an offer.</p>
+        <p>I’m Paul Oloruntobi. I build and improve digital experiences, connect business tools and help businesses create clearer routes to customers.</p>
         <Arrow href="/about">Meet Paul</Arrow>
       </div>
     </section>
     <PlatformWall compact />
-    {reviews.some((review) => review.featured) && <section className="section container home-reviews"><div className="section-heading"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work.<br/><span className="heading-muted">Good working relationships.</span></h2></div><div className="section-heading-aside"><p>Original client feedback, with the wording and attribution preserved.</p><Arrow href="/testimonials">Read all reviews</Arrow></div></div><div className="home-review-grid">{reviews.filter((review) => review.featured).slice(0, 2).map((review, index) => <Reveal key={review._id} delay={index * 60}><ReviewCard review={review} compact /></Reveal>)}</div></section>}
-    <section className="section container"><div className="section-heading"><div><Eyebrow>HOW I WORK</Eyebrow><h2>Clear thinking.<br/><span className="heading-muted">Careful execution.</span></h2></div><div className="section-heading-aside"><p>Good delivery starts with a clear goal, an agreed scope, careful implementation and a useful handover.</p><Arrow href="/process">See my process</Arrow></div></div><div className="process-preview-list">{steps.slice(0, 4).map((step, index) => <Reveal key={step._id} delay={index * 50} className="preview-step"><span>0{index + 1}</span><h3>{step.title}</h3><p>{step.description}</p></Reveal>)}</div></section>
+    {reviews.some((review) => review.featured) && <section className="section container home-reviews">
+      <div className="section-heading"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work.<br/><span className="heading-muted">Good working relationships.</span></h2></div><div className="section-heading-aside"><p>Original client feedback, with the wording and attribution preserved.</p></div></div>
+      <div className="home-review-grid">{reviews.filter((review) => review.featured).slice(0, 2).map((review, index) => <Reveal key={review._id} delay={index * 60}><ReviewCard review={review} compact /></Reveal>)}</div>
+      <div className="section-end-cta"><Arrow href="/testimonials">Read all reviews</Arrow></div>
+    </section>}
+    <section className="section container home-process">
+      <div className="section-heading"><div><Eyebrow>HOW I WORK</Eyebrow><h2>Clear thinking.<br/><span className="heading-muted">Careful execution.</span></h2></div><div className="section-heading-aside"><p>Good delivery starts with a clear goal, an agreed scope, careful implementation and a useful handover.</p></div></div>
+      <div className="process-preview-list">{steps.slice(0, 4).map((step, index) => <Reveal key={step._id} delay={index * 50} className="preview-step"><span>0{index + 1}</span><h3>{step.title}</h3><p>{step.description}</p></Reveal>)}</div>
+      <div className="section-end-cta"><Arrow href="/process">See the project process</Arrow></div>
+    </section>
     <ExploreMore />
     <Cta title="Have a project in mind?" body="Tell me what you want to build, improve or connect. We can work out a clear next step." />
   </>;
@@ -359,11 +430,8 @@ function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
   </nav>;
 }
 async function About({ settings }: { settings: Settings }) {
-  const [socialLinks, projects, reviews] = await Promise.all([getSocialLinks(), getProjects(), getTestimonials()]);
-  const startDate = new Date(settings.freelancingSince || "2025-05-01T00:00:00");
-  const monthsExperience = Math.max(0, (new Date().getFullYear() - startDate.getFullYear()) * 12 + new Date().getMonth() - startDate.getMonth());
-  const yearsExperience = monthsExperience >= 18 ? String(Math.floor(monthsExperience / 6) / 2) + "+" : String(Math.max(1, Math.floor(monthsExperience / 12))) + "+";
-  const completedProjects = projects.filter((project) => project.status === "Completed client project").length;
+  const [socialLinks, reviews] = await Promise.all([getSocialLinks(), getTestimonials()]);
+  const metrics = settings.metrics ?? { yearsExperience: "2+", completedProjects: "80+", satisfiedClients: "15+", marketReach: "Worldwide" };
   const featuredReviews = reviews.filter((review) => review.featured).slice(0, 2);
   const approach = [
     { title: "Understand the goal", description: "We start with what the business needs to achieve and what is getting in the way." },
@@ -385,29 +453,31 @@ async function About({ settings }: { settings: Settings }) {
         <Reveal>
           <Eyebrow>MY STORY</Eyebrow>
           <h2>Hands-on from the first conversation to the finished build.</h2>
-          <TextParagraphs text={settings.aboutStory} className="about-story-copy"/>
+          <TextParagraphs text={settings.aboutStory} className="about-story-copy"/><div className="section-end-cta"><Arrow href="/work">See selected work</Arrow></div>
         </Reveal>
       </div>
     </section>
     <section className="section section-soft about-metrics">
       <div className="container">
         <div className="about-metric-grid">
-          <article className="about-metric"><strong>{yearsExperience}</strong><span>Years of experience</span></article>
-          <article className="about-metric"><strong>{completedProjects > 0 ? String(completedProjects) + "+" : "—"}</strong><span>Completed projects</span></article>
-          <article className="about-metric"><strong>{settings.marketReach || "Worldwide"}</strong><span>Market reach</span></article>
+          <article className="about-metric"><strong>{metrics.yearsExperience || "2+"}</strong><span>Years of experience</span></article>
+          <article className="about-metric"><strong>{metrics.completedProjects || "80+"}</strong><span>Projects completed</span></article>
+          <article className="about-metric"><strong>{metrics.satisfiedClients || "15+"}</strong><span>Satisfied clients</span></article>
+          <article className="about-metric"><strong>{metrics.marketReach || settings.marketReach || "Worldwide"}</strong><span>Market reach</span></article>
         </div>
-        <p className="about-metric-note">Other confirmed and active client work is represented in the selected projects below.</p>
       </div>
     </section>
     <section className="section container about-philosophy">
       <div className="section-heading"><div><Eyebrow>HOW I THINK</Eyebrow><h2>Useful first.<br/><span className="heading-muted">Complicated only when needed.</span></h2></div><div className="section-heading-aside"><TextParagraphs text={settings.aboutPhilosophy}/></div></div>
       <div className="about-process-grid">{approach.map((step, index) => <Reveal key={step.title} delay={index * 50}><article className="about-process-card"><h3>{step.title}</h3><p>{step.description}</p></article></Reveal>)}</div>
+      <div className="section-end-cta"><Arrow href="/process">See how I work</Arrow></div>
     </section>
     <PlatformWall compact />
     <section className="section section-soft about-reviews">
       <div className="container">
         <div className="section-heading"><div><Eyebrow>CLIENT FEEDBACK</Eyebrow><h2>Good work is built<br/><span className="heading-muted">on good relationships.</span></h2></div><div className="section-heading-aside"><p>Here is a sample of the feedback clients have shared about the work and the experience of working together.</p><Arrow href="/testimonials">Read all reviews</Arrow></div></div>
         {featuredReviews.length > 0 ? <div className="about-review-grid">{featuredReviews.map((review, index) => <Reveal key={review._id} delay={index * 60}><ReviewCard review={review} compact /></Reveal>)}</div> : <p>Client feedback is available on the reviews page.</p>}
+        <div className="section-end-cta"><Arrow href="/testimonials">Read more reviews</Arrow></div>
       </div>
     </section>
     <section className="section container about-human">
@@ -478,6 +548,7 @@ function PlatformWall({ compact = false }: { compact?: boolean }) {
         </div>)}</div>
       </MobileDrawer>
     </div>
+    <div className="platform-wall-cta"><Arrow href="/services">Explore all service areas</Arrow></div>
   </section>;
 }
 
@@ -508,14 +579,40 @@ function ServiceLanding({ route }: { route: string }) {
 
 function Services() {
   const cards = [
-    {title:"Shopify & Ecommerce Systems",href:"/services/shopify-store-setup",intro:"Build, improve and operate an ecommerce experience that is ready for real customers and day-to-day management.",items:["Shopify store setup and builds from scratch","Theme customisation, redesign and responsive layouts","Product uploads, collections, variants and SKU setup","Store management and ecommerce VA support","On-page SEO, technical hygiene and CRO improvements","Google Merchant Center and social-commerce setup","Paid campaign support for ecommerce growth"],tools:"Shopify · Google Merchant Center · TikTok Shop · Pinterest · Marketplace Connect"},
-    {title:"Websites & No-Code Applications",href:"/services/website-development",intro:"Create useful websites and applications that make it easier for customers, teams or communities to get things done.",items:["Business and service websites","Customer portals and internal tools","No-code MVPs and SaaS concepts","Workflow and interface configuration","Responsive layouts and usability improvements"],tools:"Webflow · Bubble · FlutterFlow · Glide · Adalo"},
-    {title:"AI & Business Automation",href:"/services/ai-automation",intro:"Reduce repetitive work by mapping the process first, then connecting the tools and automations that genuinely help.",items:["Workflow discovery and process mapping","AI-assisted workflows and business operations","CRM and application integrations","Email automation and customer journeys","Testing, documentation and handover"],tools:"AI tools · Klaviyo · Brevo · APIs · No-code automation platforms"},
-    {title:"Paid Advertising & Campaign Management",href:"/services/paid-advertising",intro:"Plan, launch and optimise paid campaigns around your offer, audience and growth objectives.",items:["Campaign strategy and objective planning","Audience, placement and budget configuration","Ad copy and creative direction","Pixel, event and conversion tracking","Campaign launch, management and optimisation","Performance monitoring and reporting"],tools:"Paid advertising platforms · Conversion tracking · Analytics"},
-    {title:"Creator & Community Commerce",href:"/services/creator-commerce",intro:"Structure the experience behind digital products, paid communities, memberships and service-led creator businesses.",items:["Digital storefront and offer setup","Courses, memberships and subscription tiers","Discord roles and paid-access workflows","Community platform configuration","Customer journey and onboarding setup"],tools:"Whop · Skool · Discord · Kajabi · Circle"},
-    {title:"Graphic Design & Visual Communication",href:"/services/graphic-design",intro:"Create clear visual assets for business offers, events and digital channels.",items:["Event flyers and posters","Social media post and story graphics","Promotional banners and campaign creatives","Supporting graphics for existing brand identities","Logo and favicon refinements"],tools:"Visual design tools selected to fit the brief"}
+    {
+      title: "Sell online", href: "/services/shopify-store-setup",
+      intro: "Set up and improve the store, product experience and merchant feeds behind your ecommerce business.",
+      items: ["Shopify store design, setup and management", "Product uploads, collections, variants and store operations", "Google Merchant Center fixes and product-feed troubleshooting", "Bing Merchant Center setup and feed troubleshooting"],
+      tools: "Shopify · Google Merchant Center · Bing Merchant Center"
+    },
+    {
+      title: "Get found", href: "/services/seo-social-visibility",
+      intro: "Improve how people discover and understand your business across search and social platforms.",
+      items: ["Pinterest profile, board and product-pin setup", "Pinterest marketing foundations and SEO", "TikTok content creation for products and offers", "Website SEO, metadata and indexing foundations"],
+      tools: "Pinterest · TikTok · Google Search Console · Bing Webmaster Tools"
+    },
+    {
+      title: "Build sites and apps", href: "/services/website-development",
+      intro: "Create responsive websites and useful no-code applications around the people who will use them.",
+      items: ["Webflow and Framer websites", "Bubble, Glide, FlutterFlow and Adalo applications", "Customer portals, internal tools and MVPs", "Responsive layouts, testing and handover"],
+      tools: "Webflow · Framer · Bubble · Glide · FlutterFlow · Adalo"
+    },
+    {
+      title: "Run communities and automation", href: "/services/creator-commerce",
+      intro: "Bring your community, customer journeys and day-to-day automations into a connected setup.",
+      items: ["Whop storefronts and digital products", "Skool communities and membership access", "GoHighLevel CRM pipelines and automations", "Member onboarding, follow-ups and connected workflows"],
+      tools: "Whop · Skool · GoHighLevel"
+    }
   ];
-  return <><Intro eyebrow="SERVICES / WHAT I DO" title="Practical digital solutions, thoughtfully built." body="I help businesses plan and implement the digital tools behind their customer experience and operations. Choose a service area to explore, or bring me the problem and we can work out the right combination."/><section className="section container service-detail-list">{cards.map((c,i)=><Reveal key={c.title}><article className="service-detail-card"><div className="service-detail-number">0{i+1}</div><div className="service-detail-main"><ServiceIcon label={c.title}/><Eyebrow>{c.title.toUpperCase()}</Eyebrow><h2>{c.title}</h2><p className="service-detail-intro">{c.intro}</p><ul className="check-list">{c.items.map((item)=><li key={item}>{item}</li>)}</ul><div className="tools-line"><span>PLATFORMS & TOOLS</span><p>{c.tools}</p></div><Arrow href={c.href}>Explore service details</Arrow></div></article></Reveal>)}</section><section className="scope-note container"><div><Eyebrow>CLEAR SCOPE</Eyebrow><h2>Implementation, not vague promises.</h2></div><p>Deliverables, exclusions, dependencies and handover expectations are clarified before work begins. I provide Shopify and website implementation, automation, organic visibility support and paid advertising campaign management. Ongoing organic social posting is scoped separately.</p></section><PlatformWall compact /><Cta title="Not sure which service fits?" body="Start with the outcome you need. We can clarify the right combination of services together."/></>;
+  return <>
+    <Intro eyebrow="SERVICES / WHAT I DO" title="The digital foundations behind your business." body="Choose the part of your business you want to build or improve. I can help with the store, discovery, website, app, community or automation—and make sure the pieces work together."/>
+    <section className="section container service-detail-list service-category-list">
+      {cards.map((c,i)=><Reveal key={c.title}><article className="service-detail-card"><div className="service-detail-number">0{i+1}</div><div className="service-detail-main"><h2>{c.title}</h2><p className="service-detail-intro">{c.intro}</p><ul className="check-list">{c.items.map((item)=><li key={item}>{item}</li>)}</ul><div className="tools-line"><span>PLATFORMS & TOOLS</span><p>{c.tools}</p></div><Arrow href={c.href}>Explore service details</Arrow></div></article></Reveal>)}
+    </section>
+    <section className="scope-note container"><div><Eyebrow>GRAPHIC DESIGN</Eyebrow><h2>Need a visual to support the message?</h2></div><div><p>Browse a separate collection of event flyers, posters and promotional design work.</p><Arrow href="/graphic-design">View graphic-design work</Arrow></div></section>
+    <PlatformWall compact />
+    <Cta title="Not sure where to start?" body="Tell me what you want your business to do better. We can identify the right services and agree on a clear scope."/>
+  </>;
 }
 async function Process() {
   const stored = await getProcess();
@@ -529,8 +626,31 @@ async function Process() {
   return <><Intro eyebrow="MY PROCESS / HOW WE WORK" title="A thoughtful process. No guesswork." body="The work is easier to deliver well when expectations are clear from the beginning. For paid advertising, that includes agreeing on objectives, audiences, budget, creative, tracking and reporting before launch. My process keeps the business goal, campaign or technical scope and delivery steps connected."/><section className="section container process-full-list">{steps.map((s,i)=><Reveal key={s._id} delay={i*55}><article className="process-row"><div><h2>{s.title}</h2><p>{s.description}</p></div></article></Reveal>)}</section><section className="section section-soft"><div className="container communication-block"><div><Eyebrow>COMMUNICATION</Eyebrow><h2>You will know where things stand.</h2></div><p>I keep project updates useful: what has been completed, what is currently in progress, what needs input and what comes next. If a dependency or issue affects delivery, I raise it clearly rather than leaving you guessing.</p></div></section><Cta title="A good project starts with clarity." body="Share what you have in mind. We can define the right first step together."/></>;
 }
 async function Work() {
-  const projects = await getProjects();
-  return <><Intro eyebrow="SELECTED WORK" title="A closer look at what I build and design." body="Explore ecommerce work, live websites and graphic-design samples. Each project is shown for the work involved, with no inflated performance claims."/><section className="section container"><div className="work-intro-note"><p>Website cards open live previews on hover. Graphic-design samples show the original artwork.</p></div><div className="project-grid project-grid-large">{projects.map((project,index)=><ProjectCard key={project._id} project={project} index={index}/>)}</div></section><Cta title="Have a similar project in mind?" body="Share the goal and the context. We can work out the right scope together."/></>;
+  const projects = (await getProjects()).filter((project) => !project.category?.toLowerCase().includes("graphic design"));
+  return <>
+    <Intro eyebrow="SELECTED WORK" title="A closer look at the stores and systems I build." body="Explore Shopify and ecommerce projects, live websites and digital experiences. Graphic-design samples have their own dedicated gallery."/>
+    <section className="section container">
+      <div className="work-intro-note"><p>Hover a live project card to load its website preview. Select the project title to open the full website.</p></div>
+      <div className="project-grid project-grid-large work-project-grid">{projects.map((project,index)=><ProjectCard key={project._id} project={project} index={index}/>)}</div>
+      <div className="section-end-cta"><Arrow href="/graphic-design">Browse graphic-design work</Arrow></div>
+    </section>
+    <Cta title="Have a similar project in mind?" body="Share the goal and the context. We can work out the right scope together."/>
+  </>;
+}
+
+async function GraphicDesign() {
+  const projects = (await getProjects()).filter((project) => project.category?.toLowerCase().includes("graphic design"));
+  return <>
+    <Intro eyebrow="GRAPHIC DESIGN PORTFOLIO" title="Visual work that makes the message clear." body="A selection of flyers, posters and promotional graphics created for events and digital communication."/>
+    <section className="section container graphic-design-gallery">
+      {projects.length
+        ? <div className="project-grid project-grid-large design-gallery-grid">{projects.map((project,index)=><ProjectCard key={project._id} project={project} index={index}/>)}</div>
+        : <div className="empty-reviews"><h2>More design work will be added here.</h2><p>This collection will grow as additional completed designs are added.</p></div>}
+      <p className="graphic-design-gallery-note">This gallery contains the three current design samples. More completed work can be added as you provide it.</p>
+      <div className="section-end-cta"><Arrow href="/contact">Discuss a design project</Arrow></div>
+    </section>
+    <Cta title="Need a design for an event, offer or campaign?" body="Share the message, audience and final format. We can confirm the design scope before work begins."/>
+  </>;
 }
 
 async function Testimonials() {
@@ -553,7 +673,7 @@ function Contact({ settings }: { settings: Settings }) {
 }
 export default async function Page({ params }: RouteProps) {
   const route = (await params).slug?.join("/") || "";
-  const allowed = ["","about","how-i-can-help","services","process","work","testimonials","faq","contact", ...Object.keys(serviceLandingPages)];
+  const allowed = ["","about","how-i-can-help","services","process","work","graphic-design","testimonials","faq","contact", ...Object.keys(serviceLandingPages)];
   if (!allowed.includes(route)) notFound();
   if (serviceLandingPages[route]) return <ServiceLanding route={route}/>;
   const settings = await getSettings();
@@ -564,6 +684,7 @@ export default async function Page({ params }: RouteProps) {
     case "services": return <Services/>;
     case "process": return <Process/>;
     case "work": return <Work/>;
+    case "graphic-design": return <GraphicDesign/>;
     case "testimonials": return <Testimonials/>;
     case "faq": return <Faq/>;
     case "contact": return <Contact settings={settings}/>;
