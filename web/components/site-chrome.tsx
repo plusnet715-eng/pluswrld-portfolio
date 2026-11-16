@@ -6,14 +6,14 @@ import type { PresenceLink, Settings } from "../lib/content";
 
 const primaryLinks = [
   { href: "/services", label: "Services" },
-  { href: "/work", label: "Selected work" }
+  { href: "/work", label: "Selected work" },
+  { href: "/about", label: "About me" },
+  { href: "/testimonials", label: "Reviews" },
+  { href: "/faq", label: "FAQ" }
 ];
 const exploreLinks = [
-  { href: "/about", label: "About me", description: "The person and approach behind Pluswrld" },
   { href: "/how-i-can-help", label: "How I can help", description: "Find the right starting point" },
-  { href: "/process", label: "My process", description: "How projects are scoped and delivered" },
-  { href: "/testimonials", label: "Reviews", description: "Feedback from clients and buyers" },
-  { href: "/faq", label: "FAQ", description: "Answers before we begin" }
+  { href: "/process", label: "My process", description: "How projects are scoped and delivered" }
 ];
 type ThemePreference = "system" | "light" | "dark";
 

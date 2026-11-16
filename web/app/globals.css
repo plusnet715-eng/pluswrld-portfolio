@@ -1031,3 +1031,77 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 }
 
 .about-name-note{display:block;margin-top:4px;color:var(--muted,#69756d);font-size:.78rem;line-height:1.4}
+
+
+/* Pluswrld page refresh: clear hierarchy, remove decorative indices and animate previews. */
+.eyebrow,.card-number,.project-meta>span:last-child,.about-capability-index,.about-fit-card>span,.about-approach-step>span,.about-principle-card>span,.preview-step>span,.process-row>.process-number,.process-marker,.process-number,.service-detail-number,.faq-item summary>span,.work-intro-note>span,.situation-row>span:first-child,.hero-bottom-line{display:none!important}
+.page-intro{padding-top:78px;padding-bottom:34px}
+.page-intro h1{max-width:900px;font-size:clamp(42px,5.1vw,68px);line-height:1.04;letter-spacing:-.055em}
+.page-intro>div>p{max-width:760px}
+.page-intro-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:26px}
+.page-intro-actions .text-link{font-size:13px}
+.home-services-section{padding-top:94px}
+.home-service-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.home-service-card{display:flex;flex-direction:column;min-height:315px;border-radius:9px;box-shadow:0 12px 30px #102d1608}
+.home-service-card p{flex:1;min-height:0}
+.home-service-card h3{max-width:330px}
+.service-icon{width:48px;height:48px;margin-bottom:26px;border-radius:14px}
+.service-icon svg{width:25px;height:25px}
+.live-website-preview{position:relative;width:100%;height:100%;min-height:0;overflow:hidden;isolation:isolate;background:#eef3ed}
+.live-website-preview .live-preview-poster{position:absolute;inset:0;object-fit:cover;transition:opacity .5s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.live-website-preview.is-previewing .live-preview-poster{opacity:.18;transform:scale(1.025)}
+.live-website-preview iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff;opacity:0;transform:translateY(12px) scale(.99);transform-origin:top center;transition:opacity .55s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.live-website-preview iframe.is-loaded{opacity:1;transform:translateY(0) scale(1)}
+.live-preview-hint{position:absolute;z-index:3;right:10px;bottom:10px;padding:6px 9px;border:1px solid #ffffff66;border-radius:4px;background:#101a14c9;color:#fff;font-size:8px;font-weight:700;letter-spacing:.08em;backdrop-filter:blur(10px)}
+.live-preview-device{height:100%;border-radius:4px}
+.device-screen{position:relative;overflow:hidden}
+.project-visual-live .live-website-preview{position:absolute;inset:0}
+.project-visual-live .live-preview-hint{right:12px;bottom:12px}
+.project-card{overflow:hidden;border-radius:9px;box-shadow:0 12px 28px #102d1608;transition:transform .25s ease,box-shadow .25s ease}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 22px 44px #102d1618}
+.project-card .project-visual{cursor:default}
+.project-card .project-visual-static img{object-fit:cover;transition:transform .75s cubic-bezier(.2,.7,.2,1)}
+.project-card:hover .project-visual-static img{transform:scale(1.035)}
+.project-open{opacity:0;transform:translateY(5px);transition:opacity .3s ease,transform .3s ease}
+.project-card:hover .project-open,.project-card:focus-within .project-open{opacity:1;transform:none}
+.project-card-body{padding:22px 24px 25px}
+.project-meta{margin-bottom:10px}
+.project-meta>span:first-child{color:#57705e;letter-spacing:.06em;text-transform:none}
+.project-card-body h3{font-size:24px;line-height:1.2}
+.project-card-body p{min-height:0}
+.project-grid-large .project-visual{aspect-ratio:1.25/1}
+.about-metrics{padding-top:46px;padding-bottom:46px}
+.about-metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.about-metric{display:flex;flex-direction:column;gap:7px;padding:24px 26px;border:1px solid #dfe8dd;border-radius:8px;background:#fff}
+.about-metric strong{color:var(--deep);font-family:var(--font-head);font-size:clamp(32px,4vw,46px);font-weight:600;line-height:1;letter-spacing:-.05em}
+.about-metric span{color:var(--soft);font-size:12px;font-weight:600}
+.about-metric-note{margin:14px 0 0;color:var(--muted);font-size:11px}
+.about-philosophy .section-heading-aside{max-width:500px}
+.about-philosophy .section-heading-aside p{font-size:14px;line-height:1.8}
+.about-process-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:36px}
+.about-process-card{height:100%;padding:23px 22px;border:1px solid var(--line);border-radius:8px;background:#fff;box-shadow:0 10px 25px #102d1608}
+.about-process-card h3{margin:0 0 9px;font-family:var(--font-head);font-size:19px;line-height:1.2}
+.about-process-card p{margin:0;color:var(--soft);font-size:12px;line-height:1.7}
+.about-reviews{padding-top:90px;padding-bottom:90px}
+.about-review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.about-review-grid .testimonial-card{height:100%;margin:0}
+.about-human{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.about-human h2{margin:18px 0 0;font-family:var(--font-head);font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-.05em}
+.about-human>div:last-child>p{color:var(--soft);font-size:14px;line-height:1.85}
+.about-availability{display:flex;align-items:center;gap:10px}
+.about-human-actions{display:flex;gap:22px;flex-wrap:wrap;margin-top:20px}
+.about-human-actions .text-link{font-size:12px}
+.testimonial-feed-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch}
+.testimonial-card{display:flex;flex-direction:column;min-width:0;min-height:260px;margin:0;padding:27px 28px;border:1px solid #e2e9e1;border-radius:9px;background:#fff;box-shadow:0 12px 26px #102d1608}
+.testimonial-card blockquote{flex:1;margin:22px 0;color:#26362b;font-size:20px;line-height:1.48}
+.testimonial-card-compact{min-height:235px}
+.testimonial-card-animated{animation:review-card-in .55s cubic-bezier(.2,.7,.2,1) both}
+@keyframes review-card-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.testimonial-top{align-items:center}
+.testimonial-bottom{margin-top:auto}
+.testimonial-feed-grid .testimonial-card:nth-child(odd){background:linear-gradient(145deg,#fff,#f8fbf7)}
+.testimonial-list{max-width:1160px}
+.testimonial-load-more{margin-top:28px;text-align:center}
+@media(max-width:980px){.main-nav{gap:15px}.home-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.about-process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.page-intro{padding-top:58px;padding-bottom:24px}.page-intro h1{font-size:clamp(39px,10.5vw,56px)}.page-intro-actions{gap:16px;margin-top:20px}.home-services-section{padding-top:62px}.home-service-grid{grid-template-columns:1fr}.home-service-card{min-height:0;padding:24px}.about-metric-grid{grid-template-columns:1fr 1fr}.about-metric:last-child{grid-column:1/-1}.about-process-grid{grid-template-columns:1fr}.about-review-grid,.testimonial-feed-grid{grid-template-columns:1fr}.about-human{grid-template-columns:1fr;gap:15px}.testimonial-card{min-height:0;padding:22px 20px}.testimonial-card blockquote{font-size:18px}.project-grid-large .project-visual{aspect-ratio:1.15/1}}
+@media(prefers-reduced-motion:reduce){.live-website-preview iframe,.live-website-preview .live-preview-poster{transition:none}.testimonial-card-animated{animation:none}}

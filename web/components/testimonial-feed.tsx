@@ -11,13 +11,10 @@ export function TestimonialFeed({ reviews }: { reviews: Testimonial[] }) {
   const remaining = Math.max(0, reviews.length - visibleReviews.length);
 
   return <>
-    <div className="testimonial-feed-status" aria-live="polite">
-      Showing {visibleReviews.length} of {reviews.length} reviews
-    </div>
     <div className="testimonial-feed-grid">
-      {visibleReviews.map((review) => {
+      {visibleReviews.map((review, index) => {
         const rating = Math.max(0, Math.min(5, review.rating || 0));
-        return <article className="testimonial-card" key={review._id}>
+        return <article className="testimonial-card testimonial-card-animated" key={review._id} style={{ animationDelay: `${(index % PAGE_SIZE) * 75}ms` }}>
           <div className="testimonial-top">
             <span className="testimonial-stars" aria-label={rating + " out of 5 stars"}>{"★".repeat(rating) + "☆".repeat(5-rating)}</span>
             <span>{review.platform} · {review.reviewDateLabel || review.reviewDate}</span>

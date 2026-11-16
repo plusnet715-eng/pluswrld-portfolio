@@ -7,13 +7,13 @@ const client = createClient({ projectId, dataset, apiVersion: "2025-02-19", useC
 const cdn = (assetId: string) => "https://cdn.sanity.io/images/" + projectId + "/" + dataset + "/" + assetId;
 
 export type Settings = {
-  name: string; fullName: string; role: string; location: string; marketReach: string; availability: string;
+  name: string; fullName: string; role: string; location: string; marketReach: string; availability: string; freelancingSince?: string;
   email: string; whatsappNumber: string; whatsappUrl: string; logoUrl: string; logoDarkUrl: string; heroTitle: string;
   heroDescription: string; aboutIntro: string; aboutStory: string; aboutPhilosophy: string;
   tagline: string; secondaryTagline: string; secondaryTaglineMeaning: string; portraitUrl: string; originalPortraitUrl: string;
 };
-export type Service = { _id: string; title: string; description: string; order?: number };
-export type Project = { _id: string; title: string; category: string; summary: string; liveUrl?: string; status: string; imageUrl: string };
+export type Service = { _id: string; title: string; description: string; shortDescription?: string; icon?: string; order?: number };
+export type Project = { _id: string; title: string; category: string; summary: string; liveUrl?: string; status: string; featured?: boolean; imageUrl: string };
 export type ProcessStep = { _id: string; title: string; description: string; order?: number };
 export type Faq = { _id: string; question: string; answer: string; order?: number };
 export type Testimonial = { _id: string; quote: string; rating: number; reviewDate: string; reviewDateLabel?: string; reviewerHandle: string; reviewerLabel: string; reviewerCountry?: string; platform: string; sourceUrl?: string; sourceLabel?: string; featured?: boolean; repeatClient?: boolean };
@@ -23,7 +23,7 @@ const defaults: Settings = {
   name: "Pluswrld", fullName: "Paul Oloruntobi",
   role: "Digital Builder | Ecommerce, Automation & Visibility",
   location: "", marketReach: "Worldwide",
-  availability: "Available for selected projects", email: "timileyinpaul26@gmail.com",
+  availability: "Available for selected projects", freelancingSince: "2025-05-01", email: "timileyinpaul26@gmail.com",
   whatsappNumber: "+234 916 161 2746", whatsappUrl: "https://wa.me/2349161612746",
   heroTitle: "Shopify, websites and digital systems, built to work together.",
   heroDescription: "From Shopify stores and business websites to no-code applications, AI automation and connected digital systems, I turn ideas and disconnected tools into practical experiences that work together. I also help creators and businesses build the storefronts, memberships and online communities around their offers.",
@@ -63,7 +63,7 @@ const projectAssets: Record<string, string> = {
 
 export const getSettings = cache(async (): Promise<Settings> => {
   try {
-    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
+    const data = await client.fetch<Partial<Settings>>('*[_type == "siteSettings"][0]{name,fullName,role,location,marketReach,availability,freelancingSince,email,whatsappNumber,whatsappUrl,heroTitle,heroDescription,aboutIntro,aboutStory,aboutPhilosophy,tagline,secondaryTagline,secondaryTaglineMeaning,"portraitUrl":portrait.asset->url,"originalPortraitUrl":originalPortrait.asset->url}');
     const normalized = data ? normalizeObjectStrings(data) : null;
     return { ...defaults, ...(normalized ?? {}), logoUrl: defaults.logoUrl, logoDarkUrl: defaults.logoDarkUrl, portraitUrl: normalized?.portraitUrl || defaults.portraitUrl, originalPortraitUrl: normalized?.originalPortraitUrl || defaults.originalPortraitUrl };
   } catch { return defaults; }
@@ -71,7 +71,7 @@ export const getSettings = cache(async (): Promise<Settings> => {
 
 export async function getServices(): Promise<Service[]> {
   try {
-    const data = await client.fetch<Service[]>('*[_type == "service"] | order(order asc){_id,title,description,order}');
+    const data = await client.fetch<Service[]>('*[_type == "service"] | order(order asc){_id,title,description,shortDescription,icon,order}');
     if (data?.length) return data.map(normalizeObjectStrings);
   } catch {}
   return [
@@ -84,7 +84,7 @@ export async function getServices(): Promise<Service[]> {
 
 export async function getProjects(): Promise<Project[]> {
   try {
-    const data = await client.fetch<(Omit<Project, "imageUrl"> & { cmsImageUrl?: string })[]>('*[_type == "project" && status != "Pending scope confirmation"] | order(order asc){_id,title,category,summary,liveUrl,status,"cmsImageUrl":coalesce(coverImage.asset->url,mainImage.asset->url)}');
+    const data = await client.fetch<(Omit<Project, "imageUrl"> & { cmsImageUrl?: string })[]>('*[_type == "project" && status != "Pending scope confirmation"] | order(order asc){_id,title,category,summary,liveUrl,status,featured,"cmsImageUrl":coalesce(coverImage.asset->url,mainImage.asset->url)}');
     return (data ?? []).map((item) => { const p = normalizeObjectStrings(item); return { ...p, imageUrl: p.cmsImageUrl || projectAssets[p._id] || "" }; });
   } catch { return []; }
 }
