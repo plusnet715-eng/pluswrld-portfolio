@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { Work_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteFooter, SiteHeader } from "../components/site-chrome";
 import { getPresenceLinks, getSettings } from "../lib/content";
+
+const workSans = Work_Sans({ subsets: ["latin"], display: "swap", variable: "--font-work-sans" });
 
 const siteUrl = "https://pluswrld-portfolio.vercel.app";
 const themeInit = `try { const saved = localStorage.getItem("pluswrld-theme") || "system"; const mode = saved === "system" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : saved; document.documentElement.dataset.theme = mode; document.documentElement.style.colorScheme = mode; } catch { document.documentElement.dataset.theme = "light"; }`;
@@ -91,7 +94,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <link rel="preconnect" href="https://a8mywjme.apicdn.sanity.io" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://cdn.shopify.com" />
     </head>
-    <body>
+    <body className={workSans.variable}>
       <SiteHeader settings={settings} />
       <main>{children}</main>
       <SiteFooter settings={settings} profiles={profiles} />
