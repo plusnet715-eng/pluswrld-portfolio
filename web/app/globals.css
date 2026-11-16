@@ -1105,3 +1105,84 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
 @media(max-width:980px){.main-nav{gap:15px}.home-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.about-process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.page-intro{padding-top:58px;padding-bottom:24px}.page-intro h1{font-size:clamp(39px,10.5vw,56px)}.page-intro-actions{gap:16px;margin-top:20px}.home-services-section{padding-top:62px}.home-service-grid{grid-template-columns:1fr}.home-service-card{min-height:0;padding:24px}.about-metric-grid{grid-template-columns:1fr 1fr}.about-metric:last-child{grid-column:1/-1}.about-process-grid{grid-template-columns:1fr}.about-review-grid,.testimonial-feed-grid{grid-template-columns:1fr}.about-human{grid-template-columns:1fr;gap:15px}.testimonial-card{min-height:0;padding:22px 20px}.testimonial-card blockquote{font-size:18px}.project-grid-large .project-visual{aspect-ratio:1.15/1}}
 @media(prefers-reduced-motion:reduce){.live-website-preview iframe,.live-website-preview .live-preview-poster{transition:none}.testimonial-card-animated{animation:none}}
+
+
+/* Follow-up visual refinements: capability groups, tighter cards and section-end CTAs */
+.home-capabilities-section{padding:82px 0 76px;background:linear-gradient(135deg,#edf6ec 0%,#e5f0e4 100%);color:#122619}
+.home-capabilities-section .section-heading{margin-bottom:30px}
+.home-capabilities-section .section-heading-aside p{color:#53685a}
+.capability-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.capability-card{display:flex;flex-direction:column;min-height:315px;padding:23px 21px 20px;border:1px solid #d3e3d2;border-radius:9px;background:#ffffffde;box-shadow:0 10px 24px #14371a0a}
+.capability-card h3{margin:0 0 10px;color:#122619;font-family:var(--font-head);font-size:22px;line-height:1.16;letter-spacing:-.035em}
+.capability-card>p{min-height:86px;margin:0 0 17px;color:#53685a;font-size:12px;line-height:1.7}
+.capability-logos{display:flex;align-content:flex-start;align-items:center;flex-wrap:wrap;gap:9px 12px;min-height:64px;margin:0 0 18px}
+.capability-brand{display:inline-flex;align-items:center;gap:5px;min-height:26px;color:#31483a;font-size:9px;font-weight:650;white-space:nowrap}
+.capability-brand img{display:block;width:auto;height:19px;max-width:92px;object-fit:contain}
+.capability-card>.text-link{margin-top:auto}
+.section-end-cta{display:flex;justify-content:flex-end;align-items:center;margin-top:27px;padding-top:19px;border-top:1px solid #dfe8df}
+.home-capabilities-section .section-end-cta{border-color:#d2e1d1}
+.home-selected-work .section-heading{margin-bottom:27px}
+.home-project-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.home-project-grid .project-visual{aspect-ratio:1.62/1}
+.home-project-grid .project-card-body{padding:16px 17px 18px}
+.home-project-grid .project-card h3{margin:8px 0 6px;font-size:20px}
+.home-project-grid .project-card p{font-size:11px;line-height:1.65}
+.project-grid-large,.work-project-grid,.design-gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.project-grid-large .project-visual{aspect-ratio:1.55/1}
+.project-grid-large .project-card-body{padding:17px 18px 19px}
+.project-grid-large .project-card h3{font-size:21px}
+.project-grid-large .project-card-body p{font-size:12px;line-height:1.65}
+.testimonial-feed-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.testimonial-list{max-width:1120px}
+.testimonial-card{display:flex;flex-direction:column;min-height:215px;margin:0;padding:18px 20px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.testimonial-top{align-items:flex-start;flex-wrap:wrap;gap:8px 14px}
+.testimonial-card blockquote{display:-webkit-box;overflow:hidden;margin:14px 0 15px;color:#27352b;font-size:15px;line-height:1.5;letter-spacing:-.01em;-webkit-box-orient:vertical;-webkit-line-clamp:4}
+.testimonial-bottom{margin-top:auto;padding-top:12px}
+.testimonial-card-compact{min-height:185px;padding:18px 20px}
+.testimonial-card-compact blockquote{font-size:15px;line-height:1.5}
+.about-metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.about-metric{min-height:116px}
+.about-metric strong{font-size:clamp(27px,3vw,40px)}
+.platform-wall-cta{display:flex;justify-content:flex-end;margin-top:23px;padding-top:17px;border-top:1px solid var(--line)}
+.graphic-design-gallery-note{margin:25px 0 0;color:var(--soft);font-size:12px}
+.service-category-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.service-category-list .service-detail-card{min-height:100%;padding:24px 23px}
+.service-category-list .service-detail-main h2{margin-top:4px;font-size:27px}
+.service-category-list .service-detail-main .service-detail-intro{min-height:64px}
+.service-category-list .check-list{margin-bottom:18px}
+:root[data-theme="dark"] .home-capabilities-section{background:linear-gradient(135deg,#102b18 0%,#122a1b 100%);color:#eaf4eb}
+:root[data-theme="dark"] .capability-card{border-color:#31543a;background:#193321}
+:root[data-theme="dark"] .capability-card h3{color:#f0f7f1}
+:root[data-theme="dark"] .capability-card>p,:root[data-theme="dark"] .capability-brand{color:#c1d3c4}
+:root[data-theme="dark"] .home-capabilities-section .section-heading-aside p{color:#c1d3c4}
+:root[data-theme="dark"] .home-capabilities-section .section-end-cta{border-color:#31543a}
+:root[data-theme="dark"] .testimonial-card{background:#132319;border-color:#2a4030}
+:root[data-theme="dark"] .testimonial-card blockquote{color:#e4eee6}
+:root[data-theme="dark"] .testimonial-top{color:#9caf9f}
+:root[data-theme="dark"] .testimonial-bottom{border-color:#2a4030}
+.footer-top{grid-template-columns:1.1fr .8fr .85fr .8fr 1fr;gap:27px}
+/* The iframe must not take the pointer away from its hover-controlled wrapper. */
+.live-website-preview iframe{pointer-events:none}
+@media(max-width:1080px){
+  .capability-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .capability-card{min-height:280px}
+  .about-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .home-project-grid,.project-grid-large,.work-project-grid,.design-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .footer-top{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .footer-contact{grid-column:1/-1}
+}
+@media(max-width:760px){
+  .home-capabilities-section{padding:60px 0}
+  .capability-grid{grid-template-columns:1fr;gap:12px}
+  .capability-card{min-height:0;padding:21px}
+  .capability-card>p{min-height:0}
+  .capability-logos{min-height:0}
+  .home-project-grid,.project-grid-large,.work-project-grid,.design-gallery-grid{grid-template-columns:1fr}
+  .testimonial-feed-grid{grid-template-columns:1fr}
+  .testimonial-card{min-height:0;padding:18px 19px}
+  .testimonial-card blockquote{font-size:15px;-webkit-line-clamp:4}
+  .about-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .service-category-list{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:27px 18px}
+  .footer-contact{grid-column:1/-1}
+}
