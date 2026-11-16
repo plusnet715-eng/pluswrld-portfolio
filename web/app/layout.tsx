@@ -88,6 +88,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
   return <html lang="en-NG" data-theme="light">
     <head>
+      <meta name="google-site-verification" content="bYykgOmSzwyzOBsccIRw5FhNTUXMijAz-Nl8_ujCuM4" />
       <link rel="preconnect" href="https://use.typekit.net" />
       <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
       <link id="pluswrld-typekit" rel="stylesheet" href="https://use.typekit.net/hmk3hsy.css" media="print" />
