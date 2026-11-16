@@ -241,11 +241,13 @@ function serviceHref(title: string) {
 function DeviceView({ project, variant }: { project: Project & { liveUrl: string }; variant: "desktop" | "tablet" | "phone" }) {
   let projectHost = "live project";
   try { projectHost = new URL(project.liveUrl).hostname.replace(/^www\\./, ""); } catch {}
-  return <a className={"device-view device-view-" + variant} href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={"Open " + project.title + " website"}>
-    <span className="device-browser"><i /><i /><i /><span>{projectHost}</span></span>
-    <div className="device-screen"><LiveWebsitePreview url={project.liveUrl} title={project.title} poster={project.imageUrl} className="live-preview-device" /></div>
-    <span className="device-view-label">{project.title} <span>↗</span></span>
-  </a>;
+  return <div className={"device-view device-view-" + variant}>
+    <span className="device-browser" aria-hidden="true"><i /><i /><i /><span>{projectHost}</span></span>
+    <div className="device-screen">
+      <LiveWebsitePreview url={project.liveUrl} title={project.title} poster={project.imageUrl} className="live-preview-device" />
+    </div>
+    <a className="device-view-label" href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={"Open " + project.title + " website"}>{project.title} <span>↗</span></a>
+  </div>;
 }
 
 function HeroShowcase({ projects }: { projects: Project[] }) {
@@ -263,7 +265,11 @@ function HeroShowcase({ projects }: { projects: Project[] }) {
 }
 function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   return <section className="home-hero"><div className="container home-hero-grid">
-    <div className="hero-copy"><div><Eyebrow>SHOPIFY · WEBSITES · AUTOMATION · NO-CODE</Eyebrow><h1>{settings.heroTitle}</h1><p className="hero-description">{settings.heroDescription}</p>
+    <div className="hero-copy"><div><Eyebrow>SHOPIFY · WEBSITES · AUTOMATION · NO-CODE</Eyebrow><h1 aria-label={settings.heroTitle}>
+      {settings.heroTitle === "Your store, website, community and automations, set up properly."
+        ? <><span>Your store, website,</span><span>community and</span><span>automations, set up properly.</span></>
+        : settings.heroTitle}
+    </h1><p className="hero-description">{settings.heroDescription}</p>
       <div className="hero-actions"><Link href="/contact" className="button">Discuss a project <span>↗</span></Link><Link href="/work" className="button button-outline">Explore my work <span>↗</span></Link></div>
       <div className="hero-caption"><i className="availability-dot" />{settings.availability}</div></div></div>
     <HeroShowcase projects={projects} />
@@ -348,14 +354,22 @@ async function Home({ settings }: { settings: Settings }) {
         <div className="capability-grid">
           {capabilityGroups.map((group, index) => <Reveal key={group.title} delay={index * 55}>
             <article className="capability-card">
-              <h3>{group.title}</h3>
+              <div className="capability-card-head">
+                <span className="capability-primary-mark">
+                  <img src={group.platforms[0].src} alt="" loading="lazy"/>
+                </span>
+                <div className="capability-card-title">
+                  <h3>{group.title}</h3>
+                  <span className="capability-primary-label">{group.platforms[0].label}</span>
+                </div>
+              </div>
               <p>{group.body}</p>
-              <div className="capability-logos" aria-label={group.title + " platforms"}>
-                {group.platforms.map((platform) => <span className="capability-brand" key={platform.label}>
+              {group.platforms.length > 1 && <div className="capability-logos" aria-label={group.title + " additional platforms"}>
+                {group.platforms.slice(1).map((platform) => <span className="capability-brand" key={platform.label}>
                   <img src={platform.src} alt="" loading="lazy"/>
                   <span>{platform.label}</span>
                 </span>)}
-              </div>
+              </div>}
               <Arrow href={group.href}>Explore this area</Arrow>
             </article>
           </Reveal>)}
