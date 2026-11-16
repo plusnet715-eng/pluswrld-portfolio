@@ -279,12 +279,12 @@ function TextParagraphs({ text, className = "" }: { text: string; className?: st
 
 function AboutSocialLinks({ links }: { links: PresenceLink[] }) {
   const icons: Record<string, { slug: string; colour: string }> = {
-    instagram: { slug: "instagram", colour: "E4405F" },
-    facebook: { slug: "facebook", colour: "0866FF" },
-    tiktok: { slug: "tiktok", colour: "000000" },
-    linkedin: { slug: "linkedin", colour: "0A66C2" },
+    instagram: { slug: "instagram", colour: "017930" },
+    facebook: { slug: "facebook", colour: "017930" },
+    tiktok: { slug: "tiktok", colour: "017930" },
+    linkedin: { slug: "linkedin", colour: "017930" },
     threads: { slug: "threads", colour: "000000" },
-    whatsapp: { slug: "whatsapp", colour: "25D366" },
+    whatsapp: { slug: "whatsapp", colour: "017930" },
     x: { slug: "x", colour: "000000" },
     twitter: { slug: "x", colour: "000000" }
   };
@@ -417,7 +417,7 @@ function Help() {
 const platformGroups = [
   { title: "Ecommerce, search & social commerce", items: [
     {name:"Shopify",src:"/platform/shopify.svg"},
-    {name:"Google",src:"/platform/google.svg"},
+    {name:"Google",src:"https://upload.wikimedia.org/wikipedia/commons/e/ee/Google_2026_logo.svg"},
     {name:"Microsoft",src:"/platform/microsoft.svg"},
     {name:"TikTok",src:"/platform/tiktok.svg"},
     {name:"Pinterest",src:"/platform/pinterest.svg"},
@@ -439,7 +439,7 @@ const platformGroups = [
     {name:"Claude",src:"/platform/claude.svg"}
   ]},
   { title: "Creator, community & email", items: [
-    {name:"Whop",src:"/platform/whop.svg"},
+    {name:"Whop",src:"https://brand.whop.com/images/logos/whop_logo_lockup_duo_black.svg"},
     {name:"Skool",src:"/platform/skool.svg"},
     {name:"Discord",src:"/platform/discord.svg"},
     {name:"Klaviyo",src:"/platform/klaviyo.svg"},
