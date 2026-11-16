@@ -1002,7 +1002,7 @@ h1,h2,h3,h4,h5,h6,.brand-word,.service-detail-number,.process-number{
   display:block!important;flex:0 0 18px;width:18px!important;height:18px!important;
   min-width:18px;min-height:18px;max-width:18px;max-height:18px;
   padding:0;margin:0;object-fit:contain;object-position:center;
-  filter:none!important;transform:none!important;opacity:1;
+  filter:grayscale(1) brightness(0) saturate(100%) invert(25%) sepia(71%) saturate(1045%) hue-rotate(89deg) brightness(88%) contrast(98%)!important;transform:none!important;opacity:1;
 }
 :root[data-theme="dark"] .about-social-links .social-link{
   border-color:#dbe7dc;background:#fff;
