@@ -213,7 +213,7 @@ function DeviceView({ project, variant }: { project: Project & { liveUrl: string
 function HeroShowcase({ projects }: { projects: Project[] }) {
   const publicProjects = projects.filter((project): project is Project & { liveUrl: string } => Boolean(project.liveUrl));
   const [desktop, tablet, phone] = publicProjects.slice(0, 3);
-  return <Reveal className="hero-showcase" delay={120}>
+  return <div className="hero-showcase">
     <div className="device-showcase">
       {desktop && <div className="device-frame device-frame-desktop"><DeviceView project={desktop} variant="desktop" /></div>}
       {tablet && <div className="device-frame device-frame-tablet"><DeviceView project={tablet} variant="tablet" /></div>}
@@ -221,13 +221,13 @@ function HeroShowcase({ projects }: { projects: Project[] }) {
       <span className="showcase-chip showcase-chip-one">LIVE PROJECTS</span>
       <span className="showcase-chip showcase-chip-two">DESKTOP · TABLET · MOBILE</span>
     </div>
-  </Reveal>;
+  </div>;
 }
 function Hero({ settings, projects }: { settings: Settings; projects: Project[] }) {
   return <section className="home-hero"><div className="container home-hero-grid">
-    <div className="hero-copy"><Reveal><Eyebrow>SHOPIFY · WEBSITES · AUTOMATION · NO-CODE</Eyebrow><h1>{settings.heroTitle}</h1><p className="hero-description">{settings.heroDescription}</p>
+    <div className="hero-copy"><div><Eyebrow>SHOPIFY · WEBSITES · AUTOMATION · NO-CODE</Eyebrow><h1>{settings.heroTitle}</h1><p className="hero-description">{settings.heroDescription}</p>
       <div className="hero-actions"><Link href="/contact" className="button">Discuss a project <span>↗</span></Link><Link href="/work" className="button button-outline">Explore my work <span>↗</span></Link></div>
-      <div className="hero-caption"><i className="availability-dot" />{settings.availability}</div></Reveal></div>
+      <div className="hero-caption"><i className="availability-dot" />{settings.availability}</div></div></div>
     <HeroShowcase projects={projects} />
   </div><div className="container hero-bottom-line"><span>BUILT AROUND YOUR BUSINESS</span><span>SHOPIFY · WEBSITES · NO-CODE · CONNECTED SYSTEMS</span></div></section>;
 }
